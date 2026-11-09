@@ -1,0 +1,143 @@
+\section{Communication-Graph Representation and E-GAT-IDS}
+\label{sec:method}
+
+\subsection{Graph construction}
+
+We represent the traffic as a directed multigraph
+$G = (V, E, X, Z)$ built as follows.
+
+\emph{Nodes.} $V = \{v_1,\dots,v_N\}$ contains one node per unique IP endpoint
+observed as either a source or a destination, so $N = 24$ for both flow
+abstractions. The IP string is used for identity only and never enters a
+feature vector.
+
+\emph{Edges.} Each flow record $f$ contributes one directed edge
+$e_f = (v_{s(f)}, v_{d(f)})$. Flows sharing an ordered endpoint pair are
+retained as \emph{parallel edges} rather than collapsed, because the
+classification target belongs to the individual record: collapsing would
+destroy the task. The uni-flow graph therefore has 495{,}525 edges over 106
+distinct ordered pairs, a mean parallel multiplicity of roughly 4{,}675.
+Figure~\ref{fig:flow2graph} illustrates the construction. A line-graph
+alternative, in which flows become nodes and shared endpoints become edges, is
+implemented for completeness but is not used for the headline results; the
+exact line graph of a multigraph with this multiplicity is quadratic in the
+multiplicity and does not fit in memory.
+
+\emph{Edge attributes.} $Z \in \mathbb{R}^{|E| \times D}$ holds the
+preprocessed flow attributes, $D = 27$ for uni-flow and $D = 40$ for bi-flow
+after the deterministic derivations of Section~\ref{sec:methodology}.
+
+\emph{Node attributes.} $X \in \mathbb{R}^{N \times D_n}$ holds
+behaviour-derived features, $D_n = 25$: in- and out-degree, distinct peer
+counts in each direction, flow and packet and byte volumes in each direction,
+mean packet length and mean and standard deviation of inter-arrival time in
+each direction, protocol diversity, source- and destination-port diversity,
+destination-port entropy, and three ratio features. We use these rather than a
+learned embedding indexed by endpoint deliberately. An embedding table keyed on
+IP address is free to memorise that one particular address is the attacker,
+which on a fixed-address testbed is a shortcut that inflates results without
+conferring capability. Behaviour aggregates at least require the model to
+express \emph{what} an endpoint does.
+
+Node attributes are aggregated over the \emph{training} flows only. A test
+flow's attributes therefore never influence any node's representation, even
+indirectly. We report the transductive alternative---aggregating over all
+flows---as an explicitly labelled contrast, and treat any gain it produces as
+leakage rather than capability.
+
+\subsection{Message passing}
+
+Let $h_i^{(0)} = \sigma(W_0 X_i)$ be the projected node state. A layer updates
+node states by attention-weighted aggregation over incoming edges,
+\begin{equation}
+h_i^{(l+1)} = \sigma\!\Big( \sum_{j \in \mathcal{N}(i)}
+   \alpha_{ji}\, m_{ji}^{(l)} \Big),
+\label{eq:mp}
+\end{equation}
+where $\mathcal{N}(i)$ are the endpoints with an edge into $v_i$,
+$\alpha_{ji}$ is the attention weight and $m_{ji}^{(l)}$ the message. The
+adjacency used in Eq.~\eqref{eq:mp} contains training edges only, so a test
+flow is scored against node states never informed by test traffic.
+
+Because a handful of hub endpoints---the broker and the attacker---carry
+hundreds of thousands of incident edges, we sample at most $K$ incoming
+training edges per destination node, redrawn each optimisation step and fixed
+under a recorded seed at evaluation. This is neighbour sampling in the
+GraphSAGE sense~\cite{hamilton2017graphsage} and not a change to the model
+definition; $K = 2000$ during training and $K = 4000$ at evaluation.
+
+\subsection{Edge-aware attention}
+
+The standard graph attention logit~\cite{velickovic2018gat} is computed from
+the two endpoint states alone,
+\begin{equation}
+e_{ij} = \mathrm{LeakyReLU}\big(\mathbf{a}^{\top}
+  [\,W h_i \,\Vert\, W h_j\,]\big).
+\label{eq:gat}
+\end{equation}
+Under Eq.~\eqref{eq:gat} every parallel edge between the same ordered pair
+receives the same attention weight, regardless of how the flows differ. Since
+the flows between one sensor and the broker include both benign publishes and,
+in the brute-force capture, attack traffic, this is a representational
+limitation and not merely an inefficiency.
+
+The edge-aware variant admits a projection of the flow attributes into the
+logit,
+\begin{equation}
+e_{ij} = \mathrm{LeakyReLU}\big(\mathbf{a}^{\top}
+  [\,W h_i \,\Vert\, W h_j \,\Vert\, U z_{ij}\,]\big),
+\qquad
+\alpha_{ij} = \operatorname*{softmax}_{j}\big(e_{ij}\big),
+\label{eq:egat}
+\end{equation}
+so that a flow's own characteristics modulate how strongly it is attended to.
+Figure~\ref{fig:attention} contrasts the two. This placement is that of
+EGAT~\cite{chen2021egat}; we claim no novelty for it and treat it as the
+mechanism under test. The message may likewise carry the projected attributes,
+$m_{ij} = W h_i + U z_{ij}$, which is separately switchable.
+
+Attention uses $H$ heads with per-head dimension $d_h$, concatenated across
+heads, with layer normalisation, ELU activation, dropout and a residual
+connection around each layer.
+
+\subsection{Edge classification}
+
+After $L$ layers, each flow is classified from the concatenation of its two
+endpoint states and its own attributes,
+\begin{equation}
+r_{ij} = [\, h_i \,\Vert\, h_j \,\Vert\, z_{ij} \,], \qquad
+\hat{y}_{ij} = \operatorname{softmax}\big(\mathrm{MLP}(r_{ij})\big).
+\label{eq:clf}
+\end{equation}
+Figure~\ref{fig:architecture} shows the pipeline. Retaining $z_{ij}$ in
+Eq.~\eqref{eq:clf} means the graph models are never denied information the
+tabular baselines have; the comparison then isolates what the graph
+\emph{adds} rather than what withholding features costs. A variant with
+$z_{ij}$ removed from Eq.~\eqref{eq:clf} is included in the ablation.
+
+\subsection{The baseline family as a single code path}
+
+Every graph baseline is this same architecture under different settings of
+three switches---edge attributes in the attention logit, in the message, and in
+the classifier---and a choice of aggregator. GCN uses symmetric-normalised
+sum aggregation~\cite{kipf2017gcn} and GraphSAGE mean
+aggregation~\cite{hamilton2017graphsage}, both topology-only; E-GraphSAGE is
+mean aggregation with attributes in the message, which is the published
+configuration~\cite{lo2022egraphsage}; GAT is attention without attributes;
+EdgeGAT is attention with attributes in the message only; and E-GAT-IDS adds
+them to the attention logit. Because the scaffolding, the training loop, the
+metric path and the result writer are shared, a difference between two rows is
+attributable to the switch that differs and not to an unrelated
+implementation choice.
+
+\subsection{Objective}
+
+We use class-weighted cross entropy with inverse-frequency weights computed
+from the training labels, and evaluate focal loss~\cite{lin2017focal} and
+weight-free variants in the ablation. We do not apply
+SMOTE~\cite{chawla2002smote} to the graph models: interpolating between flow
+records would fabricate communication events that were never observed, which on
+a graph whose edges are supposed to be observed traffic is not defensible. Where
+resampling is used, existing edges are resampled so that every training example
+remains a real flow. SMOTE \emph{is} applied inside the GA-EBT reproduction,
+because the original specifies it.

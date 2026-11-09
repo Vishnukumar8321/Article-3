@@ -1,0 +1,461 @@
+% References for "Edge-Aware Graph Attention Learning for Intrusion Detection
+% in MQTT-Based IoT Networks".
+%
+% PROVENANCE. Every DOI below is in one of two states, recorded per entry in
+% the `verified` field of manuscript/references_provenance.json:
+%
+%   "url"  -- the DOI was read out of a publisher-controlled URL returned by a
+%             live search in this session (link.springer.com/<doi>,
+%             dl.acm.org/doi/<doi>, mdpi.com/<journal>/<vol>/<iss>/<art>,
+%             doi.org/<doi>), or fetched from the publisher's own citation
+%             block. Treat as confirmed.
+%
+%   "pending" -- a canonical machine-learning reference whose DOI is recorded
+%             from established usage but which this session could not confirm
+%             against a publisher page, because api.crossref.org and
+%             api.openalex.org are blocked by the container's egress policy and
+%             ieeexplore.ieee.org refuses automated fetches (HTTP 418).
+%             SPOT-CHECK THESE BEFORE SUBMISSION. None of them is load-bearing
+%             for any claim in the paper; they are standard method citations.
+%
+% No entry here was invented. Titles, authors and venues are as returned by the
+% searches recorded in results/logs/.
+
+% ===================================================================
+% Base paper and dataset
+% ===================================================================
+
+@article{norouzi2026reliable,
+  author  = {Norouzi, Monire and G{\"u}rka{\c{s}}-Ayd{\i}n, Zeynep},
+  title   = {A reliable cyber-attack detection architecture for cyber-physical
+             systems in SDN-enabled internet of vehicles},
+  journal = {Cluster Computing},
+  volume  = {29},
+  number  = {110},
+  year    = {2026},
+  doi     = {10.1007/s10586-025-05929-2}
+}
+
+@misc{hindy2020mqttdataset,
+  author       = {Hindy, Hanan and Tachtatzis, Christos and Atkinson, Robert
+                  and Bayne, Ethan and Bellekens, Xavier},
+  title        = {{MQTT-IoT-IDS2020}: {MQTT} Internet of Things Intrusion
+                  Detection Dataset},
+  howpublished = {IEEE DataPort},
+  year         = {2020},
+  doi          = {10.21227/bhxy-ep04}
+}
+
+@misc{hindy2020mqttcase,
+  author        = {Hindy, Hanan and Bayne, Ethan and Bures, Miroslav and
+                   Atkinson, Robert and Tachtatzis, Christos and
+                   Bellekens, Xavier},
+  title         = {Machine Learning Based {IoT} Intrusion Detection System:
+                   An {MQTT} Case Study ({MQTT-IoT-IDS2020} Dataset)},
+  year          = {2020},
+  eprint        = {2006.15340},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note          = {arXiv:2006.15340}
+}
+
+% ===================================================================
+% Graph neural network foundations
+% ===================================================================
+
+@inproceedings{kipf2017gcn,
+  author    = {Kipf, Thomas N. and Welling, Max},
+  title     = {Semi-Supervised Classification with Graph Convolutional Networks},
+  booktitle = {Proc. International Conference on Learning Representations (ICLR)},
+  year      = {2017},
+  note      = {arXiv:1609.02907}
+}
+
+@inproceedings{hamilton2017graphsage,
+  author    = {Hamilton, William L. and Ying, Rex and Leskovec, Jure},
+  title     = {Inductive Representation Learning on Large Graphs},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2017},
+  note      = {arXiv:1706.02216}
+}
+
+@inproceedings{velickovic2018gat,
+  author    = {Veli{\v{c}}kovi{\'c}, Petar and Cucurull, Guillem and
+               Casanova, Arantxa and Romero, Adriana and Li{\`o}, Pietro and
+               Bengio, Yoshua},
+  title     = {Graph Attention Networks},
+  booktitle = {Proc. International Conference on Learning Representations (ICLR)},
+  year      = {2018},
+  note      = {arXiv:1710.10903}
+}
+
+@inproceedings{brody2022gatv2,
+  author    = {Brody, Shaked and Alon, Uri and Yahav, Eran},
+  title     = {How Attentive are Graph Attention Networks?},
+  booktitle = {Proc. International Conference on Learning Representations (ICLR)},
+  year      = {2022},
+  note      = {arXiv:2105.14491}
+}
+
+@inproceedings{chen2021egat,
+  author    = {Chen, Jun and Chen, Haopeng},
+  title     = {{EGAT}: Edge-Featured Graph Attention Network},
+  booktitle = {Artificial Neural Networks and Machine Learning (ICANN)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {12891},
+  pages     = {253--264},
+  year      = {2021},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-030-86362-3_21}
+}
+
+% ===================================================================
+% Graph-based network intrusion detection
+% ===================================================================
+
+@inproceedings{lo2022egraphsage,
+  author    = {Lo, Wai Weng and Layeghy, Siamak and Sarhan, Mohanad and
+               Gallagher, Marcus and Portmann, Marius},
+  title     = {{E-GraphSAGE}: A Graph Neural Network based Intrusion Detection
+               System for {IoT}},
+  booktitle = {Proc. IEEE/IFIP Network Operations and Management Symposium
+               (NOMS)},
+  year      = {2022},
+  doi       = {10.1109/NOMS54207.2022.9789878}
+}
+
+@article{caville2022anomale,
+  author  = {Caville, Evan and Lo, Wai Weng and Layeghy, Siamak and
+             Portmann, Marius},
+  title   = {{Anomal-E}: A self-supervised network intrusion detection system
+             based on graph neural networks},
+  journal = {Knowledge-Based Systems},
+  volume  = {258},
+  pages   = {110030},
+  year    = {2022},
+  doi     = {10.1016/j.knosys.2022.110030}
+}
+
+@article{bilot2024survey,
+  author  = {Bilot, Tristan and El Madhoun, Nour and Al Agha, Khaldoun and
+             Zouaoui, Anis},
+  title   = {A survey on graph neural networks for intrusion detection systems:
+             Methods, trends and challenges},
+  journal = {Computers \& Security},
+  volume  = {141},
+  pages   = {103821},
+  year    = {2024},
+  doi     = {10.1016/j.cose.2024.103821}
+}
+
+@article{pujolperich2022unveiling,
+  author  = {Pujol-Perich, David and Su{\'a}rez-Varela, Jos{\'e} and
+             Cabellos-Aparicio, Albert and Barlet-Ros, Pere},
+  title   = {Unveiling the potential of Graph Neural Networks for robust
+             Intrusion Detection},
+  journal = {ACM SIGMETRICS Performance Evaluation Review},
+  volume  = {49},
+  number  = {4},
+  pages   = {111--117},
+  year    = {2022},
+  doi     = {10.1145/3543146.3543171}
+}
+
+@article{gnnids2026survey,
+  title   = {Graph neural networks for network intrusion detection systems:
+             a comprehensive survey, taxonomy, and empirical evaluation},
+  journal = {Artificial Intelligence Review},
+  year    = {2026},
+  doi     = {10.1007/s10462-026-11683-7}
+}
+
+@article{semantic2026edge,
+  title   = {Semantic-guided edge enhancement for graph self-supervised
+             learning in network intrusion detection},
+  journal = {Scientific Reports},
+  year    = {2026},
+  doi     = {10.1038/s41598-026-60066-z}
+}
+
+% ===================================================================
+% MQTT and IoT intrusion detection
+% ===================================================================
+
+@article{khan2021mqttdl,
+  author  = {Khan, Muhammad Almas and Khan, Muazzam A. and Jan, Sana Ullah and
+             Ahmad, Jawad and Jamal, Sajjad Shaukat and Shah, Awais Aziz and
+             Pitropakis, Nikolaos and Buchanan, William J.},
+  title   = {A Deep Learning-Based Intrusion Detection System for {MQTT}
+             Enabled {IoT}},
+  journal = {Sensors},
+  volume  = {21},
+  number  = {21},
+  pages   = {7016},
+  year    = {2021},
+  doi     = {10.3390/s21217016}
+}
+
+@article{vaccari2020mqttset,
+  author  = {Vaccari, Ivan and Chiola, Giovanni and Aiello, Maurizio and
+             Mongelli, Maurizio and Cambiaso, Enrico},
+  title   = {{MQTTset}, a New Dataset for Machine Learning Techniques on {MQTT}},
+  journal = {Sensors},
+  volume  = {20},
+  number  = {22},
+  pages   = {6578},
+  year    = {2020},
+  doi     = {10.3390/s20226578}
+}
+
+@article{xmidmqtt2025,
+  title   = {{XMID-MQTT}: explaining machine learning-based intrusion detection
+             system for {MQTT} protocol in {IoT} environment},
+  journal = {International Journal of Information Security},
+  year    = {2025},
+  doi     = {10.1007/s10207-025-01036-w}
+}
+
+@article{mqttensemble2025,
+  title   = {A novel intrusion detection framework using ensemble learning in
+             {MQTT} {IoT} applications},
+  journal = {Annals of Mathematics and Artificial Intelligence},
+  year    = {2025},
+  doi     = {10.1007/s10472-025-09993-7}
+}
+
+@article{mqttsecuring2023,
+  title   = {Securing {MQTT} protocol for {IoT} environment using {IDS} based on
+             ensemble learning},
+  journal = {International Journal of Information Security},
+  year    = {2023},
+  doi     = {10.1007/s10207-023-00681-3}
+}
+
+@article{mqttlightgbm2022,
+  title   = {An efficient intrusion detection system for {MQTT-IoT} using
+             enhanced chaotic salp swarm algorithm and {LightGBM}},
+  journal = {International Journal of Information Security},
+  year    = {2022},
+  doi     = {10.1007/s10207-022-00611-9}
+}
+
+@article{mqttiomt2026,
+  title   = {Attention-enhanced deep learning model for {MQTT} intrusion
+             detection in internet of medical things},
+  journal = {Frontiers in Artificial Intelligence},
+  year    = {2026},
+  doi     = {10.3389/frai.2026.1934767}
+}
+
+@article{moustafa2021toniot,
+  author  = {Moustafa, Nour},
+  title   = {A new distributed architecture for evaluating {AI}-based security
+             systems at the edge: Network {TON\_IoT} datasets},
+  journal = {Sustainable Cities and Society},
+  volume  = {72},
+  pages   = {102994},
+  year    = {2021},
+  doi     = {10.1016/j.scs.2021.102994}
+}
+
+@article{neto2023ciciot,
+  author  = {Neto, Euclides Carlos Pinto and Dadkhah, Sajjad and
+             Ferreira, Raphael and Zohourian, Alireza and Lu, Rongxing and
+             Ghorbani, Ali A.},
+  title   = {{CICIoT2023}: A Real-Time Dataset and Benchmark for Large-Scale
+             Attacks in {IoT} Environment},
+  journal = {Sensors},
+  volume  = {23},
+  number  = {13},
+  pages   = {5941},
+  year    = {2023},
+  doi     = {10.3390/s23135941}
+}
+
+% ===================================================================
+% Evaluation methodology -- the core of this paper's argument
+% ===================================================================
+
+@article{arp2024pitfalls,
+  author  = {Arp, Daniel and Quiring, Erwin and Pendlebury, Feargus and
+             Warnecke, Alexander and Pierazzi, Fabio and Wressnegger, Christian
+             and Cavallaro, Lorenzo and Rieck, Konrad},
+  title   = {Pitfalls in Machine Learning for Computer Security},
+  journal = {Communications of the ACM},
+  volume  = {67},
+  number  = {11},
+  pages   = {92--99},
+  year    = {2024},
+  doi     = {10.1145/3643456},
+  note    = {Extended version of the USENIX Security 2022 paper
+             ``Dos and Don'ts of Machine Learning in Computer Security''}
+}
+
+@inproceedings{lanvin2022errors,
+  author    = {Lanvin, Maxime and Gimenez, Pierre-Fran{\c{c}}ois and
+               Han, Yufei and Majorczyk, Fr{\'e}d{\'e}ric and M{\'e}, Ludovic
+               and Totel, Eric},
+  title     = {Errors in the {CICIDS2017} Dataset and the Significant
+               Differences in Detection Performances It Makes},
+  booktitle = {Risks and Security of Internet and Systems (CRiSIS)},
+  series    = {Lecture Notes in Computer Science},
+  year      = {2023},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-031-31108-6_2}
+}
+
+@inproceedings{engelen2021troubleshooting,
+  author    = {Engelen, Gints and Rimmer, Vera and Joosen, Wouter},
+  title     = {Troubleshooting an Intrusion Detection Dataset:
+               the {CICIDS2017} Case Study},
+  booktitle = {Proc. IEEE Security and Privacy Workshops (SPW)},
+  pages     = {7--12},
+  year      = {2021},
+  doi       = {10.1109/SPW53761.2021.00009}
+}
+
+@inproceedings{pendlebury2019tesseract,
+  author    = {Pendlebury, Feargus and Pierazzi, Fabio and Jordaney, Roberto and
+               Kinder, Johannes and Cavallaro, Lorenzo},
+  title     = {{TESSERACT}: Eliminating Experimental Bias in Malware
+               Classification across Space and Time},
+  booktitle = {Proc. USENIX Security Symposium},
+  pages     = {729--746},
+  year      = {2019}
+}
+
+@inproceedings{sommer2010outside,
+  author    = {Sommer, Robin and Paxson, Vern},
+  title     = {Outside the Closed World: On Using Machine Learning for Network
+               Intrusion Detection},
+  booktitle = {Proc. IEEE Symposium on Security and Privacy},
+  pages     = {305--316},
+  year      = {2010},
+  doi       = {10.1109/SP.2010.25}
+}
+
+@article{geirhos2020shortcut,
+  author  = {Geirhos, Robert and Jacobsen, J{\"o}rn-Henrik and
+             Michaelis, Claudio and Zemel, Richard and Brendel, Wieland and
+             Bethge, Matthias and Wichmann, Felix A.},
+  title   = {Shortcut learning in deep neural networks},
+  journal = {Nature Machine Intelligence},
+  volume  = {2},
+  number  = {11},
+  pages   = {665--673},
+  year    = {2020},
+  doi     = {10.1038/s42256-020-00257-z}
+}
+
+% ===================================================================
+% Metrics, imbalance and classical learners
+% ===================================================================
+
+@article{chicco2020mcc,
+  author  = {Chicco, Davide and Jurman, Giuseppe},
+  title   = {The advantages of the Matthews correlation coefficient (MCC) over
+             F1 score and accuracy in binary classification evaluation},
+  journal = {BMC Genomics},
+  volume  = {21},
+  pages   = {6},
+  year    = {2020},
+  doi     = {10.1186/s12864-019-6413-7}
+}
+
+@article{saito2015prcurve,
+  author  = {Saito, Takaya and Rehmsmeier, Marc},
+  title   = {The Precision-Recall Plot Is More Informative than the ROC Plot
+             When Evaluating Binary Classifiers on Imbalanced Datasets},
+  journal = {PLOS ONE},
+  volume  = {10},
+  number  = {3},
+  pages   = {e0118432},
+  year    = {2015},
+  doi     = {10.1371/journal.pone.0118432}
+}
+
+@inproceedings{lin2017focal,
+  author    = {Lin, Tsung-Yi and Goyal, Priya and Girshick, Ross and
+               He, Kaiming and Doll{\'a}r, Piotr},
+  title     = {Focal Loss for Dense Object Detection},
+  booktitle = {Proc. IEEE International Conference on Computer Vision (ICCV)},
+  pages     = {2980--2988},
+  year      = {2017},
+  doi       = {10.1109/ICCV.2017.324}
+}
+
+@article{chawla2002smote,
+  author  = {Chawla, Nitesh V. and Bowyer, Kevin W. and Hall, Lawrence O. and
+             Kegelmeyer, W. Philip},
+  title   = {{SMOTE}: Synthetic Minority Over-sampling Technique},
+  journal = {Journal of Artificial Intelligence Research},
+  volume  = {16},
+  pages   = {321--357},
+  year    = {2002},
+  doi     = {10.1613/jair.953}
+}
+
+@article{breiman1996bagging,
+  author  = {Breiman, Leo},
+  title   = {Bagging predictors},
+  journal = {Machine Learning},
+  volume  = {24},
+  number  = {2},
+  pages   = {123--140},
+  year    = {1996},
+  doi     = {10.1007/BF00058655}
+}
+
+@article{breiman2001rf,
+  author  = {Breiman, Leo},
+  title   = {Random Forests},
+  journal = {Machine Learning},
+  volume  = {45},
+  number  = {1},
+  pages   = {5--32},
+  year    = {2001},
+  doi     = {10.1023/A:1010933404324}
+}
+
+@inproceedings{chen2016xgboost,
+  author    = {Chen, Tianqi and Guestrin, Carlos},
+  title     = {{XGBoost}: A Scalable Tree Boosting System},
+  booktitle = {Proc. ACM SIGKDD International Conference on Knowledge Discovery
+               and Data Mining},
+  pages     = {785--794},
+  year      = {2016},
+  doi       = {10.1145/2939672.2939785}
+}
+
+% ===================================================================
+% Attention and explainability
+% ===================================================================
+
+@inproceedings{jain2019attention,
+  author    = {Jain, Sarthak and Wallace, Byron C.},
+  title     = {Attention is not Explanation},
+  booktitle = {Proc. Conference of the North American Chapter of the
+               Association for Computational Linguistics (NAACL-HLT)},
+  pages     = {3543--3556},
+  year      = {2019},
+  doi       = {10.18653/v1/N19-1357}
+}
+
+@inproceedings{wiegreffe2019attention,
+  author    = {Wiegreffe, Sarah and Pinter, Yuval},
+  title     = {Attention is not not Explanation},
+  booktitle = {Proc. Conference on Empirical Methods in Natural Language
+               Processing (EMNLP-IJCNLP)},
+  pages     = {11--20},
+  year      = {2019},
+  doi       = {10.18653/v1/D19-1002}
+}
+
+@inproceedings{ying2019gnnexplainer,
+  author    = {Ying, Zhitao and Bourgeois, Dylan and You, Jiaxuan and
+               Zitnik, Marinka and Leskovec, Jure},
+  title     = {{GNNExplainer}: Generating Explanations for Graph Neural Networks},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2019},
+  note      = {arXiv:1903.03894}
+}

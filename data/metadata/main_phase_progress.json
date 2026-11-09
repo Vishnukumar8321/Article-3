@@ -1,0 +1,25 @@
+{
+  "completed_cells": 2,
+  "total_cells": 80,
+  "elapsed_seconds": 2150.330466591,
+  "cells": [
+    {
+      "cell": 1,
+      "protocol": "C",
+      "representation": "uniflow",
+      "task": "multiclass",
+      "seed": 42,
+      "n_records": 13,
+      "seconds": 1511.9031358439997
+    },
+    {
+      "cell": 2,
+      "protocol": "C",
+      "representation": "uniflow",
+      "task": "multiclass",
+      "seed": 123,
+      "n_records": 13,
+      "seconds": 638.4268631319992
+    }
+  ]
+}

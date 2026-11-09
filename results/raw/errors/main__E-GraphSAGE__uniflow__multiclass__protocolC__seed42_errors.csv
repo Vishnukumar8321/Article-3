@@ -1,0 +1,70 @@
+ip_src,ip_dst,prt_src,prt_dst,proto,num_pkts,mean_iat,std_iat,min_iat,max_iat,mean_pkt_len,num_bytes,num_psh_flags,num_rst_flags,num_urg_flags,std_pkt_len,min_pkt_len,max_pkt_len,is_attack,source_file,scenario,capture_scenario_label,binary_label,multiclass_label,true_label,pred_label
+192.168.2.5,8.8.8.8,53405,53,17,2,5.0067901611328125e-06,0.0,5.0067901611328125e-06,5.0067901611328125e-06,83.0,166,0,0,0,0.0,83.0,83.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.5,8.8.8.8,60360,53,17,4,1.6679573059082031,2.358838571168337,5.0067901611328125e-06,5.003858804702759,67.0,268,0,0,0,0.0,67.0,67.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.5,8.8.8.8,60876,53,17,4,1.6680256525675456,2.358937419576834,4.0531158447265625e-06,5.0040669441223145,67.0,268,0,0,0,0.0,67.0,67.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.5,8.8.8.8,59899,53,17,4,1.6676359971364338,2.3583870379309837,4.0531158447265625e-06,5.002898931503296,67.0,268,0,0,0,0.0,67.0,67.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.5,8.8.8.8,59854,53,17,4,1.668121337890625,2.3590740877576053,3.0994415283203125e-06,5.0043559074401855,67.0,268,0,0,0,0.0,67.0,67.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.7,8.8.8.8,32768,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32786,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32790,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32804,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32814,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32820,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32830,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32842,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32866,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32902,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32912,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32918,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32932,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32944,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32950,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32956,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32968,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32970,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32980,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,32994,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33024,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33026,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33038,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33046,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33072,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33106,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33116,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33132,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33134,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33146,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33152,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.5,8.8.8.8,60382,53,17,4,1.6669069925944011,2.357357587107173,2.86102294921875e-06,5.000714063644409,67.0,268,0,0,0,0.0,67.0,67.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.7,8.8.8.8,33162,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33204,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33236,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33240,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33250,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33272,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33296,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33326,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33342,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33350,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33382,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33388,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33432,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.5,8.8.8.8,60678,53,17,4,1.6681586106618245,2.3591234276684228,5.0067901611328125e-06,5.004462957382202,67.0,268,0,0,0,0.0,67.0,67.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.7,8.8.8.8,33544,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33548,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.5,8.8.8.8,60992,53,17,4,1.668371359507243,2.359423457033895,5.960464477539063e-06,5.0051000118255615,67.0,268,0,0,0,0.0,67.0,67.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.7,8.8.8.8,33558,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33562,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33572,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33584,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33588,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33604,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33606,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33614,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.5,8.8.8.8,60980,53,17,4,1.668494383494059,2.359595247589235,5.960464477539063e-06,5.005465984344482,83.0,332,0,0,0,0.0,83.0,83.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,MQTT Brute-force,UDP Scan
+192.168.2.7,8.8.8.8,33626,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33638,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33654,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33684,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33686,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan
+192.168.2.7,8.8.8.8,33696,53,6,1,0.0,0.0,0.0,0.0,60.0,60,0,0,0,0.0,60.0,60.0,0,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,0,0,Normal,Aggressive Scan

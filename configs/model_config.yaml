@@ -1,0 +1,48 @@
+# Default architectures. The ablation flags are the ONLY difference between the
+# graph baselines and the proposed model.
+
+defaults: &defaults
+  hidden_dim: 64
+  n_layers: 2
+  heads: 4
+  dropout: 0.2
+  classifier_hidden: 128
+  residual: true
+  layer_norm: true
+  use_node_features: true
+  edge_in_classifier: true
+
+MLP:
+  hidden_dim: 128
+  n_layers: 3
+  dropout: 0.2
+
+GCN:
+  <<: *defaults
+  layer: gcn
+  edge_in_attention: false
+  edge_in_message: false
+
+GraphSAGE:
+  <<: *defaults
+  layer: sage
+  edge_in_attention: false
+  edge_in_message: false
+
+GAT:
+  <<: *defaults
+  layer: gat
+  edge_in_attention: false
+  edge_in_message: false
+
+EdgeGAT:
+  <<: *defaults
+  layer: gat
+  edge_in_attention: false
+  edge_in_message: true
+
+E-GAT-IDS:
+  <<: *defaults
+  layer: gat
+  edge_in_attention: true     # the proposed mechanism
+  edge_in_message: true

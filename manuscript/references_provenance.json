@@ -1,0 +1,61 @@
+{
+  "_README": "Per-entry DOI provenance for manuscript/references.bib. 'url' means the DOI was read from a publisher-controlled URL or citation block during a live search in this session; 'pending' means it is recorded from established usage and must be spot-checked before submission. api.crossref.org and api.openalex.org are blocked by this container's egress policy, and ieeexplore.ieee.org returns HTTP 418 to automated fetches, so 'pending' entries could not be machine-confirmed here.",
+  "_blocked_verification_sources": [
+    "api.crossref.org (403 from egress proxy)",
+    "api.openalex.org (fetch approval not granted)",
+    "ieeexplore.ieee.org (HTTP 418 to automated fetch)"
+  ],
+  "entries": {
+    "norouzi2026reliable": {"verified": "url", "source": "DOI printed in the supplied PDF header (doi.org/10.1007/s10586-025-05929-2)"},
+    "hindy2020mqttdataset": {"verified": "url", "source": "ieee-dataport.org dataset page citation block"},
+    "hindy2020mqttcase": {"verified": "url", "source": "arxiv.org/abs/2006.15340; no journal DOI, cited as a preprint"},
+
+    "kipf2017gcn": {"verified": "pending", "note": "ICLR 2017, no DOI; cited by proceedings and arXiv:1609.02907"},
+    "hamilton2017graphsage": {"verified": "pending", "note": "NeurIPS 2017, no DOI; arXiv:1706.02216"},
+    "velickovic2018gat": {"verified": "pending", "note": "ICLR 2018, no DOI; arXiv:1710.10903"},
+    "brody2022gatv2": {"verified": "pending", "note": "ICLR 2022, no DOI; arXiv:2105.14491"},
+    "chen2021egat": {"verified": "url", "source": "link.springer.com/chapter/10.1007/978-3-030-86362-3_21"},
+
+    "lo2022egraphsage": {"verified": "url", "source": "dl.acm.org/doi/10.1109/NOMS54207.2022.9789878"},
+    "caville2022anomale": {"verified": "url", "source": "dl.acm.org/doi/10.1016/j.knosys.2022.110030"},
+    "bilot2024survey": {"verified": "url", "source": "dl.acm.org/doi/10.1016/j.cose.2024.103821"},
+    "pujolperich2022unveiling": {"verified": "url", "source": "dl.acm.org/doi/10.1145/3543146.3543171"},
+    "gnnids2026survey": {"verified": "url", "source": "link.springer.com/article/10.1007/s10462-026-11683-7", "note": "author list not captured; complete before submission"},
+    "semantic2026edge": {"verified": "url", "source": "nature.com/articles/s41598-026-60066-z", "note": "author list not captured; complete before submission"},
+
+    "khan2021mqttdl": {"verified": "url", "source": "mdpi.com/1424-8220/21/21/7016 -> 10.3390/s21217016"},
+    "vaccari2020mqttset": {"verified": "url", "source": "mdpi.com/1424-8220/20/22/6578 -> 10.3390/s20226578"},
+    "xmidmqtt2025": {"verified": "url", "source": "link.springer.com/article/10.1007/s10207-025-01036-w", "note": "author list not captured"},
+    "mqttensemble2025": {"verified": "url", "source": "link.springer.com/article/10.1007/s10472-025-09993-7", "note": "author list not captured"},
+    "mqttsecuring2023": {"verified": "url", "source": "link.springer.com/content/pdf/10.1007/s10207-023-00681-3.pdf", "note": "author list not captured"},
+    "mqttlightgbm2022": {"verified": "url", "source": "dl.acm.org/doi/abs/10.1007/s10207-022-00611-9", "note": "author list not captured"},
+    "mqttiomt2026": {"verified": "url", "source": "frontiersin.org/articles/10.3389/frai.2026.1934767", "note": "author list not captured"},
+    "moustafa2021toniot": {"verified": "url", "source": "sciencedirect.com citation block; DOI 10.1016/j.scs.2021.102994 confirmed", "note": "co-author list truncated by the publisher page; complete before submission"},
+    "neto2023ciciot": {"verified": "url", "source": "mdpi.com/1424-8220/23/13/5941 -> 10.3390/s23135941"},
+
+    "arp2024pitfalls": {"verified": "url", "source": "dl.acm.org/doi/10.1145/3643456"},
+    "lanvin2022errors": {"verified": "url", "source": "link.springer.com/chapter/10.1007/978-3-031-31108-6_2"},
+    "engelen2021troubleshooting": {"verified": "pending", "note": "IEEE SPW 2021, ieeexplore document 9474286; DOI recorded as 10.1109/SPW53761.2021.00009 but IEEE refused automated fetch (418). SPOT-CHECK."},
+    "pendlebury2019tesseract": {"verified": "pending", "note": "USENIX Security 2019; USENIX papers carry no DOI"},
+    "sommer2010outside": {"verified": "pending", "note": "IEEE S&P 2010; DOI 10.1109/SP.2010.25 not machine-confirmed. SPOT-CHECK."},
+    "geirhos2020shortcut": {"verified": "pending", "note": "Nature Machine Intelligence 2(11); DOI 10.1038/s42256-020-00257-z not machine-confirmed. SPOT-CHECK."},
+
+    "chicco2020mcc": {"verified": "url", "source": "link.springer.com/article/10.1186/s12864-019-6413-7"},
+    "saito2015prcurve": {"verified": "pending", "note": "PLOS ONE 10(3):e0118432; DOI 10.1371/journal.pone.0118432 not machine-confirmed. SPOT-CHECK."},
+    "lin2017focal": {"verified": "pending", "note": "ICCV 2017; DOI 10.1109/ICCV.2017.324 not machine-confirmed. SPOT-CHECK."},
+    "chawla2002smote": {"verified": "pending", "note": "JAIR 16; DOI 10.1613/jair.953 not machine-confirmed. SPOT-CHECK."},
+    "breiman1996bagging": {"verified": "pending", "note": "Machine Learning 24(2); DOI 10.1007/BF00058655 not machine-confirmed. SPOT-CHECK."},
+    "breiman2001rf": {"verified": "pending", "note": "Machine Learning 45(1); DOI 10.1023/A:1010933404324 not machine-confirmed. SPOT-CHECK."},
+    "chen2016xgboost": {"verified": "pending", "note": "KDD 2016; DOI 10.1145/2939672.2939785 not machine-confirmed. SPOT-CHECK."},
+
+    "jain2019attention": {"verified": "pending", "note": "NAACL-HLT 2019; ACL Anthology DOI 10.18653/v1/N19-1357 not machine-confirmed. SPOT-CHECK."},
+    "wiegreffe2019attention": {"verified": "pending", "note": "EMNLP-IJCNLP 2019; ACL Anthology DOI 10.18653/v1/D19-1002 not machine-confirmed. SPOT-CHECK."},
+    "ying2019gnnexplainer": {"verified": "pending", "note": "NeurIPS 2019, no DOI; arXiv:1903.03894"}
+  },
+  "summary": {
+    "total": 38,
+    "verified_from_publisher_url": 20,
+    "pending_spot_check": 18,
+    "fabricated": 0
+  }
+}

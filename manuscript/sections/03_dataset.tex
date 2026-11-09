@@ -1,0 +1,117 @@
+\section{Dataset and Problem Formulation}
+\label{sec:dataset}
+
+\subsection{MQTT-IoT-IDS2020 as released}
+
+MQTT-IoT-IDS2020~\cite{hindy2020mqttdataset} was generated on a simulated
+network of twelve MQTT sensors, a broker, a simulated camera and an attacker,
+across five capture scenarios: normal operation, aggressive scan, UDP scan,
+Sparta SSH brute-force and MQTT brute-force. The release provides raw packet
+captures together with three derived abstractions---packet features,
+unidirectional-flow features and bidirectional-flow features. This study uses
+the two flow abstractions, which is the form in which the dataset is intended
+for machine learning.
+
+Table~\ref{tab:dataset} reports what the release actually contains, measured
+rather than quoted. The uni-flow abstraction holds 495{,}525 records over
+nineteen columns and the bi-flow abstraction 259{,}379 records over
+thirty-two. Across both, traffic involves twenty-four distinct IP endpoints
+and, in the uni-flow case, one hundred and six ordered endpoint pairs.
+
+We assigned each endpoint a role from its observed traffic rather than from the
+testbed description, using rules keyed on the share of inbound flows arriving
+on a given port, outbound fan-out, and the number of distinct attack classes an
+endpoint sources. The rules recover exactly twelve MQTT sensors, one broker,
+one attacker, one SSH target, one gateway, one receive-only external host and
+seven lower-volume hosts that appear chiefly in the scan captures. That the
+sensor count matches the published testbed description independently supports
+the assignment. Figure~\ref{fig:testbed} shows the result and the per-endpoint
+evidence accompanies the code.
+
+One property of the labelling deserves emphasis because it affects
+interpretation throughout: the dataset marks \emph{both} directions of an
+attack exchange. The broker's replies to a brute-force attempt carry
+\texttt{is\_attack}~$=1$, and during the aggressive scan the scanned sensors'
+own responses are likewise attack-labelled. An endpoint can therefore source
+attack-labelled flows without being the attacker, which is why our attacker
+rule keys on the number of \emph{distinct} attack classes sourced---a condition
+only the address 192.168.2.5 satisfies.
+
+\subsection{Two construction properties that constrain the experiment}
+
+\subsubsection{Attack captures contain benign background traffic}
+
+Each attack capture also records the testbed's ordinary traffic. The uni-flow
+Sparta capture, for instance, contains 154{,}175 flows with
+\texttt{is\_attack}~$=0$ alongside 28{,}232 attack flows; across the uni-flow
+release, 204{,}350 records---41.2\% of the total---are benign flows captured
+during an attack scenario. Deriving the multi-class label from the source
+capture alone, as is natural when the captures are named after the attacks,
+would relabel all of them as attacks and destroy the meaning of the task.
+
+We therefore construct the multi-class label from both available sources, each
+doing the job it is fit for: \texttt{is\_attack} determines \emph{whether} a
+flow is an attack, and the source capture determines \emph{which} attack it is.
+Formally, for flow $f$ with capture $c(f)$,
+\begin{equation}
+y_{\mathrm{mc}}(f) =
+\begin{cases}
+0 & \text{if } \texttt{is\_attack}(f) = 0,\\
+\kappa(c(f)) & \text{otherwise,}
+\end{cases}
+\label{eq:label}
+\end{equation}
+where $\kappa$ maps a capture to its attack class in
+$\{1,\dots,4\}$. The attack class is never inferred from \texttt{is\_attack}
+alone, and the capture identity never overrides a benign flag. The capture is
+retained per record so that provenance stays auditable. The binary label is the
+dataset's own \texttt{is\_attack} column unchanged.
+
+Under Eq.~\eqref{eq:label} the uni-flow class distribution is 376{,}186 normal,
+28{,}874 MQTT brute-force, 39{,}797 aggressive scan, 22{,}436 UDP scan and
+28{,}232 Sparta SSH, giving a minority class at 4.5\% of the data.
+
+\subsubsection{Attack classes originate from one or two fixed addresses}
+
+Every attack class in the release is sourced by at most three addresses, and
+the attacker 192.168.2.5 sources all four. Victims are better distributed:
+aggressive scan reaches eighteen distinct destinations and UDP scan eighteen,
+whereas MQTT brute-force reaches four and Sparta SSH two. This asymmetry
+decides which endpoint-holdout protocols are well posed, and we return to it in
+Section~\ref{sec:methodology}.
+
+\subsubsection{Consequence for the base-paper comparison}
+
+The base paper~\cite{norouzi2026reliable} states that the MQTT-IoT-IDS2020
+dataset ``consists of 19 features and 33{,}079 instances''. The uni-flow
+abstraction has exactly nineteen columns, and the uni-flow MQTT brute-force
+capture has exactly 33{,}079 records. The reported evaluation therefore appears
+to cover one capture of the release rather than the release, whose uni-flow
+abstraction contains 495{,}525 records over five captures. We draw no inference
+about the method from this; we note only that the evaluated populations differ,
+so the 99.997\% figure and any figure computed here describe different
+problems. We consequently quote it as a literature value with its protocol
+attached and never as a measurement produced by this study, and we additionally
+report our own reproduction of GA-EBT under our protocols.
+
+\subsection{No temporal information is available}
+
+Neither flow abstraction contains a timestamp column; we verified this
+programmatically over all ten CSV files rather than assuming it. Row order is
+consequently not treated as time, no artificial timestamps are constructed, and
+no temporal claim appears anywhere in this paper. A temporal extension is
+possible from the released packet captures and is stated as future work in
+Section~\ref{sec:conclusion}.
+
+\subsection{Problem statement}
+
+Let $\mathcal{F} = \{f_1,\dots,f_M\}$ be the set of flow records, each with a
+source endpoint $s(f)$, a destination endpoint $d(f)$ and an attribute vector
+$z_f \in \mathbb{R}^{D}$ comprising the released traffic features and the
+deterministic derivations of Section~\ref{sec:methodology}. The task is to
+learn $g: f \mapsto y$ for $y \in \{0,1\}$ (binary) or
+$y \in \{0,\dots,4\}$ (multi-class), with per-flow granularity preserved: the
+unit of prediction is the individual flow record, not an endpoint, a pair or a
+time window. The endpoint identifiers $s(f)$ and $d(f)$ are available to the
+model as graph structure but never as numeric features; \texttt{is\_attack} is
+never an input.

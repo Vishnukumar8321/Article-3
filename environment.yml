@@ -1,0 +1,17 @@
+name: egat-ids
+channels: [conda-forge]
+dependencies:
+  - python=3.11
+  - numpy>=1.26
+  - pandas>=2.1
+  - scipy>=1.11
+  - scikit-learn>=1.4
+  - matplotlib>=3.8
+  - networkx>=3.2
+  - pytorch>=2.2
+  - py-xgboost>=2.0
+  - pyyaml>=6.0
+  - imbalanced-learn>=0.12
+  - pip
+  - pip:
+      - -r requirements.txt

@@ -1,0 +1,2937 @@
+{
+  "representations": {
+    "uniflow": {
+      "features": {
+        "representation": "uniflow",
+        "n_columns_total": 24,
+        "n_columns_in_feature_matrix": 16,
+        "feature_matrix_columns": [
+          "prt_src",
+          "prt_dst",
+          "proto",
+          "num_pkts",
+          "mean_iat",
+          "std_iat",
+          "min_iat",
+          "max_iat",
+          "mean_pkt_len",
+          "num_bytes",
+          "num_psh_flags",
+          "num_rst_flags",
+          "num_urg_flags",
+          "std_pkt_len",
+          "min_pkt_len",
+          "max_pkt_len"
+        ],
+        "inventory": [
+          {
+            "column": "ip_src",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "source IP address",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": true,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "graph node identity only"
+          },
+          {
+            "column": "ip_dst",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "destination IP address",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": true,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "graph node identity only"
+          },
+          {
+            "column": "prt_src",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "source port",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "prt_dst",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "destination port, i.e. the service contacted",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute; strongly associated with attack class by construction of the testbed (22 = Sparta, 1883 = MQTT) but observable at deployment"
+          },
+          {
+            "column": "proto",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "IP protocol number",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "num_pkts",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "mean_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "std_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "min_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "max_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "mean_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "num_bytes",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "num_psh_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "num_rst_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "num_urg_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "std_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "min_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "max_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "is_attack",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "ground-truth attack flag",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "label source only"
+          },
+          {
+            "column": "source_file",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "capture file the row came from",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": true,
+            "used_as_feature": false,
+            "used_as": "provenance only"
+          },
+          {
+            "column": "scenario",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "canonical capture key",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": true,
+            "used_as_feature": false,
+            "used_as": "provenance and multi-class label construction"
+          },
+          {
+            "column": "capture_scenario_label",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "numeric capture id",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": true,
+            "used_as_feature": false,
+            "used_as": "provenance only"
+          },
+          {
+            "column": "binary_label",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "target, normal vs attack",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "target"
+          },
+          {
+            "column": "multiclass_label",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "target, five-class",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "target"
+          }
+        ],
+        "unannotated_columns": [],
+        "VIOLATION_banned_columns_in_matrix": [],
+        "VIOLATION_target_derived_in_matrix": [],
+        "VIOLATION_capture_identifier_in_matrix": [],
+        "VIOLATION_endpoint_identifier_in_matrix": [],
+        "feature_sets": {
+          "A_original": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "num_pkts",
+            "mean_iat",
+            "std_iat",
+            "min_iat",
+            "max_iat",
+            "mean_pkt_len",
+            "num_bytes",
+            "num_psh_flags",
+            "num_rst_flags",
+            "num_urg_flags",
+            "std_pkt_len",
+            "min_pkt_len",
+            "max_pkt_len"
+          ],
+          "B_leakage_safe": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "num_pkts",
+            "mean_iat",
+            "std_iat",
+            "min_iat",
+            "max_iat",
+            "mean_pkt_len",
+            "num_bytes",
+            "num_psh_flags",
+            "num_rst_flags",
+            "num_urg_flags",
+            "std_pkt_len",
+            "min_pkt_len",
+            "max_pkt_len"
+          ],
+          "C_endpoint_masked": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "num_pkts",
+            "mean_iat",
+            "std_iat",
+            "min_iat",
+            "max_iat",
+            "mean_pkt_len",
+            "num_bytes",
+            "num_psh_flags",
+            "num_rst_flags",
+            "num_urg_flags",
+            "std_pkt_len",
+            "min_pkt_len",
+            "max_pkt_len"
+          ],
+          "D_scenario_masked": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "num_pkts",
+            "mean_iat",
+            "std_iat",
+            "min_iat",
+            "max_iat",
+            "mean_pkt_len",
+            "num_bytes",
+            "num_psh_flags",
+            "num_rst_flags",
+            "num_urg_flags",
+            "std_pkt_len",
+            "min_pkt_len",
+            "max_pkt_len"
+          ],
+          "_note": "A == B == C == D for this pipeline because no endpoint identifier, capture identifier or target-derived column is in the feature matrix to begin with. Endpoint identity enters only through graph structure, so the endpoint-masked condition is realised by an evaluation protocol (endpoint-disjoint splitting) rather than by dropping a column, and the scenario-masked condition likewise."
+        }
+      },
+      "duplicates": {
+        "n_rows": 495525,
+        "exact_duplicate_rows_all_columns": 0,
+        "duplicate_predictive_feature_vectors": 56495,
+        "duplicate_feature_vector_share": 0.114,
+        "distinct_feature_vectors": 439030,
+        "largest_duplicate_group": 17,
+        "n_groups_with_10_or_more": 3326,
+        "rows_in_groups_of_10_or_more": 55317,
+        "duplicate_five_tuples": 73996,
+        "distinct_five_tuples": 421529,
+        "note": "Repeated flow records are a genuine property of scan and brute-force traffic and are NOT removed. They are reported so that the contribution of memorisation can be bounded, and protocol B groups them so that no duplicate straddles a split."
+      },
+      "endpoint_predictiveness_multiclass": {
+        "ordered_pair": {
+          "n_groups": 106,
+          "groups_single_class": 86,
+          "rows_in_single_class_groups": 421686,
+          "row_share_in_single_class_groups": 0.851,
+          "flow_weighted_mean_purity": 0.9565
+        },
+        "source_ip": {
+          "n_groups": 23,
+          "groups_single_class": 3,
+          "rows_in_single_class_groups": 11301,
+          "row_share_in_single_class_groups": 0.0228,
+          "flow_weighted_mean_purity": 0.811
+        },
+        "destination_ip": {
+          "n_groups": 24,
+          "groups_single_class": 3,
+          "rows_in_single_class_groups": 9804,
+          "row_share_in_single_class_groups": 0.0198,
+          "flow_weighted_mean_purity": 0.8081
+        },
+        "interpretation": "Flow-weighted mean purity is an upper bound on the accuracy of a detector that sees only the endpoint identity and predicts the majority class of that endpoint group. A value near 1 means the label is almost determined by identity, so any model given the endpoint pair can reach that accuracy without learning anything about traffic."
+      },
+      "endpoint_predictiveness_binary": {
+        "ordered_pair": {
+          "n_groups": 106,
+          "groups_single_class": 106,
+          "rows_in_single_class_groups": 495525,
+          "row_share_in_single_class_groups": 1.0,
+          "flow_weighted_mean_purity": 1.0
+        },
+        "source_ip": {
+          "n_groups": 23,
+          "groups_single_class": 4,
+          "rows_in_single_class_groups": 82302,
+          "row_share_in_single_class_groups": 0.1661,
+          "flow_weighted_mean_purity": 0.9107
+        },
+        "destination_ip": {
+          "n_groups": 24,
+          "groups_single_class": 4,
+          "rows_in_single_class_groups": 58142,
+          "row_share_in_single_class_groups": 0.1173,
+          "flow_weighted_mean_purity": 0.8789
+        },
+        "interpretation": "Flow-weighted mean purity is an upper bound on the accuracy of a detector that sees only the endpoint identity and predicts the majority class of that endpoint group. A value near 1 means the label is almost determined by identity, so any model given the endpoint pair can reach that accuracy without learning anything about traffic."
+      },
+      "splits": {
+        "A_multiclass": {
+          "protocol": "A",
+          "seed": 42,
+          "applicable": true,
+          "name": "random stratified",
+          "sizes": {
+            "train": 346867,
+            "val": 74329,
+            "test": 74329
+          },
+          "class_balance": {
+            "train": {
+              "0": 263330,
+              "1": 20212,
+              "2": 27858,
+              "3": 15705,
+              "4": 19762
+            },
+            "val": {
+              "0": 56428,
+              "1": 4331,
+              "2": 5969,
+              "3": 3366,
+              "4": 4235
+            },
+            "test": {
+              "0": 56428,
+              "1": 4331,
+              "2": 5970,
+              "3": 3365,
+              "4": 4235
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 346867,
+              "test_unique": 74329,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 23,
+              "test_unique": 23,
+              "shared": 23,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74329,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 24,
+              "test_unique": 24,
+              "shared": 24,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74329,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 93,
+              "test_unique": 84,
+              "shared": 76,
+              "share_of_test_unique": 0.9048,
+              "test_rows_touching_shared_value": 74321,
+              "test_row_share": 0.9999
+            },
+            "five_tuples": {
+              "train_unique": 310054,
+              "test_unique": 72564,
+              "shared": 15183,
+              "share_of_test_unique": 0.2092,
+              "test_rows_touching_shared_value": 15351,
+              "test_row_share": 0.2065
+            },
+            "exact_feature_vectors": {
+              "train_unique": 308846,
+              "test_unique": 68975,
+              "shared": 3836,
+              "share_of_test_unique": 0.0556,
+              "test_rows_touching_shared_value": 9148,
+              "test_row_share": 0.1231
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74329,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "A",
+            "name": "random stratified",
+            "fractions": [
+              0.7,
+              0.15,
+              0.15
+            ],
+            "seed": 42,
+            "stratified_on": "task label",
+            "sizes": {
+              "train": 346867,
+              "val": 74329,
+              "test": 74329
+            }
+          }
+        },
+        "A_binary": {
+          "protocol": "A",
+          "seed": 42,
+          "applicable": true,
+          "name": "random stratified",
+          "sizes": {
+            "train": 346867,
+            "val": 74329,
+            "test": 74329
+          },
+          "class_balance": {
+            "train": {
+              "0": 263330,
+              "1": 83537
+            },
+            "val": {
+              "0": 56428,
+              "1": 17901
+            },
+            "test": {
+              "0": 56428,
+              "1": 17901
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 346867,
+              "test_unique": 74329,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 23,
+              "test_unique": 23,
+              "shared": 23,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74329,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 24,
+              "test_unique": 24,
+              "shared": 24,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74329,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 93,
+              "test_unique": 80,
+              "shared": 75,
+              "share_of_test_unique": 0.9375,
+              "test_rows_touching_shared_value": 74324,
+              "test_row_share": 0.9999
+            },
+            "five_tuples": {
+              "train_unique": 310053,
+              "test_unique": 72675,
+              "shared": 15307,
+              "share_of_test_unique": 0.2106,
+              "test_rows_touching_shared_value": 15479,
+              "test_row_share": 0.2082
+            },
+            "exact_feature_vectors": {
+              "train_unique": 308874,
+              "test_unique": 69006,
+              "shared": 3829,
+              "share_of_test_unique": 0.0555,
+              "test_rows_touching_shared_value": 9113,
+              "test_row_share": 0.1226
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74329,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "A",
+            "name": "random stratified",
+            "fractions": [
+              0.7,
+              0.15,
+              0.15
+            ],
+            "seed": 42,
+            "stratified_on": "task label",
+            "sizes": {
+              "train": 346867,
+              "val": 74329,
+              "test": 74329
+            }
+          }
+        },
+        "B_multiclass": {
+          "protocol": "B",
+          "seed": 42,
+          "applicable": true,
+          "name": "duplicate-aware grouped",
+          "sizes": {
+            "train": 346313,
+            "val": 74620,
+            "test": 74592
+          },
+          "class_balance": {
+            "train": {
+              "0": 263347,
+              "1": 20212,
+              "2": 27281,
+              "3": 15711,
+              "4": 19762
+            },
+            "val": {
+              "0": 56428,
+              "1": 4331,
+              "2": 6213,
+              "3": 3413,
+              "4": 4235
+            },
+            "test": {
+              "0": 56411,
+              "1": 4331,
+              "2": 6303,
+              "3": 3312,
+              "4": 4235
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 346313,
+              "test_unique": 74592,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 23,
+              "test_unique": 23,
+              "shared": 23,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74592,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 24,
+              "test_unique": 24,
+              "shared": 24,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74592,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 106,
+              "test_unique": 76,
+              "shared": 76,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74592,
+              "test_row_share": 1.0
+            },
+            "five_tuples": {
+              "train_unique": 309562,
+              "test_unique": 72849,
+              "shared": 15266,
+              "share_of_test_unique": 0.2096,
+              "test_rows_touching_shared_value": 15432,
+              "test_row_share": 0.2069
+            },
+            "exact_feature_vectors": {
+              "train_unique": 307321,
+              "test_unique": 65855,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74592,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "B",
+            "name": "duplicate-aware grouped",
+            "n_groups": 439030,
+            "n_redundant_rows": 56495,
+            "grouping_key": "exact predictive feature vector",
+            "seed": 42,
+            "sizes": {
+              "train": 346313,
+              "val": 74620,
+              "test": 74592
+            }
+          }
+        },
+        "B_binary": {
+          "protocol": "B",
+          "seed": 42,
+          "applicable": true,
+          "name": "duplicate-aware grouped",
+          "sizes": {
+            "train": 347594,
+            "val": 73892,
+            "test": 74039
+          },
+          "class_balance": {
+            "train": {
+              "0": 263347,
+              "1": 84247
+            },
+            "val": {
+              "0": 56420,
+              "1": 17472
+            },
+            "test": {
+              "0": 56419,
+              "1": 17620
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 347594,
+              "test_unique": 74039,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 23,
+              "test_unique": 23,
+              "shared": 23,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74039,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 24,
+              "test_unique": 24,
+              "shared": 24,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74039,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 106,
+              "test_unique": 76,
+              "shared": 76,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74039,
+              "test_row_share": 1.0
+            },
+            "five_tuples": {
+              "train_unique": 310843,
+              "test_unique": 72278,
+              "shared": 15284,
+              "share_of_test_unique": 0.2115,
+              "test_rows_touching_shared_value": 15470,
+              "test_row_share": 0.2089
+            },
+            "exact_feature_vectors": {
+              "train_unique": 307321,
+              "test_unique": 65855,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 74039,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "B",
+            "name": "duplicate-aware grouped",
+            "n_groups": 439030,
+            "n_redundant_rows": 56495,
+            "grouping_key": "exact predictive feature vector",
+            "seed": 42,
+            "sizes": {
+              "train": 347594,
+              "val": 73892,
+              "test": 74039
+            }
+          }
+        },
+        "C_multiclass": {
+          "protocol": "C",
+          "seed": 42,
+          "applicable": true,
+          "name": "endpoint-grouped generalisation (ip_dst)",
+          "sizes": {
+            "train": 387701,
+            "val": 50989,
+            "test": 56835
+          },
+          "class_balance": {
+            "train": {
+              "0": 285885,
+              "1": 28660,
+              "2": 31598,
+              "3": 13326,
+              "4": 28232
+            },
+            "val": {
+              "0": 43159,
+              "2": 3844,
+              "3": 3986
+            },
+            "test": {
+              "0": 47142,
+              "1": 214,
+              "2": 4355,
+              "3": 5124
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 387701,
+              "test_unique": 56835,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 23,
+              "test_unique": 7,
+              "shared": 7,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 56835,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 16,
+              "test_unique": 5,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 82,
+              "test_unique": 15,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "five_tuples": {
+              "train_unique": 329544,
+              "test_unique": 50089,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "exact_feature_vectors": {
+              "train_unique": 348376,
+              "test_unique": 49962,
+              "shared": 2769,
+              "share_of_test_unique": 0.0554,
+              "test_rows_touching_shared_value": 9433,
+              "test_row_share": 0.166
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 56835,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 23,
+            "test_endpoints": 11,
+            "shared_endpoints": 10,
+            "test_only_endpoints": [
+              "8.8.8.8"
+            ],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "C",
+            "name": "endpoint-grouped generalisation (ip_dst)",
+            "applicable": true,
+            "group_col": "ip_dst",
+            "n_groups_total": 24,
+            "n_candidate_groups": 21,
+            "test_groups": [
+              "10.0.0.20",
+              "10.0.0.23",
+              "10.0.0.7",
+              "10.0.0.8",
+              "8.8.8.8"
+            ],
+            "val_groups": [
+              "10.0.0.16",
+              "10.0.0.17",
+              "10.0.0.6"
+            ],
+            "classes_in_test": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "classes_train_only": [
+              4
+            ],
+            "evaluate_on_classes_present_in_test_only": true,
+            "test_row_fraction": 0.11469653397911306,
+            "draw_attempts": 1,
+            "seed": 42,
+            "sizes": {
+              "train": 387701,
+              "val": 50989,
+              "test": 56835
+            }
+          }
+        },
+        "C_binary": {
+          "protocol": "C",
+          "seed": 42,
+          "applicable": false,
+          "reason": "no endpoint holdout satisfied the validity constraints in 500 draws",
+          "description": {
+            "protocol": "C",
+            "name": "endpoint-grouped generalisation (ip_dst)",
+            "applicable": false,
+            "reason": "no endpoint holdout satisfied the validity constraints in 500 draws",
+            "rejections": {
+              "too few test classes": 374,
+              "test too large": 126
+            },
+            "n_groups_total": 24,
+            "n_candidate_groups": 20,
+            "seed": 42
+          }
+        },
+        "CS_multiclass": {
+          "protocol": "CS",
+          "seed": 42,
+          "applicable": true,
+          "name": "endpoint-grouped generalisation (ip_src)",
+          "sizes": {
+            "train": 425055,
+            "val": 35494,
+            "test": 34976
+          },
+          "class_balance": {
+            "train": {
+              "0": 314416,
+              "1": 28659,
+              "2": 31313,
+              "3": 22435,
+              "4": 28232
+            },
+            "val": {
+              "0": 31640,
+              "2": 3853,
+              "3": 1
+            },
+            "test": {
+              "0": 30130,
+              "1": 215,
+              "2": 4631
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 425055,
+              "test_unique": 34976,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 15,
+              "test_unique": 5,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "destination_ips": {
+              "train_unique": 23,
+              "test_unique": 5,
+              "shared": 4,
+              "share_of_test_unique": 0.8,
+              "test_rows_touching_shared_value": 34761,
+              "test_row_share": 0.9939
+            },
+            "src_dst_pairs": {
+              "train_unique": 84,
+              "test_unique": 13,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "five_tuples": {
+              "train_unique": 363238,
+              "test_unique": 28906,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "exact_feature_vectors": {
+              "train_unique": 376763,
+              "test_unique": 31760,
+              "shared": 1309,
+              "share_of_test_unique": 0.0412,
+              "test_rows_touching_shared_value": 4525,
+              "test_row_share": 0.1294
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 34976,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 10,
+            "shared_endpoints": 10,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "C",
+            "name": "endpoint-grouped generalisation (ip_src)",
+            "applicable": true,
+            "group_col": "ip_src",
+            "n_groups_total": 23,
+            "n_candidate_groups": 20,
+            "test_groups": [
+              "10.0.0.14",
+              "10.0.0.17",
+              "10.0.0.18",
+              "10.0.0.19",
+              "192.168.2.1"
+            ],
+            "val_groups": [
+              "10.0.0.11",
+              "10.0.0.16",
+              "10.0.0.21"
+            ],
+            "classes_in_test": [
+              0,
+              1,
+              2
+            ],
+            "classes_train_only": [
+              3,
+              4
+            ],
+            "evaluate_on_classes_present_in_test_only": true,
+            "test_row_fraction": 0.07058372433277836,
+            "draw_attempts": 2,
+            "seed": 42,
+            "sizes": {
+              "train": 425055,
+              "val": 35494,
+              "test": 34976
+            }
+          }
+        },
+        "CS_binary": {
+          "protocol": "CS",
+          "seed": 42,
+          "applicable": false,
+          "reason": "no endpoint holdout satisfied the validity constraints in 500 draws",
+          "description": {
+            "protocol": "C",
+            "name": "endpoint-grouped generalisation (ip_src)",
+            "applicable": false,
+            "reason": "no endpoint holdout satisfied the validity constraints in 500 draws",
+            "rejections": {
+              "test too large": 141,
+              "too few test classes": 359
+            },
+            "n_groups_total": 23,
+            "n_candidate_groups": 19,
+            "seed": 42
+          }
+        },
+        "L_multiclass": {
+          "protocol": "L",
+          "seed": 42,
+          "applicable": true,
+          "name": "leave-one-endpoint-out (ip_dst)",
+          "sizes": {
+            "train": 428436,
+            "val": 50455,
+            "test": 16634
+          },
+          "class_balance": {
+            "train": {
+              "0": 318644,
+              "1": 28874,
+              "2": 35440,
+              "3": 17246,
+              "4": 28232
+            },
+            "val": {
+              "0": 43155,
+              "2": 3269,
+              "3": 4031
+            },
+            "test": {
+              "0": 14387,
+              "2": 1088,
+              "3": 1159
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 428436,
+              "test_unique": 16634,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 23,
+              "test_unique": 3,
+              "shared": 3,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 16634,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 20,
+              "test_unique": 1,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 94,
+              "test_unique": 3,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "five_tuples": {
+              "train_unique": 366561,
+              "test_unique": 13602,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "exact_feature_vectors": {
+              "train_unique": 381459,
+              "test_unique": 16634,
+              "shared": 2240,
+              "share_of_test_unique": 0.1347,
+              "test_rows_touching_shared_value": 2240,
+              "test_row_share": 0.1347
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 4,
+              "shared": 4,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 16634,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 4,
+            "shared_endpoints": 4,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "L",
+            "name": "leave-one-endpoint-out (ip_dst)",
+            "applicable": true,
+            "group_col": "ip_dst",
+            "fold": 0,
+            "n_folds": 21,
+            "held_out_endpoint": "10.0.0.10",
+            "val_endpoints": [
+              "10.0.0.12",
+              "10.0.0.6",
+              "10.0.0.7"
+            ],
+            "candidate_endpoints": [
+              "10.0.0.10",
+              "10.0.0.11",
+              "10.0.0.12",
+              "10.0.0.13",
+              "10.0.0.14",
+              "10.0.0.15",
+              "10.0.0.16",
+              "10.0.0.17",
+              "10.0.0.18",
+              "10.0.0.19",
+              "10.0.0.20",
+              "10.0.0.21",
+              "10.0.0.23",
+              "10.0.0.5",
+              "10.0.0.6",
+              "10.0.0.7",
+              "10.0.0.8",
+              "192.168.1.7",
+              "192.168.2.1",
+              "192.168.2.5",
+              "8.8.8.8"
+            ],
+            "classes_in_test": [
+              0,
+              2,
+              3
+            ],
+            "classes_train_only": [
+              1,
+              4
+            ],
+            "evaluate_on_classes_present_in_test_only": true,
+            "test_row_fraction": 0.03356843751576611,
+            "seed": 42,
+            "sizes": {
+              "train": 428436,
+              "val": 50455,
+              "test": 16634
+            }
+          }
+        },
+        "L_binary": {
+          "protocol": "L",
+          "seed": 42,
+          "applicable": true,
+          "name": "leave-one-endpoint-out (ip_dst)",
+          "sizes": {
+            "train": 414305,
+            "val": 64586,
+            "test": 16634
+          },
+          "class_balance": {
+            "train": {
+              "0": 318667,
+              "1": 95638
+            },
+            "val": {
+              "0": 43132,
+              "1": 21454
+            },
+            "test": {
+              "0": 14387,
+              "1": 2247
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 414305,
+              "test_unique": 16634,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 23,
+              "test_unique": 3,
+              "shared": 3,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 16634,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 20,
+              "test_unique": 1,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 94,
+              "test_unique": 3,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "five_tuples": {
+              "train_unique": 352405,
+              "test_unique": 13602,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "exact_feature_vectors": {
+              "train_unique": 367367,
+              "test_unique": 16634,
+              "shared": 2240,
+              "share_of_test_unique": 0.1347,
+              "test_rows_touching_shared_value": 2240,
+              "test_row_share": 0.1347
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 4,
+              "shared": 4,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 16634,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 4,
+            "shared_endpoints": 4,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "L",
+            "name": "leave-one-endpoint-out (ip_dst)",
+            "applicable": true,
+            "group_col": "ip_dst",
+            "fold": 0,
+            "n_folds": 20,
+            "held_out_endpoint": "10.0.0.10",
+            "val_endpoints": [
+              "10.0.0.12",
+              "10.0.0.5",
+              "10.0.0.6"
+            ],
+            "candidate_endpoints": [
+              "10.0.0.10",
+              "10.0.0.11",
+              "10.0.0.12",
+              "10.0.0.13",
+              "10.0.0.14",
+              "10.0.0.15",
+              "10.0.0.16",
+              "10.0.0.17",
+              "10.0.0.18",
+              "10.0.0.19",
+              "10.0.0.20",
+              "10.0.0.21",
+              "10.0.0.23",
+              "10.0.0.5",
+              "10.0.0.6",
+              "10.0.0.7",
+              "10.0.0.8",
+              "192.168.1.7",
+              "192.168.2.1",
+              "8.8.8.8"
+            ],
+            "classes_in_test": [
+              0,
+              1
+            ],
+            "classes_train_only": [],
+            "evaluate_on_classes_present_in_test_only": true,
+            "test_row_fraction": 0.03356843751576611,
+            "seed": 42,
+            "sizes": {
+              "train": 414305,
+              "val": 64586,
+              "test": 16634
+            }
+          }
+        }
+      },
+      "graph": {
+        "A": {
+          "protocol": "A",
+          "seed": 42,
+          "applicable": true,
+          "n_nodes_in_index": 24,
+          "node_index_built_over": "ALL rows (train, val and test)",
+          "n_nodes_touched_by_train_edges": 24,
+          "n_nodes_touched_by_test_edges": 24,
+          "test_only_nodes": [],
+          "test_only_nodes_with_all_zero_train_features": [],
+          "message_passing_edge_pool": "training edges only (FlowGraph.message_edge_mask)",
+          "node_features_source": "training edges only (build_flow_graph node_feature_source='train')",
+          "node_feature_divergence_train_only_vs_all": {
+            "max_absolute": 532068537.0,
+            "mean_absolute": 3657510.726711633,
+            "max_relative": 0.5209173195663658,
+            "n_features_changed": 24,
+            "n_nodes_changed": 24,
+            "interpretation": "Non-zero divergence confirms the train-only aggregation is actually doing something: if it were zero, the 'train only' setting would be cosmetic."
+          },
+          "residual_transductive_element": "The node INDEX spans all splits, so a node that appears only in test exists in the graph during training. It carries all-zero behavioural features and no training edge, so no test traffic and no test label reaches the model through it; what leaks is the bare existence of an address. Under leave-one-endpoint-out this is the held-out device. An inductive variant that rebuilds the index from training endpoints alone is the stricter alternative and is listed in the recommendations."
+        },
+        "C": {
+          "protocol": "C",
+          "seed": 42,
+          "applicable": true,
+          "n_nodes_in_index": 24,
+          "node_index_built_over": "ALL rows (train, val and test)",
+          "n_nodes_touched_by_train_edges": 23,
+          "n_nodes_touched_by_test_edges": 11,
+          "test_only_nodes": [
+            23
+          ],
+          "test_only_nodes_with_all_zero_train_features": [
+            23
+          ],
+          "message_passing_edge_pool": "training edges only (FlowGraph.message_edge_mask)",
+          "node_features_source": "training edges only (build_flow_graph node_feature_source='train')",
+          "node_feature_divergence_train_only_vs_all": {
+            "max_absolute": 2.4627728999999965e+17,
+            "mean_absolute": 464213970078741.25,
+            "max_relative": 4019752999999999.5,
+            "n_features_changed": 25,
+            "n_nodes_changed": 14,
+            "interpretation": "Non-zero divergence confirms the train-only aggregation is actually doing something: if it were zero, the 'train only' setting would be cosmetic."
+          },
+          "residual_transductive_element": "The node INDEX spans all splits, so a node that appears only in test exists in the graph during training. It carries all-zero behavioural features and no training edge, so no test traffic and no test label reaches the model through it; what leaks is the bare existence of an address. Under leave-one-endpoint-out this is the held-out device. An inductive variant that rebuilds the index from training endpoints alone is the stricter alternative and is listed in the recommendations."
+        }
+      },
+      "protocol_A_duplicate_overlap_by_seed": {
+        "42": {
+          "train_unique": 308846,
+          "test_unique": 68975,
+          "shared": 3836,
+          "share_of_test_unique": 0.0556,
+          "test_rows_touching_shared_value": 9148,
+          "test_row_share": 0.1231
+        },
+        "123": {
+          "train_unique": 308868,
+          "test_unique": 68948,
+          "shared": 3820,
+          "share_of_test_unique": 0.0554,
+          "test_rows_touching_shared_value": 9157,
+          "test_row_share": 0.1232
+        },
+        "2024": {
+          "train_unique": 308858,
+          "test_unique": 68949,
+          "shared": 3817,
+          "share_of_test_unique": 0.0554,
+          "test_rows_touching_shared_value": 9172,
+          "test_row_share": 0.1234
+        }
+      }
+    },
+    "biflow": {
+      "features": {
+        "representation": "biflow",
+        "n_columns_total": 37,
+        "n_columns_in_feature_matrix": 29,
+        "feature_matrix_columns": [
+          "prt_src",
+          "prt_dst",
+          "proto",
+          "fwd_num_pkts",
+          "bwd_num_pkts",
+          "fwd_mean_iat",
+          "bwd_mean_iat",
+          "fwd_std_iat",
+          "bwd_std_iat",
+          "fwd_min_iat",
+          "bwd_min_iat",
+          "fwd_max_iat",
+          "bwd_max_iat",
+          "fwd_mean_pkt_len",
+          "bwd_mean_pkt_len",
+          "fwd_std_pkt_len",
+          "bwd_std_pkt_len",
+          "fwd_min_pkt_len",
+          "bwd_min_pkt_len",
+          "fwd_max_pkt_len",
+          "bwd_max_pkt_len",
+          "fwd_num_bytes",
+          "bwd_num_bytes",
+          "fwd_num_psh_flags",
+          "bwd_num_psh_flags",
+          "fwd_num_rst_flags",
+          "bwd_num_rst_flags",
+          "fwd_num_urg_flags",
+          "bwd_num_urg_flags"
+        ],
+        "inventory": [
+          {
+            "column": "ip_src",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "source IP address",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": true,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "graph node identity only"
+          },
+          {
+            "column": "ip_dst",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "destination IP address",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": true,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "graph node identity only"
+          },
+          {
+            "column": "prt_src",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "source port",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "prt_dst",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "destination port, i.e. the service contacted",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute; strongly associated with attack class by construction of the testbed (22 = Sparta, 1883 = MQTT) but observable at deployment"
+          },
+          {
+            "column": "proto",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "IP protocol number",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_num_pkts",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_num_pkts",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_mean_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_mean_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_std_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_std_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_min_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_min_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_max_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_max_iat",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_mean_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_mean_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_std_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_std_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_min_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_min_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_max_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_max_pkt_len",
+            "dtype": "float64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_num_bytes",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_num_bytes",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_num_psh_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_num_psh_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_num_rst_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_num_rst_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "fwd_num_urg_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "bwd_num_urg_flags",
+            "dtype": "int64",
+            "in_feature_matrix": true,
+            "meaning": "per-flow traffic statistic",
+            "available_at_inference": true,
+            "target_derived": false,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": true,
+            "used_as": "edge attribute"
+          },
+          {
+            "column": "is_attack",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "ground-truth attack flag",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "label source only"
+          },
+          {
+            "column": "source_file",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "capture file the row came from",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": true,
+            "used_as_feature": false,
+            "used_as": "provenance only"
+          },
+          {
+            "column": "scenario",
+            "dtype": "str",
+            "in_feature_matrix": false,
+            "meaning": "canonical capture key",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": true,
+            "used_as_feature": false,
+            "used_as": "provenance and multi-class label construction"
+          },
+          {
+            "column": "capture_scenario_label",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "numeric capture id",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": true,
+            "used_as_feature": false,
+            "used_as": "provenance only"
+          },
+          {
+            "column": "binary_label",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "target, normal vs attack",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "target"
+          },
+          {
+            "column": "multiclass_label",
+            "dtype": "int64",
+            "in_feature_matrix": false,
+            "meaning": "target, five-class",
+            "available_at_inference": false,
+            "target_derived": true,
+            "identifies_endpoint": false,
+            "identifies_capture": false,
+            "used_as_feature": false,
+            "used_as": "target"
+          }
+        ],
+        "unannotated_columns": [],
+        "VIOLATION_banned_columns_in_matrix": [],
+        "VIOLATION_target_derived_in_matrix": [],
+        "VIOLATION_capture_identifier_in_matrix": [],
+        "VIOLATION_endpoint_identifier_in_matrix": [],
+        "feature_sets": {
+          "A_original": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "fwd_num_pkts",
+            "bwd_num_pkts",
+            "fwd_mean_iat",
+            "bwd_mean_iat",
+            "fwd_std_iat",
+            "bwd_std_iat",
+            "fwd_min_iat",
+            "bwd_min_iat",
+            "fwd_max_iat",
+            "bwd_max_iat",
+            "fwd_mean_pkt_len",
+            "bwd_mean_pkt_len",
+            "fwd_std_pkt_len",
+            "bwd_std_pkt_len",
+            "fwd_min_pkt_len",
+            "bwd_min_pkt_len",
+            "fwd_max_pkt_len",
+            "bwd_max_pkt_len",
+            "fwd_num_bytes",
+            "bwd_num_bytes",
+            "fwd_num_psh_flags",
+            "bwd_num_psh_flags",
+            "fwd_num_rst_flags",
+            "bwd_num_rst_flags",
+            "fwd_num_urg_flags",
+            "bwd_num_urg_flags"
+          ],
+          "B_leakage_safe": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "fwd_num_pkts",
+            "bwd_num_pkts",
+            "fwd_mean_iat",
+            "bwd_mean_iat",
+            "fwd_std_iat",
+            "bwd_std_iat",
+            "fwd_min_iat",
+            "bwd_min_iat",
+            "fwd_max_iat",
+            "bwd_max_iat",
+            "fwd_mean_pkt_len",
+            "bwd_mean_pkt_len",
+            "fwd_std_pkt_len",
+            "bwd_std_pkt_len",
+            "fwd_min_pkt_len",
+            "bwd_min_pkt_len",
+            "fwd_max_pkt_len",
+            "bwd_max_pkt_len",
+            "fwd_num_bytes",
+            "bwd_num_bytes",
+            "fwd_num_psh_flags",
+            "bwd_num_psh_flags",
+            "fwd_num_rst_flags",
+            "bwd_num_rst_flags",
+            "fwd_num_urg_flags",
+            "bwd_num_urg_flags"
+          ],
+          "C_endpoint_masked": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "fwd_num_pkts",
+            "bwd_num_pkts",
+            "fwd_mean_iat",
+            "bwd_mean_iat",
+            "fwd_std_iat",
+            "bwd_std_iat",
+            "fwd_min_iat",
+            "bwd_min_iat",
+            "fwd_max_iat",
+            "bwd_max_iat",
+            "fwd_mean_pkt_len",
+            "bwd_mean_pkt_len",
+            "fwd_std_pkt_len",
+            "bwd_std_pkt_len",
+            "fwd_min_pkt_len",
+            "bwd_min_pkt_len",
+            "fwd_max_pkt_len",
+            "bwd_max_pkt_len",
+            "fwd_num_bytes",
+            "bwd_num_bytes",
+            "fwd_num_psh_flags",
+            "bwd_num_psh_flags",
+            "fwd_num_rst_flags",
+            "bwd_num_rst_flags",
+            "fwd_num_urg_flags",
+            "bwd_num_urg_flags"
+          ],
+          "D_scenario_masked": [
+            "prt_src",
+            "prt_dst",
+            "proto",
+            "fwd_num_pkts",
+            "bwd_num_pkts",
+            "fwd_mean_iat",
+            "bwd_mean_iat",
+            "fwd_std_iat",
+            "bwd_std_iat",
+            "fwd_min_iat",
+            "bwd_min_iat",
+            "fwd_max_iat",
+            "bwd_max_iat",
+            "fwd_mean_pkt_len",
+            "bwd_mean_pkt_len",
+            "fwd_std_pkt_len",
+            "bwd_std_pkt_len",
+            "fwd_min_pkt_len",
+            "bwd_min_pkt_len",
+            "fwd_max_pkt_len",
+            "bwd_max_pkt_len",
+            "fwd_num_bytes",
+            "bwd_num_bytes",
+            "fwd_num_psh_flags",
+            "bwd_num_psh_flags",
+            "fwd_num_rst_flags",
+            "bwd_num_rst_flags",
+            "fwd_num_urg_flags",
+            "bwd_num_urg_flags"
+          ],
+          "_note": "A == B == C == D for this pipeline because no endpoint identifier, capture identifier or target-derived column is in the feature matrix to begin with. Endpoint identity enters only through graph structure, so the endpoint-masked condition is realised by an evaluation protocol (endpoint-disjoint splitting) rather than by dropping a column, and the scenario-masked condition likewise."
+        }
+      },
+      "duplicates": {
+        "n_rows": 259379,
+        "exact_duplicate_rows_all_columns": 0,
+        "duplicate_predictive_feature_vectors": 38370,
+        "duplicate_feature_vector_share": 0.1479,
+        "distinct_feature_vectors": 221009,
+        "largest_duplicate_group": 17,
+        "n_groups_with_10_or_more": 2248,
+        "rows_in_groups_of_10_or_more": 37191,
+        "duplicate_five_tuples": 37071,
+        "distinct_five_tuples": 222308,
+        "note": "Repeated flow records are a genuine property of scan and brute-force traffic and are NOT removed. They are reported so that the contribution of memorisation can be bounded, and protocol B groups them so that no duplicate straddles a split."
+      },
+      "endpoint_predictiveness_multiclass": {
+        "ordered_pair": {
+          "n_groups": 57,
+          "groups_single_class": 40,
+          "rows_in_single_class_groups": 202922,
+          "row_share_in_single_class_groups": 0.7823,
+          "flow_weighted_mean_purity": 0.921
+        },
+        "source_ip": {
+          "n_groups": 21,
+          "groups_single_class": 20,
+          "rows_in_single_class_groups": 188379,
+          "row_share_in_single_class_groups": 0.7263,
+          "flow_weighted_mean_purity": 0.8128
+        },
+        "destination_ip": {
+          "n_groups": 23,
+          "groups_single_class": 3,
+          "rows_in_single_class_groups": 8454,
+          "row_share_in_single_class_groups": 0.0326,
+          "flow_weighted_mean_purity": 0.8649
+        },
+        "interpretation": "Flow-weighted mean purity is an upper bound on the accuracy of a detector that sees only the endpoint identity and predicts the majority class of that endpoint group. A value near 1 means the label is almost determined by identity, so any model given the endpoint pair can reach that accuracy without learning anything about traffic."
+      },
+      "endpoint_predictiveness_binary": {
+        "ordered_pair": {
+          "n_groups": 57,
+          "groups_single_class": 57,
+          "rows_in_single_class_groups": 259379,
+          "row_share_in_single_class_groups": 1.0,
+          "flow_weighted_mean_purity": 1.0
+        },
+        "source_ip": {
+          "n_groups": 21,
+          "groups_single_class": 21,
+          "rows_in_single_class_groups": 259379,
+          "row_share_in_single_class_groups": 1.0,
+          "flow_weighted_mean_purity": 1.0
+        },
+        "destination_ip": {
+          "n_groups": 23,
+          "groups_single_class": 20,
+          "rows_in_single_class_groups": 64911,
+          "row_share_in_single_class_groups": 0.2503,
+          "flow_weighted_mean_purity": 0.9439
+        },
+        "interpretation": "Flow-weighted mean purity is an upper bound on the accuracy of a detector that sees only the endpoint identity and predicts the majority class of that endpoint group. A value near 1 means the label is almost determined by identity, so any model given the endpoint pair can reach that accuracy without learning anything about traffic."
+      },
+      "splits": {
+        "A_multiclass": {
+          "protocol": "A",
+          "seed": 42,
+          "applicable": true,
+          "name": "random stratified",
+          "sizes": {
+            "train": 181565,
+            "val": 38907,
+            "test": 38907
+          },
+          "class_balance": {
+            "train": {
+              "0": 131864,
+              "1": 10181,
+              "2": 13935,
+              "3": 15704,
+              "4": 9881
+            },
+            "val": {
+              "0": 28257,
+              "1": 2181,
+              "2": 2986,
+              "3": 3365,
+              "4": 2118
+            },
+            "test": {
+              "0": 28257,
+              "1": 2182,
+              "2": 2986,
+              "3": 3365,
+              "4": 2117
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 181565,
+              "test_unique": 38907,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 20,
+              "test_unique": 17,
+              "shared": 17,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38907,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 23,
+              "test_unique": 22,
+              "shared": 22,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38907,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 53,
+              "test_unique": 42,
+              "shared": 41,
+              "share_of_test_unique": 0.9762,
+              "test_rows_touching_shared_value": 38906,
+              "test_row_share": 1.0
+            },
+            "five_tuples": {
+              "train_unique": 163173,
+              "test_unique": 37997,
+              "shared": 7744,
+              "share_of_test_unique": 0.2038,
+              "test_rows_touching_shared_value": 7846,
+              "test_row_share": 0.2017
+            },
+            "exact_feature_vectors": {
+              "train_unique": 155738,
+              "test_unique": 35259,
+              "shared": 2587,
+              "share_of_test_unique": 0.0734,
+              "test_rows_touching_shared_value": 6209,
+              "test_row_share": 0.1596
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38907,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "A",
+            "name": "random stratified",
+            "fractions": [
+              0.7,
+              0.15,
+              0.15
+            ],
+            "seed": 42,
+            "stratified_on": "task label",
+            "sizes": {
+              "train": 181565,
+              "val": 38907,
+              "test": 38907
+            }
+          }
+        },
+        "A_binary": {
+          "protocol": "A",
+          "seed": 42,
+          "applicable": true,
+          "name": "random stratified",
+          "sizes": {
+            "train": 181565,
+            "val": 38907,
+            "test": 38907
+          },
+          "class_balance": {
+            "train": {
+              "0": 131864,
+              "1": 49701
+            },
+            "val": {
+              "0": 28257,
+              "1": 10650
+            },
+            "test": {
+              "0": 28257,
+              "1": 10650
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 181565,
+              "test_unique": 38907,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 19,
+              "test_unique": 18,
+              "shared": 17,
+              "share_of_test_unique": 0.9444,
+              "test_rows_touching_shared_value": 38906,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 22,
+              "test_unique": 22,
+              "shared": 22,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38907,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 52,
+              "test_unique": 44,
+              "shared": 41,
+              "share_of_test_unique": 0.9318,
+              "test_rows_touching_shared_value": 38904,
+              "test_row_share": 0.9999
+            },
+            "five_tuples": {
+              "train_unique": 163173,
+              "test_unique": 38013,
+              "shared": 7684,
+              "share_of_test_unique": 0.2021,
+              "test_rows_touching_shared_value": 7783,
+              "test_row_share": 0.2
+            },
+            "exact_feature_vectors": {
+              "train_unique": 155703,
+              "test_unique": 35306,
+              "shared": 2617,
+              "share_of_test_unique": 0.0741,
+              "test_rows_touching_shared_value": 6190,
+              "test_row_share": 0.1591
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38907,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "A",
+            "name": "random stratified",
+            "fractions": [
+              0.7,
+              0.15,
+              0.15
+            ],
+            "seed": 42,
+            "stratified_on": "task label",
+            "sizes": {
+              "train": 181565,
+              "val": 38907,
+              "test": 38907
+            }
+          }
+        },
+        "B_multiclass": {
+          "protocol": "B",
+          "seed": 42,
+          "applicable": true,
+          "name": "duplicate-aware grouped",
+          "sizes": {
+            "train": 181577,
+            "val": 38864,
+            "test": 38938
+          },
+          "class_balance": {
+            "train": {
+              "0": 131868,
+              "1": 10181,
+              "2": 14003,
+              "3": 15644,
+              "4": 9881
+            },
+            "val": {
+              "0": 28256,
+              "1": 2181,
+              "2": 2891,
+              "3": 3418,
+              "4": 2118
+            },
+            "test": {
+              "0": 28254,
+              "1": 2182,
+              "2": 3013,
+              "3": 3372,
+              "4": 2117
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 181577,
+              "test_unique": 38938,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 21,
+              "test_unique": 17,
+              "shared": 17,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38938,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 23,
+              "test_unique": 21,
+              "shared": 21,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38938,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 57,
+              "test_unique": 40,
+              "shared": 40,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38938,
+              "test_row_share": 1.0
+            },
+            "five_tuples": {
+              "train_unique": 163094,
+              "test_unique": 38094,
+              "shared": 7735,
+              "share_of_test_unique": 0.2031,
+              "test_rows_touching_shared_value": 7825,
+              "test_row_share": 0.201
+            },
+            "exact_feature_vectors": {
+              "train_unique": 154706,
+              "test_unique": 33152,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38938,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "B",
+            "name": "duplicate-aware grouped",
+            "n_groups": 221009,
+            "n_redundant_rows": 38370,
+            "grouping_key": "exact predictive feature vector",
+            "seed": 42,
+            "sizes": {
+              "train": 181577,
+              "val": 38864,
+              "test": 38938
+            }
+          }
+        },
+        "B_binary": {
+          "protocol": "B",
+          "seed": 42,
+          "applicable": true,
+          "name": "duplicate-aware grouped",
+          "sizes": {
+            "train": 181200,
+            "val": 39329,
+            "test": 38850
+          },
+          "class_balance": {
+            "train": {
+              "0": 131868,
+              "1": 49332
+            },
+            "val": {
+              "0": 28252,
+              "1": 11077
+            },
+            "test": {
+              "0": 28258,
+              "1": 10592
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 181200,
+              "test_unique": 38850,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 21,
+              "test_unique": 17,
+              "shared": 17,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38850,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 23,
+              "test_unique": 21,
+              "shared": 21,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38850,
+              "test_row_share": 1.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 57,
+              "test_unique": 40,
+              "shared": 40,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38850,
+              "test_row_share": 1.0
+            },
+            "five_tuples": {
+              "train_unique": 162716,
+              "test_unique": 37952,
+              "shared": 7651,
+              "share_of_test_unique": 0.2016,
+              "test_rows_touching_shared_value": 7736,
+              "test_row_share": 0.1991
+            },
+            "exact_feature_vectors": {
+              "train_unique": 154706,
+              "test_unique": 33152,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 5,
+              "shared": 5,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 38850,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 24,
+            "test_endpoints": 24,
+            "shared_endpoints": 24,
+            "test_only_endpoints": [],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "B",
+            "name": "duplicate-aware grouped",
+            "n_groups": 221009,
+            "n_redundant_rows": 38370,
+            "grouping_key": "exact predictive feature vector",
+            "seed": 42,
+            "sizes": {
+              "train": 181200,
+              "val": 39329,
+              "test": 38850
+            }
+          }
+        },
+        "C_multiclass": {
+          "protocol": "C",
+          "seed": 42,
+          "applicable": true,
+          "name": "endpoint-grouped generalisation (ip_dst)",
+          "sizes": {
+            "train": 239820,
+            "val": 8244,
+            "test": 11315
+          },
+          "class_balance": {
+            "train": {
+              "0": 187027,
+              "1": 14329,
+              "2": 11416,
+              "3": 12932,
+              "4": 14116
+            },
+            "val": {
+              "2": 3856,
+              "3": 4388
+            },
+            "test": {
+              "0": 1351,
+              "1": 215,
+              "2": 4635,
+              "3": 5114
+            }
+          },
+          "overlaps": {
+            "flow_ids": {
+              "train_unique": 239820,
+              "test_unique": 11315,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "source_ips": {
+              "train_unique": 21,
+              "test_unique": 3,
+              "shared": 3,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 11315,
+              "test_row_share": 1.0
+            },
+            "destination_ips": {
+              "train_unique": 15,
+              "test_unique": 5,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "src_dst_pairs": {
+              "train_unique": 47,
+              "test_unique": 7,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "five_tuples": {
+              "train_unique": 202749,
+              "test_unique": 11315,
+              "shared": 0,
+              "share_of_test_unique": 0.0,
+              "test_rows_touching_shared_value": 0,
+              "test_row_share": 0.0
+            },
+            "exact_feature_vectors": {
+              "train_unique": 218812,
+              "test_unique": 4675,
+              "shared": 2944,
+              "share_of_test_unique": 0.6297,
+              "test_rows_touching_shared_value": 9584,
+              "test_row_share": 0.847
+            },
+            "capture_ids": {
+              "train_unique": 5,
+              "test_unique": 3,
+              "shared": 3,
+              "share_of_test_unique": 1.0,
+              "test_rows_touching_shared_value": 11315,
+              "test_row_share": 1.0
+            }
+          },
+          "endpoints": {
+            "train_endpoints": 23,
+            "test_endpoints": 8,
+            "shared_endpoints": 7,
+            "test_only_endpoints": [
+              "192.168.2.1"
+            ],
+            "endpoint_disjoint": false
+          },
+          "split_description": {
+            "protocol": "C",
+            "name": "endpoint-grouped generalisation (ip_dst)",
+            "applicable": true,
+            "group_col": "ip_dst",
+            "n_groups_total": 23,
+            "n_candidate_groups": 20,
+            "test_groups": [
+              "10.0.0.14",
+              "10.0.0.17",
+              "10.0.0.18",
+              "10.0.0.19",
+              "192.168.2.1"
+            ],
+            "val_groups": [
+              "10.0.0.11",
+              "10.0.0.16",
+              "10.0.0.21"
+            ],
+            "classes_in_test": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "classes_train_only": [
+              4
+            ],
+            "evaluate_on_classes_present_in_test_only": true,
+            "test_row_fraction": 0.04362342363876798,
+            "draw_attempts": 2,
+            "seed": 42,
+            "sizes": {
+              "train": 239820,
+              "val": 8244,
+              "test": 11315
+            }
+          }
+        },
+        "C_binary": {
+          "protocol": "C",
+          "seed": 42,
+          "applicable": false,
+          "reason": "only 3 ip_dst values carry more than one class; an endpoint holdout is not well posed",
+          "description": {
+            "protocol": "C",
+            "group_col": "ip_dst",
+            "applicable": false,
+            "reason": "only 3 ip_dst values carry more than one class; an endpoint holdout is not well posed",
+            "n_groups_total": 23,
+            "seed": 42
+          }
+        },
+        "CS_multiclass": {
+          "protocol": "CS",
+          "seed": 42,
+          "applicable": false,
+          "reason": "only 1 ip_src values carry more than one class; an endpoint holdout is not well posed",
+          "description": {
+            "protocol": "C",
+            "group_col": "ip_src",
+            "applicable": false,
+            "reason": "only 1 ip_src values carry more than one class; an endpoint holdout is not well posed",
+            "n_groups_total": 21,
+            "seed": 42
+          }
+        },
+        "CS_binary": {
+          "protocol": "CS",
+          "seed": 42,
+          "applicable": false,
+          "reason": "only 0 ip_src values carry more than one class; an endpoint holdout is not well posed",
+          "description": {
+            "protocol": "C",
+            "group_col": "ip_src",
+            "applicable": false,
+            "reason": "only 0 ip_src values carry more than one class; an endpoint holdout is not well posed",
+            "n_groups_total": 21,
+            "seed": 42
+          }
+        }
+      },
+      "graph": {
+        "A": {
+          "protocol": "A",
+          "seed": 42,
+          "applicable": true,
+          "n_nodes_in_index": 24,
+          "node_index_built_over": "ALL rows (train, val and test)",
+          "n_nodes_touched_by_train_edges": 24,
+          "n_nodes_touched_by_test_edges": 24,
+          "test_only_nodes": [],
+          "test_only_nodes_with_all_zero_train_features": [],
+          "message_passing_edge_pool": "training edges only (FlowGraph.message_edge_mask)",
+          "node_features_source": "training edges only (build_flow_graph node_feature_source='train')",
+          "node_feature_divergence_train_only_vs_all": {
+            "max_absolute": 55982.0,
+            "mean_absolute": 866.8565646398325,
+            "max_relative": 1.0,
+            "n_features_changed": 11,
+            "n_nodes_changed": 24,
+            "interpretation": "Non-zero divergence confirms the train-only aggregation is actually doing something: if it were zero, the 'train only' setting would be cosmetic."
+          },
+          "residual_transductive_element": "The node INDEX spans all splits, so a node that appears only in test exists in the graph during training. It carries all-zero behavioural features and no training edge, so no test traffic and no test label reaches the model through it; what leaks is the bare existence of an address. Under leave-one-endpoint-out this is the held-out device. An inductive variant that rebuilds the index from training endpoints alone is the stricter alternative and is listed in the recommendations."
+        },
+        "C": {
+          "protocol": "C",
+          "seed": 42,
+          "applicable": true,
+          "n_nodes_in_index": 24,
+          "node_index_built_over": "ALL rows (train, val and test)",
+          "n_nodes_touched_by_train_edges": 23,
+          "n_nodes_touched_by_test_edges": 8,
+          "test_only_nodes": [
+            19
+          ],
+          "test_only_nodes_with_all_zero_train_features": [
+            19
+          ],
+          "message_passing_edge_pool": "training edges only (FlowGraph.message_edge_mask)",
+          "node_features_source": "training edges only (build_flow_graph node_feature_source='train')",
+          "node_feature_divergence_train_only_vs_all": {
+            "max_absolute": 18208.0,
+            "mean_absolute": 219.11862023551583,
+            "max_relative": 1.0,
+            "n_features_changed": 12,
+            "n_nodes_changed": 11,
+            "interpretation": "Non-zero divergence confirms the train-only aggregation is actually doing something: if it were zero, the 'train only' setting would be cosmetic."
+          },
+          "residual_transductive_element": "The node INDEX spans all splits, so a node that appears only in test exists in the graph during training. It carries all-zero behavioural features and no training edge, so no test traffic and no test label reaches the model through it; what leaks is the bare existence of an address. Under leave-one-endpoint-out this is the held-out device. An inductive variant that rebuilds the index from training endpoints alone is the stricter alternative and is listed in the recommendations."
+        }
+      },
+      "protocol_A_duplicate_overlap_by_seed": {
+        "42": {
+          "train_unique": 155738,
+          "test_unique": 35259,
+          "shared": 2587,
+          "share_of_test_unique": 0.0734,
+          "test_rows_touching_shared_value": 6209,
+          "test_row_share": 0.1596
+        },
+        "123": {
+          "train_unique": 155781,
+          "test_unique": 35266,
+          "shared": 2633,
+          "share_of_test_unique": 0.0747,
+          "test_rows_touching_shared_value": 6257,
+          "test_row_share": 0.1608
+        },
+        "2024": {
+          "train_unique": 155734,
+          "test_unique": 35284,
+          "shared": 2614,
+          "share_of_test_unique": 0.0741,
+          "test_rows_touching_shared_value": 6205,
+          "test_row_share": 0.1595
+        }
+      }
+    }
+  }
+}

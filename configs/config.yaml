@@ -1,0 +1,82 @@
+# Project-level configuration.
+# Anything that affects a reported number is recorded again inside each run
+# record, so this file is a convenience, never the source of truth.
+
+project:
+  name: E-GAT-IDS
+  full_name: >-
+    Edge-Aware Graph Attention Network for MQTT-IoT-IDS2020 Intrusion Detection
+  version: 0.1.0
+
+dataset:
+  name: MQTT-IoT-IDS2020
+  doi: 10.21227/bhxy-ep04
+  citation: >-
+    H. Hindy, C. Tachtatzis, R. Atkinson, E. Bayne and X. Bellekens,
+    "MQTT-IoT-IDS2020: MQTT Internet of Things Intrusion Detection Dataset",
+    IEEE DataPort, 2020, doi: 10.21227/bhxy-ep04.
+  source_url: >-
+    https://ieee-dataport.org/open-access/mqtt-iot-ids2020-mqtt-internet-things-intrusion-detection-dataset
+  raw_dir: data/raw
+  representations: [uniflow, biflow]
+  redistribute_in_repository: false   # licence does not grant redistribution
+
+temporal:
+  # Enforced project-wide. Do not change without actual timestamped data.
+  timestamps_available: false
+  row_order_is_time: false
+  temporal_claims_permitted: false
+  note: >-
+    The released uni-flow and bi-flow CSVs contain no timestamp column. Row
+    order is not time. No temporal model is trained and no temporal claim is
+    made. ST-EGAT-GRU remains future work pending packet-level or PCAP data.
+
+labels:
+  binary:
+    source: dataset is_attack column
+    classes: {0: Normal, 1: Attack}
+  multiclass:
+    source: source scenario file identity, never inferred from is_attack
+    classes:
+      0: Normal
+      1: MQTT Brute-force
+      2: Aggressive Scan
+      3: UDP Scan
+      4: Sparta SSH Brute-force
+
+preprocessing:
+  scaler: quantile            # quantile | standard | robust | none
+  drop_constant: true
+  drop_near_zero_variance: true
+  nzv_threshold: 1.0e-8
+  engineer_port_features: true
+  winsorise_percentiles: [0.05, 99.95]
+  fitted_on: train split only
+
+graph:
+  node_definition: unique IP endpoint
+  edge_definition: one directed edge per flow record
+  parallel_edges: true
+  node_features_from: train      # train | all (all = transductive ablation)
+  message_passing_edges: train
+
+splits:
+  protocol_a: {train: 0.70, val: 0.15, test: 0.15, stratified: true}
+  protocol_b: {grouping: exact predictive feature vector}
+  protocol_c: {group_col: ip_src, test_fraction: 0.25, val_fraction: 0.15}
+  protocol_d: cross-representation, runner level
+
+seeds: [42, 123, 2024, 3407, 2026]
+
+metrics:
+  headline: [f1_macro, mcc, pr_auc, fpr, minority_class_recall]
+  reported: [accuracy, balanced_accuracy, precision_macro, recall_macro,
+             f1_macro, f1_weighted, mcc, roc_auc, pr_auc, fpr, fnr]
+
+integrity:
+  fabrication_permitted: false
+  tune_on_test: false
+  select_favourable_seeds: false
+  note: >-
+    Every number in the manuscript must be traceable to a file under
+    results/raw. experiments/quality_control.py enforces this.

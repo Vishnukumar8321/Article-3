@@ -1,0 +1,90 @@
+% =====================================================================
+% Edge-Aware Graph Attention Learning for Intrusion Detection in
+% MQTT-Based IoT Networks
+%
+% TEMPLATE. This file is NOT the manuscript. experiments/build_manuscript.py
+% turns it into manuscript/main.tex once the experimental phases have
+% finished, substituting the results sections and the generated tables.
+%
+% main.tex deliberately does not exist until then: the quality-control script
+% treats its absence at this stage as correct and its presence with
+% placeholders as a failure, which is the behaviour we want.
+% =====================================================================
+
+\documentclass[journal]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\title{Edge-Aware Graph Attention Learning for Intrusion Detection in
+MQTT-Based IoT Networks: What a Communication Graph Adds, and Under Which
+Evaluation}
+
+\author{Udayakumar~P%
+\thanks{P. Udayakumar is with the Department of Computer Science and
+Engineering (AI and ML), Madanapalle Institute of Technology and Science,
+Andhra Pradesh, India (e-mail: udayameister@gmail.com).}}
+
+\markboth{}{Udayakumar: Edge-Aware Graph Attention Learning for MQTT-IoT
+Intrusion Detection}
+
+\maketitle
+
+\begin{abstract}
+%%ABSTRACT%%
+\end{abstract}
+
+\begin{IEEEkeywords}
+Intrusion detection, Internet of Things, MQTT, graph neural networks, graph
+attention networks, evaluation methodology, network traffic classification.
+\end{IEEEkeywords}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_dataset}
+\input{sections/04_method}
+\input{sections/05_methodology}
+\input{sections/06_results}
+\input{sections/07_discussion}
+\input{sections/08_limitations}
+\input{sections/09_conclusion}
+
+\section*{Data Availability}
+The MQTT-IoT-IDS2020 dataset is publicly available from IEEE DataPort,
+doi:10.21227/bhxy-ep04~\cite{hindy2020mqttdataset}. It is not redistributed
+with the code for this study, as the licence does not grant redistribution.
+
+\section*{Code Availability}
+All preprocessing, graph construction, model, training, evaluation, statistical
+analysis and figure-generation code is released under the MIT licence, together
+with the configuration files, the per-run result records and the scripts that
+generate every table and figure in this paper.
+
+\section*{Author Contributions}
+P. Udayakumar conceived the study, implemented the pipeline, designed and ran
+the experiments, and wrote the manuscript.
+
+\section*{Declaration of Competing Interests}
+The author declares no competing interests.
+
+\section*{Funding}
+This research received no external funding.
+
+\section*{Acknowledgments}
+The author thanks the authors of MQTT-IoT-IDS2020 for releasing the dataset
+and its raw packet captures.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

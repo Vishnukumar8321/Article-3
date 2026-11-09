@@ -1,0 +1,2 @@
+ip_src,ip_dst,prt_src,prt_dst,proto,num_pkts,mean_iat,std_iat,min_iat,max_iat,mean_pkt_len,num_bytes,num_psh_flags,num_rst_flags,num_urg_flags,std_pkt_len,min_pkt_len,max_pkt_len,is_attack,source_file,scenario,capture_scenario_label,binary_label,multiclass_label,true_label,pred_label
+192.168.2.5,8.8.8.8,53405,53,17,2,5.0067901611328125e-06,0.0,5.0067901611328125e-06,5.0067901611328125e-06,83.0,166,0,0,0,0.0,83.0,83.0,1,uniflow_mqtt_bruteforce.csv,mqtt_bruteforce,1,1,1,Attack,Normal

@@ -1,0 +1,61 @@
+training:
+  epochs: 100
+  patience: 15
+  batch_size: 8192
+  lr: 1.0e-3
+  weight_decay: 1.0e-5
+  grad_clip: 5.0
+  scheduler: cosine
+  min_lr: 1.0e-6
+  monitor: f1_macro          # validation metric for early stopping
+  device: cpu
+
+neighbour_sampling:
+  max_msg_edges_per_node: 2000     # training, resampled each step
+  eval_msg_edges_per_node: 4000    # evaluation, fixed and seeded
+  rationale: >-
+    A handful of hub endpoints carry hundreds of thousands of parallel edges;
+    without a per-destination cap the forward pass is dominated by them and the
+    memory cost is unnecessary. This is GraphSAGE-style neighbour sampling, not
+    a change to the model definition.
+
+loss:
+  default: ce
+  weighting: balanced
+  focal_gamma: 2.0
+  smote_on_graph: false
+  rationale: >-
+    SMOTE interpolates between flow records, which on a communication graph
+    would fabricate traffic that was never observed. Imbalance is handled by
+    class weighting and by resampling real edges.
+
+hyperparameter_search:
+  strategy: halving          # grid | random | halving
+  n_trials: 24
+  epochs_cheap: 12
+  epochs_full: 60
+  selection_metric: val_f1_macro
+  full_grid_size: 972
+
+ga_ebt:
+  population_size: 20        # published value is 40; reduced for tractability
+  max_generations: 25        # published value is 100
+  fitness_cv_folds: 3        # published value is 10
+  fitness_subsample: 20000
+  search_reused_across_seeds: true
+  note: >-
+    Deviations from the published Algorithm 1 are recorded in
+    baselines/ga_ebt.py FIDELITY and are restated in the manuscript.
+
+models_to_run:
+  - RandomForest
+  - XGBoost
+  - SVM
+  - KNN
+  - GA-EBT
+  - MLP
+  - GCN
+  - GraphSAGE
+  - GAT
+  - EdgeGAT
+  - E-GAT-IDS

@@ -1,0 +1,169 @@
+\section{Experimental Methodology}
+\label{sec:methodology}
+
+\subsection{Preprocessing}
+
+Port numbers and protocol identifiers are categorical identifiers whose
+magnitude is meaningless but whose value is informative, so alongside the raw
+column we derive a log-scaled value, a well-known-port indicator, a
+system-port indicator and an ephemeral-port indicator for each of the source
+and destination ports. Three ratio features---bytes per packet, a burstiness
+ratio of maximum to mean inter-arrival time, and packet-length range---are
+added because they are row-wise deterministic and therefore safe to compute
+before splitting. This yields $D = 27$ predictive columns for uni-flow and
+$D = 40$ for bi-flow.
+
+Every transformation with fitted parameters is fitted on the training split
+alone: median imputation, winsorisation bounds taken from the 0.05th and
+99.95th training percentiles, the quantile transform to an approximately normal
+marginal, and the dropping of constant and near-zero-variance columns. The
+preprocessing object refuses to transform before it has been fitted. The
+columns \texttt{ip\_src}, \texttt{ip\_dst} and \texttt{is\_attack} are
+rejected from the feature matrix by an assertion rather than by convention.
+
+\subsection{Evaluation protocols}
+
+Because the central question is what an evaluation can establish, we report
+four protocols rather than one.
+
+\emph{Protocol A, random stratified.} A 70/15/15 stratified split. This is the
+protocol under which most of the literature, including the base paper, reports,
+and we include it for comparability and as the object of study in its own
+right.
+
+\emph{Protocol B, duplicate-aware grouped.} Records whose exact predictive
+feature vector coincides are grouped and assigned wholly to one split. Scan
+traffic produces many identical records---11.4\% of uni-flow rows share a
+feature vector with another row---so under Protocol A identical records
+straddle the split and a model can be credited for retrieving a memorised
+answer. Protocol B removes that route: it yields zero shared feature vectors
+between training and test.
+
+\emph{Protocol C, endpoint-grouped.} Whole endpoints are withheld, so the test
+split contains devices the model has never seen. Which direction of holdout is
+well posed follows from Section~\ref{sec:dataset}. Withholding \emph{sources}
+cannot produce a test split containing both unseen sources and attack traffic,
+because every attack class originates from one or two fixed addresses; such a
+draw puts an attack class wholly in training or wholly in test. Withholding
+\emph{victims} is well posed for the classes whose victims are distributed---
+aggressive scan and UDP scan reach eighteen destinations each---and not for
+MQTT brute-force (four victims) or Sparta SSH (two). Protocol C therefore
+withholds victims, and we report the source-withholding variant separately as
+Protocol CS to document the asymmetry rather than to conceal it.
+
+A Protocol C or CS draw is accepted only if the test split contains at least
+three classes, holds no more than 35\% of the records, and contains no class
+absent from training; draws are redrawn under a recorded seed until one
+qualifies, and the protocol reports itself \emph{not applicable} if none does.
+Where a class is unavoidably absent from a test split, macro-averaged metrics
+are averaged over the classes present and each run records which classes those
+were, because averaging a structural zero over an absent class reports a
+penalty the model never earned. Model selection uses the same convention as
+evaluation, so early stopping optimises the quantity that is reported.
+
+\emph{Protocol D, cross-representation.} Uni-flow and bi-flow are separate
+feature spaces and are never merged; matched configurations are compared across
+them.
+
+\subsection{Baselines}
+
+Twelve models are evaluated under identical splits.
+\emph{EndpointLookup} is a majority-class lookup table on the ordered endpoint
+pair, using no traffic features whatsoever; it exists to quantify how much of
+the task is answerable from identity alone, and any graph model that merely
+matches it has learned identity rather than behaviour. Random Forest,
+XGBoost~\cite{chen2016xgboost}, SVM and $k$-nearest neighbours are the
+classical learners; because a kernel SVM and a $k$-NN do not scale to a
+350{,}000-row training split, both receive a stratified training cap whose size
+is recorded with the run, and the SVM uses a Nystr\"om approximation of the RBF
+kernel. GA-EBT is our reproduction of the base paper's detector. The MLP is
+the graph-free deep baseline. GCN, GraphSAGE, E-GraphSAGE, GAT, EdgeGAT and
+E-GAT-IDS are the graph family described in Section~\ref{sec:method}.
+
+\subsection{GA-EBT reproduction fidelity}
+
+We implement Algorithm~1 of the base paper literally: the chromosome encodes a
+feature bit-mask together with the ensemble's number of estimators, maximum
+depth and minimum samples per split; population 40, one hundred generations,
+crossover 0.80, mutation 0.05, tournament size three, elitism of two, a
+ten-feature minimum enforced after mutation, the published parameter bounds and
+jitter magnitudes, and termination on generation count or ten generations
+without fitness gain.
+
+It remains an \emph{approximate} reproduction, and we state the deviations
+rather than implying replication. We use a scikit-learn bagging ensemble of
+decision trees where the original used WEKA, whose tree induction differs in
+pruning and split criteria. We reduce the genetic search budget, because
+$40 \times 100$ chromosomes evaluated by ten-fold cross-validation over a
+350{,}000-row training split is not tractable on the hardware used here; the
+budget was set empirically after a pilot search showed fitness reaching 0.99832
+at generation zero and 0.99881 by generation five and then not improving for
+ten further generations, which is unsurprising given that the fitness is
+cross-validated F1 on a training split that is itself saturated. We run the
+search once per (representation, task, protocol) and refit per seed. We apply
+the original's min--max scaling inside this baseline so that it retains its own
+published preprocessing. Three things cannot be reproduced at all: the
+original's train/test partition, which is not published; its 33{,}079-instance
+subset, whose sampling is not described; and the WEKA random seed. The complete
+statement is carried in the code and in the run records.
+
+\subsection{Metrics}
+
+Accuracy is reported but is not the headline, because it saturates. The metrics
+that carry the argument are macro-F1, the Matthews correlation
+coefficient~\cite{chicco2020mcc}, PR-AUC~\cite{saito2015prcurve}, the
+false-positive rate and minority-class recall. Balanced accuracy is reported
+because under endpoint-grouped protocols it exposes a failure mode that macro-F1
+compresses: a model that misses one of $k$ test classes entirely scores close to
+$(k-1)/k$. Per-class precision, recall, F1 and false-positive rate are reported
+for every run, together with training time, inference latency, throughput,
+trainable parameter count and peak resident memory.
+
+\subsection{Multi-seed protocol and statistics}
+
+Every configuration is run with seeds 42, 123, 2024, 3407 and 2026. Results
+are reported as mean $\pm$ standard deviation with 95\% bootstrap confidence
+intervals over 10{,}000 resamples. Comparisons against the proposed model are
+paired by seed, since every model sees an identical split for a given seed, and
+we report the paired $t$-test, the Wilcoxon signed-rank test and a bootstrap
+confidence interval on the mean difference, with Holm--Bonferroni correction
+across the baseline family and Cohen's $d_z$ as effect size. We state
+explicitly that at five paired observations the exact Wilcoxon test cannot
+reach $p < 0.0625$, so significance claims rest on the confidence interval and
+effect size as much as on the $p$-value; no test is run on a single number.
+
+\subsection{Leakage controls}
+
+The controls are enforced in code and recorded per run rather than asserted in
+prose. Scaling, imputation, winsorisation and feature dropping are fitted on
+training data only. Node attributes aggregate training flows only. Message
+passing uses training edges only. Endpoint identifiers and the attack flag
+cannot enter the feature matrix. Splits are verified for overlap and coverage.
+The number of exact-duplicate feature vectors shared between training and test
+is measured and reported rather than assumed absent. Early stopping and every
+configuration decision use validation data; the test split is evaluated once,
+after training concludes. An executable quality-control script re-checks these
+properties over the stored artefacts and exits non-zero on failure.
+
+\subsection{Hyperparameters and search}
+
+We report results at the architectural defaults recorded in the configuration
+files ($L = 2$ layers, hidden dimension 64, $H = 4$ heads, dropout 0.2,
+AdamW at $10^{-3}$ with weight decay $10^{-5}$, cosine schedule, batch of 8192
+target edges, early stopping on validation macro-F1 with patience 12 over at
+most 60 epochs) rather than at the output of a large search. The reason is
+stated rather than hidden: under Protocols A and B the validation metric is
+saturated, so a search has no signal to follow; under Protocols C and CS the
+differences we observe are architectural---between aggregation functions---and
+an order of magnitude larger than anything the search space moves. A
+successive-halving search over the specified grid is implemented and available,
+and the grid, the selection metric and the budget are recorded.
+
+\subsection{Reproducibility}
+
+Every run writes a JSON record containing its metrics, per-class report,
+confusion matrix, complete configuration, random seed, timings, parameter
+count, peak memory, an environment fingerprint and the SHA-256 of every input
+file. All tables and figures are generated from those records by script; no
+number in this paper was transcribed by hand. Experiments ran on CPU only, and
+the runtime figures should be read as such.

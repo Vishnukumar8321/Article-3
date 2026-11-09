@@ -1,0 +1,141 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Flow-based intrusion detection for MQTT and IoT}
+
+MQTT-IoT-IDS2020 was released with a baseline study comparing six classical
+learners across packet, unidirectional-flow and bidirectional-flow abstractions
+of the same captures~\cite{hindy2020mqttcase}. Its central observation is one
+this paper returns to: general network attacks such as scans separate easily
+from benign traffic, whereas MQTT-specific attacks resemble normal broker
+exchanges and are harder to isolate. Subsequent work on the dataset has
+largely reported higher aggregate accuracy rather than revisiting that
+distinction. Khan et al.~\cite{khan2021mqttdl} apply deep models to the
+MQTT-enabled setting; ensemble approaches have been proposed for MQTT
+specifically~\cite{mqttensemble2025,mqttsecuring2023}, with feature selection
+by metaheuristic search~\cite{mqttlightgbm2022}; attention-based sequence
+models have been applied to MQTT in medical
+deployments~\cite{mqttiomt2026}; and XMID-MQTT~\cite{xmidmqtt2025} adds
+post-hoc explanation. MQTTset~\cite{vaccari2020mqttset} provides an
+alternative MQTT capture, and broader IoT benchmarks such as
+TON\_IoT~\cite{moustafa2021toniot} and CICIoT2023~\cite{neto2023ciciot} offer
+larger and more heterogeneous traffic.
+
+The base paper for this study~\cite{norouzi2026reliable} proposes GA-EBT, a
+genetic algorithm that jointly selects features and tunes a bagging ensemble of
+decision trees, and reports 99.9931\% and 99.997\% accuracy on IoT\_SDN-IDS and
+MQTT-IoT-IDS2020 respectively. We reproduce its Algorithm~1 as faithfully as
+the published description permits and discuss the comparison in
+Section~\ref{sec:results}; one property of its experimental setup, identified in
+Section~\ref{sec:dataset}, materially affects how its figure should be read.
+
+\subsection{Graph neural networks for intrusion detection}
+
+Two surveys map this area~\cite{bilot2024survey,gnnids2026survey}. The
+dominant formulation represents hosts as nodes and flows as edges, which makes
+intrusion detection an edge-classification problem.
+E-GraphSAGE~\cite{lo2022egraphsage} established this formulation for IoT by
+extending GraphSAGE~\cite{hamilton2017graphsage} so that edge attributes
+participate in neighbourhood aggregation, and it remains the closest published
+comparator to the model proposed here; we therefore include it as a
+first-class baseline rather than as a variant.
+Anomal-E~\cite{caville2022anomale} removes the dependence on labels by
+learning edge embeddings self-supervised and applying anomaly scoring on top.
+Pujol-Perich et al.~\cite{pujolperich2022unveiling} make robustness the
+explicit target, arguing that structural representations should degrade more
+gracefully than flow-vector models under traffic that differs from training.
+More recent work enhances edge semantics through self-supervised
+objectives~\cite{semantic2026edge}.
+
+On the architectural side, attention over graphs originates with
+GAT~\cite{velickovic2018gat}, whose limitations under static attention were
+analysed by Brody et al.~\cite{brody2022gatv2}. Admitting edge features into
+the attention computation is not new: EGAT~\cite{chen2021egat} computes
+attention from a concatenation that includes a projection of the edge feature
+vector, which is the same placement we use. We therefore make no novelty claim
+for the mechanism. What is not established in the literature is how that
+placement behaves for flow-level intrusion detection when the evaluation is
+constructed so that endpoint identity cannot be memorised, and that is the gap
+this paper addresses.
+
+\subsection{Evaluation methodology}
+
+A parallel literature argues that security machine learning is systematically
+over-reported. Sommer and Paxson~\cite{sommer2010outside} set out why intrusion
+detection resists the closed-world assumptions of standard supervised
+evaluation. Arp et al.~\cite{arp2024pitfalls} enumerate recurring pitfalls,
+among them sampling bias, spurious correlations and inappropriate baselines,
+all three of which bear directly on graph-based detectors evaluated on
+laboratory testbeds. TESSERACT~\cite{pendlebury2019tesseract} shows for malware
+classification that eliminating experimental bias can remove most of a reported
+improvement. Dataset construction itself has been found defective:
+Engelen et al.~\cite{engelen2021troubleshooting} and
+Lanvin et al.~\cite{lanvin2022errors} document labelling and generation errors
+in CICIDS2017 large enough to change which methods appear to win.
+Geirhos et al.~\cite{geirhos2020shortcut} give the general account of shortcut
+learning that we appeal to when interpreting endpoint identity as a shortcut.
+On metrics, Chicco and Jurman~\cite{chicco2020mcc} argue for the Matthews
+correlation coefficient over accuracy and F1 under imbalance, and
+Saito and Rehmsmeier~\cite{saito2015prcurve} for precision-recall over ROC;
+we follow both.
+
+\subsection{Positioning}
+
+Table~\ref{tab:related} summarises the comparison. The pattern it shows is
+that graph-based intrusion detection is evaluated almost exclusively under
+random splits of a single capture, that endpoint-identity baselines are absent,
+and that where robustness is addressed it is addressed by perturbing traffic
+rather than by holding out devices. The gap we act on is therefore not the
+absence of an edge-aware attention mechanism, which
+exists~\cite{chen2021egat}, but the absence of an evaluation under which its
+contribution---or the contribution of any graph structure---can be measured
+rather than assumed.
+
+\begin{table*}[!t]
+\caption{Representative prior work on graph-based and MQTT intrusion
+detection. ``Endpoint holdout'' asks whether any reported protocol withholds
+entire hosts from training; ``identity baseline'' whether a model using only
+endpoint identity is reported as a comparator.}
+\label{tab:related}
+\centering
+\small
+\begin{tabular}{@{}llllcccl@{}}
+\toprule
+Study & Dataset(s) & Model & Graph & Edge feat. & Endpoint holdout &
+Identity baseline & Principal limitation \\
+\midrule
+Hindy et al.~\cite{hindy2020mqttcase} & MQTT-IoT-IDS2020 & 6 classical & no &
+n/a & no & no & random split; accuracy-led \\
+Norouzi \& G\"urka\c{s}-Ayd{\i}n~\cite{norouzi2026reliable} & MQTT-IoT-IDS2020,
+IoT\_SDN-IDS & GA + bagged trees & no & n/a & no & no &
+saturated metric; subset of release \\
+Khan et al.~\cite{khan2021mqttdl} & MQTT-IoT-IDS2020 & CNN/LSTM & no & n/a &
+no & no & random split \\
+Lo et al.~\cite{lo2022egraphsage} & ToN-IoT, BoT-IoT & GraphSAGE & yes & yes &
+no & no & random split; no identity control \\
+Caville et al.~\cite{caville2022anomale} & NF-UQ-NIDS & GraphSAGE + DGI &
+yes & yes & no & no & unsupervised; random split \\
+Pujol-Perich et al.~\cite{pujolperich2022unveiling} & CIC-IDS2017 & custom MPNN
+& yes & yes & no & no & robustness via traffic perturbation \\
+Chen \& Chen~\cite{chen2021egat} & citation/molecule graphs & EGAT & yes & yes
+& n/a & n/a & not an intrusion-detection study \\
+Bilot et al.~\cite{bilot2024survey} & survey & --- & yes & varies & rarely &
+no & identifies evaluation gap, does not close it \\
+\midrule
+This work & MQTT-IoT-IDS2020 (uni- and bi-flow) & E-GAT-IDS + 11 baselines &
+yes & yes & \textbf{yes} & \textbf{yes} & single dataset; simulated testbed \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Research gap}
+
+Existing flow-based intrusion detection generally treats network observations
+as independent feature vectors, and existing graph-based intrusion detection
+demonstrates that relational representations can be applied to the same task at
+comparable or better aggregate accuracy. Neither line establishes how much of
+the graph's apparent contribution survives an evaluation in which endpoint
+identity is not predictive, because no reported protocol withholds endpoints
+and no reported comparison includes an endpoint-identity baseline. On a
+simulated testbed with a fixed attacker address this omission is consequential,
+and MQTT-IoT-IDS2020 is such a testbed.

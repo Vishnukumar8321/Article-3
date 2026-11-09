@@ -1,0 +1,65 @@
+2026-09-18 08:22:57 | INFO    | src.data_loader | loaded uniflow_mqtt_bruteforce.csv  rows=33079    cols=19  scenario=mqtt_bruteforce
+2026-09-18 08:22:57 | INFO    | src.data_loader | loaded uniflow_normal.csv           rows=171836   cols=19  scenario=normal
+2026-09-18 08:22:57 | INFO    | src.data_loader | loaded uniflow_scan_A.csv           rows=51358    cols=19  scenario=scan_A
+2026-09-18 08:22:57 | INFO    | src.data_loader | loaded uniflow_scan_sU.csv          rows=56845    cols=19  scenario=scan_sU
+2026-09-18 08:22:57 | INFO    | src.data_loader | loaded uniflow_sparta.csv           rows=182407   cols=19  scenario=sparta
+2026-09-18 08:22:57 | INFO    | src.data_loader | 204350/495525 rows (41.24%) are benign background traffic captured during an attack scenario; they are labelled Normal for the multi-class task, with the capture retained in capture_scenario_label.
+2026-09-18 08:23:22 | INFO    | src.split | split verified: {'train': 346867, 'val': 74329, 'test': 74329}, 495525/495525 rows used
+2026-09-18 08:24:12 | INFO    | leakage_audit |   split audited: uniflow A_multiclass
+2026-09-18 08:24:12 | INFO    | src.split | split verified: {'train': 346867, 'val': 74329, 'test': 74329}, 495525/495525 rows used
+2026-09-18 08:25:03 | INFO    | leakage_audit |   split audited: uniflow A_binary
+2026-09-18 08:25:09 | INFO    | src.split | protocol B: 495525 rows -> 439030 duplicate-groups (56495 redundant rows)
+2026-09-18 08:25:09 | INFO    | src.split | split verified: {'train': 346313, 'val': 74620, 'test': 74592}, 495525/495525 rows used
+2026-09-18 08:25:59 | INFO    | leakage_audit |   split audited: uniflow B_multiclass
+2026-09-18 08:26:05 | INFO    | src.split | protocol B: 495525 rows -> 439030 duplicate-groups (56495 redundant rows)
+2026-09-18 08:26:05 | INFO    | src.split | split verified: {'train': 347594, 'val': 73892, 'test': 74039}, 495525/495525 rows used
+2026-09-18 08:26:55 | INFO    | leakage_audit |   split audited: uniflow B_binary
+2026-09-18 08:26:55 | INFO    | src.split | split verified: {'train': 387701, 'val': 50989, 'test': 56835}, 495525/495525 rows used
+2026-09-18 08:27:18 | INFO    | leakage_audit |   split audited: uniflow C_multiclass
+2026-09-18 08:28:11 | INFO    | leakage_audit |   split audited: uniflow C_binary
+2026-09-18 08:28:12 | INFO    | src.split | split verified: {'train': 425055, 'val': 35494, 'test': 34976}, 495525/495525 rows used
+2026-09-18 08:28:35 | INFO    | leakage_audit |   split audited: uniflow CS_multiclass
+2026-09-18 08:29:28 | INFO    | leakage_audit |   split audited: uniflow CS_binary
+2026-09-18 08:29:28 | INFO    | src.split | split verified: {'train': 428436, 'val': 50455, 'test': 16634}, 495525/495525 rows used
+2026-09-18 08:29:51 | INFO    | leakage_audit |   split audited: uniflow L_multiclass
+2026-09-18 08:29:52 | INFO    | src.split | split verified: {'train': 414305, 'val': 64586, 'test': 16634}, 495525/495525 rows used
+2026-09-18 08:30:15 | INFO    | leakage_audit |   split audited: uniflow L_binary
+2026-09-18 08:30:15 | WARNING | src.feature_engineering | build_node_features called with edge_subset=None: node features will see every flow, including test flows. Use only for the explicitly-labelled transductive ablation.
+2026-09-18 08:30:16 | INFO    | leakage_audit |   graph audited: uniflow A
+2026-09-18 08:30:17 | WARNING | src.feature_engineering | build_node_features called with edge_subset=None: node features will see every flow, including test flows. Use only for the explicitly-labelled transductive ablation.
+2026-09-18 08:30:18 | INFO    | leakage_audit |   graph audited: uniflow C
+2026-09-18 08:30:18 | INFO    | src.split | split verified: {'train': 346867, 'val': 74329, 'test': 74329}, 495525/495525 rows used
+2026-09-18 08:31:07 | INFO    | src.split | split verified: {'train': 346867, 'val': 74329, 'test': 74329}, 495525/495525 rows used
+2026-09-18 08:31:57 | INFO    | src.split | split verified: {'train': 346867, 'val': 74329, 'test': 74329}, 495525/495525 rows used
+2026-09-18 08:32:46 | INFO    | leakage_audit | audited uniflow
+2026-09-18 08:32:46 | INFO    | src.data_loader | loaded biflow_mqtt_bruteforce.csv   rows=16696    cols=32  scenario=mqtt_bruteforce
+2026-09-18 08:32:47 | INFO    | src.data_loader | loaded biflow_normal.csv            rows=86008    cols=32  scenario=normal
+2026-09-18 08:32:47 | INFO    | src.data_loader | loaded biflow_scan_A.csv            rows=25693    cols=32  scenario=scan_A
+2026-09-18 08:32:48 | INFO    | src.data_loader | loaded biflow_scan_sU.csv           rows=39664    cols=32  scenario=scan_sU
+2026-09-18 08:32:49 | INFO    | src.data_loader | loaded biflow_sparta.csv            rows=91318    cols=32  scenario=sparta
+2026-09-18 08:32:49 | INFO    | src.data_loader | 102370/259379 rows (39.47%) are benign background traffic captured during an attack scenario; they are labelled Normal for the multi-class task, with the capture retained in capture_scenario_label.
+2026-09-18 08:33:01 | INFO    | src.split | split verified: {'train': 181565, 'val': 38907, 'test': 38907}, 259379/259379 rows used
+2026-09-18 08:33:20 | INFO    | leakage_audit |   split audited: biflow A_multiclass
+2026-09-18 08:33:20 | INFO    | src.split | split verified: {'train': 181565, 'val': 38907, 'test': 38907}, 259379/259379 rows used
+2026-09-18 08:33:39 | INFO    | leakage_audit |   split audited: biflow A_binary
+2026-09-18 08:33:42 | INFO    | src.split | protocol B: 259379 rows -> 221009 duplicate-groups (38370 redundant rows)
+2026-09-18 08:33:42 | INFO    | src.split | split verified: {'train': 181577, 'val': 38864, 'test': 38938}, 259379/259379 rows used
+2026-09-18 08:34:01 | INFO    | leakage_audit |   split audited: biflow B_multiclass
+2026-09-18 08:34:04 | INFO    | src.split | protocol B: 259379 rows -> 221009 duplicate-groups (38370 redundant rows)
+2026-09-18 08:34:04 | INFO    | src.split | split verified: {'train': 181200, 'val': 39329, 'test': 38850}, 259379/259379 rows used
+2026-09-18 08:34:22 | INFO    | leakage_audit |   split audited: biflow B_binary
+2026-09-18 08:34:23 | INFO    | src.split | split verified: {'train': 239820, 'val': 8244, 'test': 11315}, 259379/259379 rows used
+2026-09-18 08:34:35 | INFO    | leakage_audit |   split audited: biflow C_multiclass
+2026-09-18 08:34:35 | INFO    | leakage_audit |   split audited: biflow C_binary
+2026-09-18 08:34:35 | INFO    | leakage_audit |   split audited: biflow CS_multiclass
+2026-09-18 08:34:35 | INFO    | leakage_audit |   split audited: biflow CS_binary
+2026-09-18 08:34:36 | WARNING | src.feature_engineering | build_node_features called with edge_subset=None: node features will see every flow, including test flows. Use only for the explicitly-labelled transductive ablation.
+2026-09-18 08:34:36 | INFO    | leakage_audit |   graph audited: biflow A
+2026-09-18 08:34:36 | WARNING | src.feature_engineering | build_node_features called with edge_subset=None: node features will see every flow, including test flows. Use only for the explicitly-labelled transductive ablation.
+2026-09-18 08:34:37 | INFO    | leakage_audit |   graph audited: biflow C
+2026-09-18 08:34:37 | INFO    | src.split | split verified: {'train': 181565, 'val': 38907, 'test': 38907}, 259379/259379 rows used
+2026-09-18 08:34:56 | INFO    | src.split | split verified: {'train': 181565, 'val': 38907, 'test': 38907}, 259379/259379 rows used
+2026-09-18 08:35:15 | INFO    | src.split | split verified: {'train': 181565, 'val': 38907, 'test': 38907}, 259379/259379 rows used
+2026-09-18 08:35:34 | INFO    | leakage_audit | audited biflow
+2026-09-18 08:35:34 | INFO    | leakage_audit | wrote /home/claude/research_project/results/audit/leakage_audit.json
+2026-09-18 08:35:34 | INFO    | leakage_audit | wrote /home/claude/research_project/results/audit/split_overlaps.csv

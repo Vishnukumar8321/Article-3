@@ -1,0 +1,501 @@
+{
+  "representation": "uniflow",
+  "rules": {
+    "attacker": "sources flows of >=3 distinct attack classes",
+    "MQTT broker": ">90% of inbound flows arrive on port 1883",
+    "SSH / Sparta victim": ">20% of inbound flows arrive on port 22",
+    "external host": "never appears as a source",
+    "gateway": ">=10 distinct destinations and not an attacker",
+    "MQTT sensor": ">=10000 outbound flows to <=4 destinations",
+    "scan-exposed host": "sources traffic but meets none of the above"
+  },
+  "note": "An endpoint can source attack-labelled flows without being the attacker: the dataset labels both directions of an attack exchange, so the broker's replies to a brute-force attempt carry is_attack=1. The attacker rule therefore keys on the NUMBER OF DISTINCT attack classes sourced, which only 192.168.2.5 satisfies.",
+  "roles": {
+    "10.0.0.1": "gateway",
+    "10.0.0.10": "MQTT sensor",
+    "10.0.0.11": "MQTT sensor",
+    "10.0.0.12": "MQTT sensor",
+    "10.0.0.13": "MQTT sensor",
+    "10.0.0.14": "MQTT sensor",
+    "10.0.0.15": "MQTT sensor",
+    "10.0.0.16": "MQTT sensor",
+    "10.0.0.17": "MQTT sensor",
+    "10.0.0.18": "scan-exposed host",
+    "10.0.0.19": "scan-exposed host",
+    "10.0.0.20": "scan-exposed host",
+    "10.0.0.21": "scan-exposed host",
+    "10.0.0.23": "MQTT sensor",
+    "10.0.0.5": "SSH / Sparta victim",
+    "10.0.0.6": "MQTT sensor",
+    "10.0.0.7": "MQTT sensor",
+    "10.0.0.8": "MQTT sensor",
+    "192.168.1.7": "MQTT broker",
+    "192.168.2.1": "scan-exposed host",
+    "192.168.2.5": "attacker",
+    "192.168.2.6": "scan-exposed host",
+    "192.168.2.7": "scan-exposed host",
+    "8.8.8.8": "external host"
+  },
+  "evidence": {
+    "10.0.0.1": {
+      "flows_as_source": 8448,
+      "flows_as_destination": 8448,
+      "distinct_destinations": 17,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 0,
+      "share_inbound_22": 0.0,
+      "attack_classes_as_source": [],
+      "assigned_role": "gateway"
+    },
+    "10.0.0.10": {
+      "flows_as_source": 15474,
+      "flows_as_destination": 16634,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 4,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.11": {
+      "flows_as_source": 15482,
+      "flows_as_destination": 16961,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 2,
+      "share_inbound_22": 0.0001,
+      "attack_classes_as_source": [
+        2,
+        3
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.12": {
+      "flows_as_source": 15476,
+      "flows_as_destination": 16920,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2,
+        3
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.13": {
+      "flows_as_source": 15736,
+      "flows_as_destination": 16834,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.14": {
+      "flows_as_source": 15472,
+      "flows_as_destination": 16647,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.15": {
+      "flows_as_source": 15745,
+      "flows_as_destination": 17223,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.16": {
+      "flows_as_source": 15767,
+      "flows_as_destination": 17203,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 5,
+      "share_inbound_22": 0.0003,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.17": {
+      "flows_as_source": 15764,
+      "flows_as_destination": 16833,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 4,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.18": {
+      "flows_as_source": 1088,
+      "flows_as_destination": 2514,
+      "distinct_destinations": 2,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0012,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "scan-exposed host"
+    },
+    "10.0.0.19": {
+      "flows_as_source": 1086,
+      "flows_as_destination": 2534,
+      "distinct_destinations": 2,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0012,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "scan-exposed host"
+    },
+    "10.0.0.20": {
+      "flows_as_source": 1085,
+      "flows_as_destination": 2531,
+      "distinct_destinations": 2,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 2,
+      "share_inbound_22": 0.0008,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "scan-exposed host"
+    },
+    "10.0.0.21": {
+      "flows_as_source": 4245,
+      "flows_as_destination": 4288,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0007,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "scan-exposed host"
+    },
+    "10.0.0.23": {
+      "flows_as_source": 16524,
+      "flows_as_destination": 9534,
+      "distinct_destinations": 4,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0003,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.5": {
+      "flows_as_source": 29564,
+      "flows_as_destination": 30713,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 14120,
+      "share_inbound_22": 0.4597,
+      "attack_classes_as_source": [
+        2,
+        4
+      ],
+      "assigned_role": "SSH / Sparta victim"
+    },
+    "10.0.0.6": {
+      "flows_as_source": 15469,
+      "flows_as_destination": 16953,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 5,
+      "share_inbound_22": 0.0003,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.7": {
+      "flows_as_source": 15477,
+      "flows_as_destination": 16582,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 4,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "10.0.0.8": {
+      "flows_as_source": 15478,
+      "flows_as_destination": 16611,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 3,
+      "share_inbound_22": 0.0002,
+      "attack_classes_as_source": [
+        2
+      ],
+      "assigned_role": "MQTT sensor"
+    },
+    "192.168.1.7": {
+      "flows_as_source": 186725,
+      "flows_as_destination": 186725,
+      "distinct_destinations": 13,
+      "received_on_1883": 186725,
+      "share_inbound_1883": 1.0,
+      "received_on_22": 0,
+      "share_inbound_22": 0.0,
+      "attack_classes_as_source": [
+        1
+      ],
+      "assigned_role": "MQTT broker"
+    },
+    "192.168.2.1": {
+      "flows_as_source": 1566,
+      "flows_as_destination": 1566,
+      "distinct_destinations": 3,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 0,
+      "share_inbound_22": 0.0,
+      "attack_classes_as_source": [
+        1
+      ],
+      "assigned_role": "scan-exposed host"
+    },
+    "192.168.2.5": {
+      "flows_as_source": 71001,
+      "flows_as_destination": 48338,
+      "distinct_destinations": 20,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 0,
+      "share_inbound_22": 0.0,
+      "attack_classes_as_source": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "assigned_role": "attacker"
+    },
+    "192.168.2.6": {
+      "flows_as_source": 431,
+      "flows_as_destination": 215,
+      "distinct_destinations": 2,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 0,
+      "share_inbound_22": 0.0,
+      "attack_classes_as_source": [],
+      "assigned_role": "scan-exposed host"
+    },
+    "192.168.2.7": {
+      "flows_as_source": 2422,
+      "flows_as_destination": 1141,
+      "distinct_destinations": 2,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 0,
+      "share_inbound_22": 0.0,
+      "attack_classes_as_source": [],
+      "assigned_role": "scan-exposed host"
+    },
+    "8.8.8.8": {
+      "flows_as_source": 0,
+      "flows_as_destination": 11577,
+      "distinct_destinations": 0,
+      "received_on_1883": 0,
+      "share_inbound_1883": 0.0,
+      "received_on_22": 0,
+      "share_inbound_22": 0.0,
+      "attack_classes_as_source": [],
+      "assigned_role": "external host"
+    }
+  },
+  "counts": {
+    "MQTT broker": 1,
+    "MQTT sensor": 12,
+    "SSH / Sparta victim": 1,
+    "attacker": 1,
+    "external host": 1,
+    "gateway": 1,
+    "scan-exposed host": 7
+  },
+  "role_to_role_flow_counts": {
+    "MQTT broker": {
+      "MQTT sensor": 158247,
+      "SSH / Sparta victim": 14363,
+      "attacker": 14115
+    },
+    "MQTT sensor": {
+      "MQTT broker": 158247,
+      "attacker": 14169,
+      "external host": 8429,
+      "gateway": 7014,
+      "scan-exposed host": 5
+    },
+    "SSH / Sparta victim": {
+      "MQTT broker": 14363,
+      "attacker": 15200,
+      "gateway": 1
+    },
+    "attacker": {
+      "MQTT broker": 14115,
+      "MQTT sensor": 29674,
+      "SSH / Sparta victim": 16349,
+      "external host": 214,
+      "scan-exposed host": 10649
+    },
+    "gateway": {
+      "MQTT sensor": 7014,
+      "SSH / Sparta victim": 1,
+      "scan-exposed host": 1433
+    },
+    "scan-exposed host": {
+      "attacker": 4854,
+      "external host": 2934,
+      "gateway": 1433,
+      "scan-exposed host": 2702
+    }
+  },
+  "attack_paths_by_role": [
+    {
+      "from_role": "attacker",
+      "to_role": "MQTT sensor",
+      "class": 3,
+      "flows": 15495
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "MQTT sensor",
+      "class": 2,
+      "flows": 14179
+    },
+    {
+      "from_role": "MQTT sensor",
+      "to_role": "attacker",
+      "class": 2,
+      "flows": 14167
+    },
+    {
+      "from_role": "SSH / Sparta victim",
+      "to_role": "attacker",
+      "class": 4,
+      "flows": 14116
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "SSH / Sparta victim",
+      "class": 4,
+      "flows": 14116
+    },
+    {
+      "from_role": "MQTT broker",
+      "to_role": "attacker",
+      "class": 1,
+      "flows": 14115
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "MQTT broker",
+      "class": 1,
+      "flows": 14115
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "scan-exposed host",
+      "class": 3,
+      "flows": 5791
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "scan-exposed host",
+      "class": 2,
+      "flows": 4643
+    },
+    {
+      "from_role": "scan-exposed host",
+      "to_role": "attacker",
+      "class": 2,
+      "flows": 4639
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "SSH / Sparta victim",
+      "class": 3,
+      "flows": 1148
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "SSH / Sparta victim",
+      "class": 2,
+      "flows": 1085
+    },
+    {
+      "from_role": "SSH / Sparta victim",
+      "to_role": "attacker",
+      "class": 2,
+      "flows": 1084
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "scan-exposed host",
+      "class": 1,
+      "flows": 215
+    },
+    {
+      "from_role": "scan-exposed host",
+      "to_role": "attacker",
+      "class": 1,
+      "flows": 215
+    },
+    {
+      "from_role": "attacker",
+      "to_role": "external host",
+      "class": 1,
+      "flows": 214
+    },
+    {
+      "from_role": "MQTT sensor",
+      "to_role": "attacker",
+      "class": 3,
+      "flows": 2
+    }
+  ]
+}

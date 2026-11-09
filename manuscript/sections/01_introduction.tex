@@ -1,0 +1,96 @@
+\section{Introduction}
+\label{sec:intro}
+
+MQTT is the dominant application-layer protocol for constrained IoT
+deployments. It is lightweight by design: a publish/subscribe broker, a
+minimal binary header, and no mandatory authentication or transport security.
+Those properties are what make it deployable on battery-powered sensors, and
+they are also what make an MQTT network worth defending, because a broker that
+accepts unauthenticated connections is a single point through which an attacker
+can reach every subscriber. Network intrusion detection is consequently a
+standard component of MQTT deployments, and the flow-level detector---one that
+consumes summarised traffic records rather than packet payloads---is the form
+that fits the bandwidth and privacy constraints of the setting.
+
+Almost all such detectors treat a flow record as an independent feature
+vector. A decision tree ensemble, a support vector machine or a multilayer
+perceptron receives the packet counts, byte counts, inter-arrival statistics
+and header flags of one flow and emits a label for that flow, with no
+representation of the fact that the flow occurred between two particular
+endpoints, or that those endpoints were simultaneously involved in hundreds of
+other flows. The independence assumption is a modelling convenience, not a
+property of the data.
+
+Communication relationships plausibly carry information that the flow vector
+does not. A port scan is not primarily a statement about any single flow; it is
+a statement about one source contacting many destinations. A brute-force
+attempt is a statement about repeated short exchanges with one service on one
+host. Both patterns live in the structure of who talks to whom, and both are
+only indirectly visible in the marginal statistics of an individual record.
+Graph neural networks are the natural apparatus for such structure, and a
+growing literature applies them to intrusion detection~\cite{bilot2024survey,
+gnnids2026survey}, with E-GraphSAGE~\cite{lo2022egraphsage} establishing the
+now-common recipe of treating flows as edges carrying attributes.
+
+Two things about that literature motivate this paper. The first is that the
+reported numbers leave no room to distinguish between methods. On
+MQTT-IoT-IDS2020~\cite{hindy2020mqttdataset}, the dataset this paper uses, the
+strongest published result is a genetic-algorithm-tuned bagging ensemble
+reporting 99.997\% accuracy~\cite{norouzi2026reliable}. A method that reports
+99.998\% has demonstrated nothing. When a benchmark is saturated, differences
+in reported accuracy measure differences in preprocessing and split
+construction rather than differences in detection capability, and the field has
+repeatedly been warned about exactly this failure
+mode~\cite{arp2024pitfalls,sommer2010outside}. Intrusion detection datasets
+have also proven to carry labelling and construction artefacts substantial
+enough to reverse published
+conclusions~\cite{engelen2021troubleshooting,lanvin2022errors}.
+
+The second is that a graph is not an unambiguous improvement over a feature
+vector. Adding the endpoint pair to the model adds identity, and on a
+laboratory testbed identity is a shortcut: the attacker occupies a fixed
+address, so an edge incident to that address is an attack with near certainty.
+A model can exploit this without learning anything about traffic behaviour, and
+under a random split it will never be penalised for doing so. Shortcut learning
+of this kind is well documented in machine learning
+generally~\cite{geirhos2020shortcut}; what is missing for graph-based intrusion
+detection is a protocol that detects it.
+
+This paper therefore asks a narrower and more answerable question than whether
+a graph helps. It asks what has to be true of an evaluation before the question
+can be answered at all, and then answers it under those conditions. We
+construct a communication multigraph in which IP endpoints are nodes and each
+flow record is a distinct directed edge, so that every flow retains its own
+attribute vector and receives its own prediction. We give nodes
+behaviour-derived features computed from training traffic only, rather than
+learned identity embeddings. We implement an edge-aware graph attention layer
+that admits the flow attributes into the attention logit, and we compare it
+against topology-only and edge-featured variants of the same architecture, a
+reproduction of the base paper's detector, four classical learners, a
+multilayer perceptron, and---critically---a baseline that sees nothing but the
+endpoint pair.
+
+Our contributions are the following. We characterise the evaluation
+regime of MQTT-IoT-IDS2020 quantitatively, showing what a random split can and
+cannot establish on it. We introduce endpoint-grouped evaluation protocols that
+hold out whole devices, and we show which direction of holdout is well posed on
+this testbed and which is not, with the structural reason. We contribute an
+endpoint-identity baseline that requires no traffic features and that any
+graph-based detector should be required to beat. We report a component
+ablation that separates the contribution of graph topology, of flow attributes
+in the message, and of flow attributes in the attention weight. We report
+attention-based attribution, framed as attribution and not as explanation. And
+we document, rather than discard, the conclusions that run against the
+hypothesis we set out to test.
+
+The remainder of the paper is organised as follows.
+Section~\ref{sec:related} reviews graph-based and MQTT-specific intrusion
+detection and situates the evaluation-methodology literature.
+Section~\ref{sec:dataset} describes the dataset as released, including two
+properties of its construction that determine how it must be labelled and
+split. Section~\ref{sec:method} formalises the graph representation and the
+edge-aware attention layer. Section~\ref{sec:methodology} sets out the
+protocols, metrics and leakage controls. Section~\ref{sec:results} reports the
+measurements, Section~\ref{sec:discussion} interprets them,
+Section~\ref{sec:limitations} states what the study cannot support, and
+Section~\ref{sec:conclusion} concludes.

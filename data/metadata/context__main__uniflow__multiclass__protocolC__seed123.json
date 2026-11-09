@@ -1,0 +1,198 @@
+{
+  "representation": "uniflow",
+  "task": "multiclass",
+  "protocol": "C",
+  "seed": 123,
+  "n_rows": 495525,
+  "n_features": 27,
+  "feature_names": [
+    "prt_src",
+    "prt_dst",
+    "proto",
+    "num_pkts",
+    "mean_iat",
+    "std_iat",
+    "min_iat",
+    "max_iat",
+    "mean_pkt_len",
+    "num_bytes",
+    "num_psh_flags",
+    "num_rst_flags",
+    "num_urg_flags",
+    "std_pkt_len",
+    "min_pkt_len",
+    "max_pkt_len",
+    "prt_src_log",
+    "prt_src_is_wellknown",
+    "prt_src_is_system",
+    "prt_src_is_ephemeral",
+    "prt_dst_log",
+    "prt_dst_is_wellknown",
+    "prt_dst_is_system",
+    "prt_dst_is_ephemeral",
+    "bytes_per_pkt",
+    "iat_burstiness",
+    "pkt_len_range"
+  ],
+  "class_names": [
+    "Normal",
+    "MQTT Brute-force",
+    "Aggressive Scan",
+    "UDP Scan",
+    "Sparta SSH Brute-force"
+  ],
+  "split": {
+    "protocol": "C",
+    "name": "endpoint-grouped generalisation (ip_dst)",
+    "applicable": true,
+    "group_col": "ip_dst",
+    "n_groups_total": 24,
+    "n_candidate_groups": 21,
+    "test_groups": [
+      "10.0.0.12",
+      "10.0.0.16",
+      "10.0.0.17",
+      "10.0.0.20",
+      "192.168.2.1"
+    ],
+    "val_groups": [
+      "10.0.0.11",
+      "10.0.0.14",
+      "192.168.1.7"
+    ],
+    "classes_in_test": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "classes_train_only": [
+      4
+    ],
+    "evaluate_on_classes_present_in_test_only": true,
+    "test_row_fraction": 0.11110034811563493,
+    "draw_attempts": 1,
+    "seed": 123,
+    "sizes": {
+      "train": 220139,
+      "val": 220333,
+      "test": 55053
+    },
+    "class_balance": {
+      "train": {
+        "0": 130282,
+        "1": 14544,
+        "2": 32690,
+        "3": 14391,
+        "4": 28232
+      },
+      "val": {
+        "0": 201387,
+        "1": 14115,
+        "2": 2178,
+        "3": 2653
+      },
+      "test": {
+        "0": 44517,
+        "1": 215,
+        "2": 4929,
+        "3": 5392
+      }
+    }
+  },
+  "leakage_checks": {
+    "train_val_shared_feature_vectors": 2588,
+    "train_test_shared_feature_vectors": 3167,
+    "preprocessing_fitted_on": "train split only",
+    "node_features_from": "train",
+    "message_passing_edges": "train split only"
+  },
+  "preprocessing_report": {
+    "representation": "uniflow",
+    "n_rows_in": 220139,
+    "n_cols_in": 16,
+    "dropped_constant": [],
+    "dropped_near_zero_variance": [],
+    "dropped_all_nan": [],
+    "non_numeric_coerced": {},
+    "infinities_replaced": {},
+    "nan_imputed": {
+      "iat_burstiness": 64012
+    },
+    "engineered_columns": [
+      "prt_src_log",
+      "prt_src_is_wellknown",
+      "prt_src_is_system",
+      "prt_src_is_ephemeral",
+      "prt_dst_log",
+      "prt_dst_is_wellknown",
+      "prt_dst_is_system",
+      "prt_dst_is_ephemeral",
+      "bytes_per_pkt",
+      "iat_burstiness",
+      "pkt_len_range"
+    ],
+    "final_feature_columns": [
+      "prt_src",
+      "prt_dst",
+      "proto",
+      "num_pkts",
+      "mean_iat",
+      "std_iat",
+      "min_iat",
+      "max_iat",
+      "mean_pkt_len",
+      "num_bytes",
+      "num_psh_flags",
+      "num_rst_flags",
+      "num_urg_flags",
+      "std_pkt_len",
+      "min_pkt_len",
+      "max_pkt_len",
+      "prt_src_log",
+      "prt_src_is_wellknown",
+      "prt_src_is_system",
+      "prt_src_is_ephemeral",
+      "prt_dst_log",
+      "prt_dst_is_wellknown",
+      "prt_dst_is_system",
+      "prt_dst_is_ephemeral",
+      "bytes_per_pkt",
+      "iat_burstiness",
+      "pkt_len_range"
+    ],
+    "scaler": "quantile",
+    "fitted_on_n_rows": 220139,
+    "notes": []
+  },
+  "graph_statistics": {
+    "n_nodes": 24,
+    "n_edges_flow_instances": 495525,
+    "n_unique_ordered_pairs": 106,
+    "n_unique_unordered_pairs": 56,
+    "parallel_edge_multiplicity_mean": 4674.764150943396,
+    "parallel_edge_multiplicity_max": 16349,
+    "parallel_edge_multiplicity_median": 1367.0,
+    "graph_density_ordered": 0.19202898550724637,
+    "self_loops": 0,
+    "mean_out_degree": 20646.875,
+    "max_out_degree": 186725,
+    "mean_in_degree": 20646.875,
+    "max_in_degree": 186725,
+    "isolated_nodes": 0,
+    "n_message_edges": 220139,
+    "node_feature_dim": 25,
+    "edge_feature_dim": 27,
+    "binary_class_counts": {
+      "0": 376186,
+      "1": 119339
+    },
+    "multiclass_class_counts": {
+      "0": 376186,
+      "1": 28874,
+      "2": 39797,
+      "3": 22436,
+      "4": 28232
+    }
+  }
+}

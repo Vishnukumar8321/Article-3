@@ -1,0 +1,55 @@
+{
+  "phases": "main,ablation,generalization,analysis",
+  "representations": [
+    "uniflow",
+    "biflow"
+  ],
+  "tasks": [
+    "binary",
+    "multiclass"
+  ],
+  "protocols": [
+    "A",
+    "B"
+  ],
+  "seeds": [
+    42,
+    123,
+    2024,
+    3407,
+    2026
+  ],
+  "models": [
+    "EndpointLookup",
+    "RandomForest",
+    "XGBoost",
+    "SVM",
+    "KNN",
+    "GA-EBT",
+    "MLP",
+    "GCN",
+    "GraphSAGE",
+    "E-GraphSAGE",
+    "GAT",
+    "EdgeGAT",
+    "E-GAT-IDS"
+  ],
+  "epochs": 100,
+  "patience": 15,
+  "batch_size": 8192,
+  "msg_edges": 2000,
+  "device": "cpu",
+  "nrows": null,
+  "raw_dir": "None",
+  "no_figures": false,
+  "ga_population": 20,
+  "ga_generations": 25,
+  "ga_subsample": 20000,
+  "ga_folds": 3,
+  "ga_budget": {
+    "population_size": 20,
+    "max_generations": 25,
+    "fitness_subsample": 20000,
+    "fitness_cv_folds": 3
+  }
+}

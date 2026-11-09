@@ -1,0 +1,18 @@
+# The MQTT-IoT-IDS2020 licence does not grant redistribution: raw data stays out.
+data/raw/**
+!data/raw/.gitkeep
+!data/raw/README.md
+
+results/checkpoints/**
+results/raw/scores/**
+!results/**/.gitkeep
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.bbl
+manuscript/*.blg

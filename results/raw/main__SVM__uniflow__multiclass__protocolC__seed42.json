@@ -1,0 +1,368 @@
+{
+  "experiment": "main",
+  "model": "SVM",
+  "representation": "uniflow",
+  "task": "multiclass",
+  "protocol": "C",
+  "seed": 42,
+  "config": {
+    "representation": "uniflow",
+    "task": "multiclass",
+    "protocol": "C",
+    "seed": 42,
+    "n_rows": 495525,
+    "n_features": 27,
+    "feature_names": [
+      "prt_src",
+      "prt_dst",
+      "proto",
+      "num_pkts",
+      "mean_iat",
+      "std_iat",
+      "min_iat",
+      "max_iat",
+      "mean_pkt_len",
+      "num_bytes",
+      "num_psh_flags",
+      "num_rst_flags",
+      "num_urg_flags",
+      "std_pkt_len",
+      "min_pkt_len",
+      "max_pkt_len",
+      "prt_src_log",
+      "prt_src_is_wellknown",
+      "prt_src_is_system",
+      "prt_src_is_ephemeral",
+      "prt_dst_log",
+      "prt_dst_is_wellknown",
+      "prt_dst_is_system",
+      "prt_dst_is_ephemeral",
+      "bytes_per_pkt",
+      "iat_burstiness",
+      "pkt_len_range"
+    ],
+    "class_names": [
+      "Normal",
+      "MQTT Brute-force",
+      "Aggressive Scan",
+      "UDP Scan",
+      "Sparta SSH Brute-force"
+    ],
+    "split": {
+      "protocol": "C",
+      "name": "endpoint-grouped generalisation (ip_dst)",
+      "applicable": true,
+      "group_col": "ip_dst",
+      "n_groups_total": 24,
+      "n_candidate_groups": 21,
+      "test_groups": [
+        "10.0.0.20",
+        "10.0.0.23",
+        "10.0.0.7",
+        "10.0.0.8",
+        "8.8.8.8"
+      ],
+      "val_groups": [
+        "10.0.0.16",
+        "10.0.0.17",
+        "10.0.0.6"
+      ],
+      "classes_in_test": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "classes_train_only": [
+        4
+      ],
+      "evaluate_on_classes_present_in_test_only": true,
+      "test_row_fraction": 0.11469653397911306,
+      "draw_attempts": 1,
+      "seed": 42,
+      "sizes": {
+        "train": 387701,
+        "val": 50989,
+        "test": 56835
+      },
+      "class_balance": {
+        "train": {
+          "0": 285885,
+          "1": 28660,
+          "2": 31598,
+          "3": 13326,
+          "4": 28232
+        },
+        "val": {
+          "0": 43159,
+          "2": 3844,
+          "3": 3986
+        },
+        "test": {
+          "0": 47142,
+          "1": 214,
+          "2": 4355,
+          "3": 5124
+        }
+      }
+    },
+    "leakage_checks": {
+      "train_val_shared_feature_vectors": 2982,
+      "train_test_shared_feature_vectors": 2769,
+      "preprocessing_fitted_on": "train split only",
+      "node_features_from": "train",
+      "message_passing_edges": "train split only"
+    },
+    "preprocessing_report": {
+      "representation": "uniflow",
+      "n_rows_in": 387701,
+      "n_cols_in": 16,
+      "dropped_constant": [],
+      "dropped_near_zero_variance": [],
+      "dropped_all_nan": [],
+      "non_numeric_coerced": {},
+      "infinities_replaced": {},
+      "nan_imputed": {
+        "iat_burstiness": 52654
+      },
+      "engineered_columns": [
+        "prt_src_log",
+        "prt_src_is_wellknown",
+        "prt_src_is_system",
+        "prt_src_is_ephemeral",
+        "prt_dst_log",
+        "prt_dst_is_wellknown",
+        "prt_dst_is_system",
+        "prt_dst_is_ephemeral",
+        "bytes_per_pkt",
+        "iat_burstiness",
+        "pkt_len_range"
+      ],
+      "final_feature_columns": [
+        "prt_src",
+        "prt_dst",
+        "proto",
+        "num_pkts",
+        "mean_iat",
+        "std_iat",
+        "min_iat",
+        "max_iat",
+        "mean_pkt_len",
+        "num_bytes",
+        "num_psh_flags",
+        "num_rst_flags",
+        "num_urg_flags",
+        "std_pkt_len",
+        "min_pkt_len",
+        "max_pkt_len",
+        "prt_src_log",
+        "prt_src_is_wellknown",
+        "prt_src_is_system",
+        "prt_src_is_ephemeral",
+        "prt_dst_log",
+        "prt_dst_is_wellknown",
+        "prt_dst_is_system",
+        "prt_dst_is_ephemeral",
+        "bytes_per_pkt",
+        "iat_burstiness",
+        "pkt_len_range"
+      ],
+      "scaler": "quantile",
+      "fitted_on_n_rows": 387701,
+      "notes": []
+    },
+    "graph_statistics": {
+      "n_nodes": 24,
+      "n_edges_flow_instances": 495525,
+      "n_unique_ordered_pairs": 106,
+      "n_unique_unordered_pairs": 56,
+      "parallel_edge_multiplicity_mean": 4674.764150943396,
+      "parallel_edge_multiplicity_max": 16349,
+      "parallel_edge_multiplicity_median": 1367.0,
+      "graph_density_ordered": 0.19202898550724637,
+      "self_loops": 0,
+      "mean_out_degree": 20646.875,
+      "max_out_degree": 186725,
+      "mean_in_degree": 20646.875,
+      "max_in_degree": 186725,
+      "isolated_nodes": 0,
+      "n_message_edges": 387701,
+      "node_feature_dim": 25,
+      "edge_feature_dim": 27,
+      "binary_class_counts": {
+        "0": 376186,
+        "1": 119339
+      },
+      "multiclass_class_counts": {
+        "0": 376186,
+        "1": 28874,
+        "2": 39797,
+        "3": 22436,
+        "4": 28232
+      }
+    },
+    "svm_subsample": {
+      "subsampled": true,
+      "n_train": 100000,
+      "n_train_available": 387701,
+      "reason": "kernel SVM does not scale to the full split"
+    },
+    "svm_variant": "rbf_nys"
+  },
+  "metrics": {
+    "n_samples": 56835,
+    "n_classes": 5,
+    "accuracy": 0.8380399401777074,
+    "balanced_accuracy": 0.697362083185417,
+    "precision_macro": 0.5801778771670429,
+    "recall_macro": 0.697362083185417,
+    "f1_macro": 0.5937983363576915,
+    "precision_weighted": 0.9393751112918532,
+    "recall_weighted": 0.8380399401777074,
+    "f1_weighted": 0.8680218796360699,
+    "mcc": 0.6625443560244504,
+    "fpr_macro": 0.03921835840485842,
+    "fnr_macro": 0.3026379168145829,
+    "classes_present_in_test": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "macro_averaged_over": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "macro_restricted_to_present": true,
+    "fpr": 0.03921835840485842,
+    "fnr": 0.3026379168145829,
+    "minority_class": 1,
+    "minority_class_support": 214,
+    "minority_class_recall": 0.0,
+    "roc_auc": 0.9923790752876376,
+    "pr_auc": 0.7715684276033994
+  },
+  "per_class": {
+    "Normal": {
+      "precision": 0.9936122146919062,
+      "recall": 0.8116965763013873,
+      "f1": 0.8934888445238346,
+      "support": 47142,
+      "false_positives": 246,
+      "fpr": 0.025379139585267718,
+      "average_precision": 0.9986613306710423
+    },
+    "MQTT Brute-force": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 214,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "average_precision": 0.0921731470422849
+    },
+    "Aggressive Scan": {
+      "precision": 0.3270992939762656,
+      "recall": 1.0,
+      "f1": 0.49295376082404213,
+      "support": 4355,
+      "false_positives": 8959,
+      "fpr": 0.1707126524390244,
+      "average_precision": 0.9999924100817073
+    },
+    "UDP Scan": {
+      "precision": 1.0,
+      "recall": 0.977751756440281,
+      "f1": 0.9887507400828893,
+      "support": 5124,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "average_precision": 0.9954468226185631
+    },
+    "Sparta SSH Brute-force": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 0,
+      "false_positives": 0,
+      "fpr": 0.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      38265,
+      0,
+      8877,
+      0,
+      0
+    ],
+    [
+      212,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      4355,
+      0,
+      0
+    ],
+    [
+      34,
+      0,
+      80,
+      5010,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "timings": {
+    "train_seconds": 87.7371444319997,
+    "inference_seconds": 0.6178083430004335,
+    "inference_seconds_mean": 0.49493380799989,
+    "inference_seconds_min": 0.46452239799964445,
+    "inference_seconds_std": 0.023513694066198125,
+    "flows_per_second": 107637.4362470209,
+    "latency_ms_per_flow": 0.00929044795999289,
+    "repeats": 3
+  },
+  "n_parameters": null,
+  "peak_memory_mb": 2458.94140625,
+  "data_hashes": {
+    "biflow_features/biflow_mqtt_bruteforce.csv": "790087e79e9d22f741ef06f1db3aed346a7a4980633e5c0619ae2c8a15ca4256",
+    "biflow_features/biflow_normal.csv": "901bd9f475d9dd817017091caaec4a865bf654250baf4f2f54877b32b647db44",
+    "biflow_features/biflow_scan_A.csv": "62de3d0c8478dd0774d0ffd7bba2c441c13ccfb2a4f7b17a0daaf6bc6091e361",
+    "biflow_features/biflow_scan_sU.csv": "91047fd6072ab980b418ee28fcedc03b3eb8fbcf17426c080760aba3503bcff7",
+    "biflow_features/biflow_sparta.csv": "9e3037f79c87e922b9cdf62125b9ec4db81b670b6bff6706385bd312becac976",
+    "biflow_features.zip": "1212c4204d2e1892e659f6d62bd85c36761d611b9a393bf23bf881933934a7b4",
+    "uniflow_features/uniflow_mqtt_bruteforce.csv": "f954dba67445aeeb6bdc6123b81f89be0799193fa857024083f05555d6166611",
+    "uniflow_features/uniflow_normal.csv": "f36eb77050ed18e1b201e8c4c0a373cd41fb3be8442a0055c8e6484afd499145",
+    "uniflow_features/uniflow_scan_A.csv": "489112ee7b83cdde60b237f711a82d858b90c89886b10394b2d06cdc57702119",
+    "uniflow_features/uniflow_scan_sU.csv": "2b9288199f88e5d9e5173dbbc319a5febb3870ee8dcc404ed0214e5462b04dd9",
+    "uniflow_features/uniflow_sparta.csv": "4f7d5d53dcf7fc648e1302874fd72aad4accfe5089a9b4a438e33b4aa4b07c36",
+    "uniflow_features.zip": "ef1a3f778e80c1067874f31202d647827db3d80545b048122333df10ecce100c"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v33-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "numpy": "2.4.4",
+    "scikit_learn": "1.8.0",
+    "torch": "2.14.0+cu130",
+    "cuda_available": false,
+    "git_commit": null
+  },
+  "notes": "Kernel SVM does not scale to the full training split; see config['svm_subsample']."
+}

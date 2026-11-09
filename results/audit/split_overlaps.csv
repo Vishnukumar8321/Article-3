@@ -1,0 +1,19 @@
+representation,cell,applicable,protocol,n_train,n_test,shared_flow_ids,shared_source_ips,shared_dest_ips,shared_pairs,shared_five_tuples,shared_feature_vectors,test_rows_with_shared_feature_vector,test_row_share_shared_feature_vector,shared_captures,endpoint_disjoint,shared_endpoints,reason
+uniflow,A_multiclass,True,A,346867.0,74329.0,0.0,23.0,24.0,76.0,15183.0,3836.0,9148.0,0.1231,5.0,False,24.0,
+uniflow,A_binary,True,A,346867.0,74329.0,0.0,23.0,24.0,75.0,15307.0,3829.0,9113.0,0.1226,5.0,False,24.0,
+uniflow,B_multiclass,True,B,346313.0,74592.0,0.0,23.0,24.0,76.0,15266.0,0.0,0.0,0.0,5.0,False,24.0,
+uniflow,B_binary,True,B,347594.0,74039.0,0.0,23.0,24.0,76.0,15284.0,0.0,0.0,0.0,5.0,False,24.0,
+uniflow,C_multiclass,True,C,387701.0,56835.0,0.0,7.0,0.0,0.0,0.0,2769.0,9433.0,0.166,5.0,False,10.0,
+uniflow,C_binary,False,,,,,,,,,,,,,,,no endpoint holdout satisfied the validity constraints in 500 draws
+uniflow,CS_multiclass,True,CS,425055.0,34976.0,0.0,0.0,4.0,0.0,0.0,1309.0,4525.0,0.1294,5.0,False,10.0,
+uniflow,CS_binary,False,,,,,,,,,,,,,,,no endpoint holdout satisfied the validity constraints in 500 draws
+uniflow,L_multiclass,True,L,428436.0,16634.0,0.0,3.0,0.0,0.0,0.0,2240.0,2240.0,0.1347,4.0,False,4.0,
+uniflow,L_binary,True,L,414305.0,16634.0,0.0,3.0,0.0,0.0,0.0,2240.0,2240.0,0.1347,4.0,False,4.0,
+biflow,A_multiclass,True,A,181565.0,38907.0,0.0,17.0,22.0,41.0,7744.0,2587.0,6209.0,0.1596,5.0,False,24.0,
+biflow,A_binary,True,A,181565.0,38907.0,0.0,17.0,22.0,41.0,7684.0,2617.0,6190.0,0.1591,5.0,False,24.0,
+biflow,B_multiclass,True,B,181577.0,38938.0,0.0,17.0,21.0,40.0,7735.0,0.0,0.0,0.0,5.0,False,24.0,
+biflow,B_binary,True,B,181200.0,38850.0,0.0,17.0,21.0,40.0,7651.0,0.0,0.0,0.0,5.0,False,24.0,
+biflow,C_multiclass,True,C,239820.0,11315.0,0.0,3.0,0.0,0.0,0.0,2944.0,9584.0,0.847,3.0,False,7.0,
+biflow,C_binary,False,,,,,,,,,,,,,,,only 3 ip_dst values carry more than one class; an endpoint holdout is not well posed
+biflow,CS_multiclass,False,,,,,,,,,,,,,,,only 1 ip_src values carry more than one class; an endpoint holdout is not well posed
+biflow,CS_binary,False,,,,,,,,,,,,,,,only 0 ip_src values carry more than one class; an endpoint holdout is not well posed

@@ -1,0 +1,4 @@
+ip_src,ip_dst,prt_src,prt_dst,proto,num_pkts,mean_iat,std_iat,min_iat,max_iat,mean_pkt_len,num_bytes,num_psh_flags,num_rst_flags,num_urg_flags,std_pkt_len,min_pkt_len,max_pkt_len,is_attack,source_file,scenario,capture_scenario_label,binary_label,multiclass_label,true_label,pred_label
+192.168.2.5,10.0.0.6,38995,38571,17,8,2.99254628590175,1.702579872295434,0.901026964187622,6.524533987045288,328.0,2624,0,0,0,0.0,328.0,328.0,1,uniflow_scan_A.csv,scan_A,2,1,2,Aggressive Scan,MQTT Brute-force
+192.168.2.5,10.0.0.10,38995,35230,17,8,3.2357515607561385,1.6847946993350105,0.8009698390960693,6.424523115158081,328.0,2624,0,0,0,0.0,328.0,328.0,1,uniflow_scan_A.csv,scan_A,2,1,2,Aggressive Scan,MQTT Brute-force
+192.168.2.5,10.0.0.21,38995,37569,17,8,3.278652872358049,1.6333530281624011,1.0012860298156738,6.223659038543701,328.0,2624,0,0,0,0.0,328.0,328.0,1,uniflow_scan_A.csv,scan_A,2,1,2,Aggressive Scan,MQTT Brute-force

@@ -1,0 +1,13 @@
+# Pinned to the versions this project was developed and tested against.
+numpy>=1.26,<3
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+networkx>=3.2
+torch>=2.2
+xgboost>=2.0
+PyYAML>=6.0
+# Optional: only used by the GA-EBT reproduction, which applies SMOTE inside
+# each CV fold as the original describes. The code degrades gracefully without it.
+imbalanced-learn>=0.12

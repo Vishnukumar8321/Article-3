@@ -1,0 +1,168 @@
+{
+  "representation": "uniflow",
+  "task": "binary",
+  "protocol": "A",
+  "seed": 123,
+  "model_seed": 123,
+  "seed_is_fold_index": false,
+  "n_rows": 495525,
+  "n_features": 27,
+  "feature_names": [
+    "prt_src",
+    "prt_dst",
+    "proto",
+    "num_pkts",
+    "mean_iat",
+    "std_iat",
+    "min_iat",
+    "max_iat",
+    "mean_pkt_len",
+    "num_bytes",
+    "num_psh_flags",
+    "num_rst_flags",
+    "num_urg_flags",
+    "std_pkt_len",
+    "min_pkt_len",
+    "max_pkt_len",
+    "prt_src_log",
+    "prt_src_is_wellknown",
+    "prt_src_is_system",
+    "prt_src_is_ephemeral",
+    "prt_dst_log",
+    "prt_dst_is_wellknown",
+    "prt_dst_is_system",
+    "prt_dst_is_ephemeral",
+    "bytes_per_pkt",
+    "iat_burstiness",
+    "pkt_len_range"
+  ],
+  "class_names": [
+    "Normal",
+    "Attack"
+  ],
+  "split": {
+    "protocol": "A",
+    "name": "random stratified",
+    "fractions": [
+      0.7,
+      0.15,
+      0.15
+    ],
+    "seed": 123,
+    "stratified_on": "task label",
+    "sizes": {
+      "train": 346867,
+      "val": 74329,
+      "test": 74329
+    },
+    "class_balance": {
+      "train": {
+        "0": 263330,
+        "1": 83537
+      },
+      "val": {
+        "0": 56428,
+        "1": 17901
+      },
+      "test": {
+        "0": 56428,
+        "1": 17901
+      }
+    }
+  },
+  "leakage_checks": {
+    "train_val_shared_feature_vectors": 3838,
+    "train_test_shared_feature_vectors": 3805,
+    "preprocessing_fitted_on": "train split only",
+    "node_features_from": "train",
+    "message_passing_edges": "train split only"
+  },
+  "preprocessing_report": {
+    "representation": "uniflow",
+    "n_rows_in": 346867,
+    "n_cols_in": 16,
+    "dropped_constant": [],
+    "dropped_near_zero_variance": [],
+    "dropped_all_nan": [],
+    "non_numeric_coerced": {},
+    "infinities_replaced": {},
+    "nan_imputed": {
+      "iat_burstiness": 56104
+    },
+    "engineered_columns": [
+      "prt_src_log",
+      "prt_src_is_wellknown",
+      "prt_src_is_system",
+      "prt_src_is_ephemeral",
+      "prt_dst_log",
+      "prt_dst_is_wellknown",
+      "prt_dst_is_system",
+      "prt_dst_is_ephemeral",
+      "bytes_per_pkt",
+      "iat_burstiness",
+      "pkt_len_range"
+    ],
+    "final_feature_columns": [
+      "prt_src",
+      "prt_dst",
+      "proto",
+      "num_pkts",
+      "mean_iat",
+      "std_iat",
+      "min_iat",
+      "max_iat",
+      "mean_pkt_len",
+      "num_bytes",
+      "num_psh_flags",
+      "num_rst_flags",
+      "num_urg_flags",
+      "std_pkt_len",
+      "min_pkt_len",
+      "max_pkt_len",
+      "prt_src_log",
+      "prt_src_is_wellknown",
+      "prt_src_is_system",
+      "prt_src_is_ephemeral",
+      "prt_dst_log",
+      "prt_dst_is_wellknown",
+      "prt_dst_is_system",
+      "prt_dst_is_ephemeral",
+      "bytes_per_pkt",
+      "iat_burstiness",
+      "pkt_len_range"
+    ],
+    "scaler": "quantile",
+    "fitted_on_n_rows": 346867,
+    "notes": []
+  },
+  "graph_statistics": {
+    "n_nodes": 24,
+    "n_edges_flow_instances": 495525,
+    "n_unique_ordered_pairs": 106,
+    "n_unique_unordered_pairs": 56,
+    "parallel_edge_multiplicity_mean": 4674.764150943396,
+    "parallel_edge_multiplicity_max": 16349,
+    "parallel_edge_multiplicity_median": 1367.0,
+    "graph_density_ordered": 0.19202898550724637,
+    "self_loops": 0,
+    "mean_out_degree": 20646.875,
+    "max_out_degree": 186725,
+    "mean_in_degree": 20646.875,
+    "max_in_degree": 186725,
+    "isolated_nodes": 0,
+    "n_message_edges": 346867,
+    "node_feature_dim": 25,
+    "edge_feature_dim": 27,
+    "binary_class_counts": {
+      "0": 376186,
+      "1": 119339
+    },
+    "multiclass_class_counts": {
+      "0": 376186,
+      "1": 28874,
+      "2": 39797,
+      "3": 22436,
+      "4": 28232
+    }
+  }
+}

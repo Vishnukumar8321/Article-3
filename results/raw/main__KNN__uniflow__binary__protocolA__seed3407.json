@@ -1,0 +1,284 @@
+{
+  "experiment": "main",
+  "model": "KNN",
+  "representation": "uniflow",
+  "task": "binary",
+  "protocol": "A",
+  "seed": 3407,
+  "config": {
+    "representation": "uniflow",
+    "task": "binary",
+    "protocol": "A",
+    "seed": 3407,
+    "model_seed": 3407,
+    "seed_is_fold_index": false,
+    "n_rows": 495525,
+    "n_features": 27,
+    "feature_names": [
+      "prt_src",
+      "prt_dst",
+      "proto",
+      "num_pkts",
+      "mean_iat",
+      "std_iat",
+      "min_iat",
+      "max_iat",
+      "mean_pkt_len",
+      "num_bytes",
+      "num_psh_flags",
+      "num_rst_flags",
+      "num_urg_flags",
+      "std_pkt_len",
+      "min_pkt_len",
+      "max_pkt_len",
+      "prt_src_log",
+      "prt_src_is_wellknown",
+      "prt_src_is_system",
+      "prt_src_is_ephemeral",
+      "prt_dst_log",
+      "prt_dst_is_wellknown",
+      "prt_dst_is_system",
+      "prt_dst_is_ephemeral",
+      "bytes_per_pkt",
+      "iat_burstiness",
+      "pkt_len_range"
+    ],
+    "class_names": [
+      "Normal",
+      "Attack"
+    ],
+    "split": {
+      "protocol": "A",
+      "name": "random stratified",
+      "fractions": [
+        0.7,
+        0.15,
+        0.15
+      ],
+      "seed": 3407,
+      "stratified_on": "task label",
+      "sizes": {
+        "train": 346867,
+        "val": 74329,
+        "test": 74329
+      },
+      "class_balance": {
+        "train": {
+          "0": 263330,
+          "1": 83537
+        },
+        "val": {
+          "0": 56428,
+          "1": 17901
+        },
+        "test": {
+          "0": 56428,
+          "1": 17901
+        }
+      }
+    },
+    "leakage_checks": {
+      "train_val_shared_feature_vectors": 3801,
+      "train_test_shared_feature_vectors": 3831,
+      "preprocessing_fitted_on": "train split only",
+      "node_features_from": "train",
+      "message_passing_edges": "train split only"
+    },
+    "preprocessing_report": {
+      "representation": "uniflow",
+      "n_rows_in": 346867,
+      "n_cols_in": 16,
+      "dropped_constant": [],
+      "dropped_near_zero_variance": [],
+      "dropped_all_nan": [],
+      "non_numeric_coerced": {},
+      "infinities_replaced": {},
+      "nan_imputed": {
+        "iat_burstiness": 55898
+      },
+      "engineered_columns": [
+        "prt_src_log",
+        "prt_src_is_wellknown",
+        "prt_src_is_system",
+        "prt_src_is_ephemeral",
+        "prt_dst_log",
+        "prt_dst_is_wellknown",
+        "prt_dst_is_system",
+        "prt_dst_is_ephemeral",
+        "bytes_per_pkt",
+        "iat_burstiness",
+        "pkt_len_range"
+      ],
+      "final_feature_columns": [
+        "prt_src",
+        "prt_dst",
+        "proto",
+        "num_pkts",
+        "mean_iat",
+        "std_iat",
+        "min_iat",
+        "max_iat",
+        "mean_pkt_len",
+        "num_bytes",
+        "num_psh_flags",
+        "num_rst_flags",
+        "num_urg_flags",
+        "std_pkt_len",
+        "min_pkt_len",
+        "max_pkt_len",
+        "prt_src_log",
+        "prt_src_is_wellknown",
+        "prt_src_is_system",
+        "prt_src_is_ephemeral",
+        "prt_dst_log",
+        "prt_dst_is_wellknown",
+        "prt_dst_is_system",
+        "prt_dst_is_ephemeral",
+        "bytes_per_pkt",
+        "iat_burstiness",
+        "pkt_len_range"
+      ],
+      "scaler": "quantile",
+      "fitted_on_n_rows": 346867,
+      "notes": []
+    },
+    "graph_statistics": {
+      "n_nodes": 24,
+      "n_edges_flow_instances": 495525,
+      "n_unique_ordered_pairs": 106,
+      "n_unique_unordered_pairs": 56,
+      "parallel_edge_multiplicity_mean": 4674.764150943396,
+      "parallel_edge_multiplicity_max": 16349,
+      "parallel_edge_multiplicity_median": 1367.0,
+      "graph_density_ordered": 0.19202898550724637,
+      "self_loops": 0,
+      "mean_out_degree": 20646.875,
+      "max_out_degree": 186725,
+      "mean_in_degree": 20646.875,
+      "max_in_degree": 186725,
+      "isolated_nodes": 0,
+      "n_message_edges": 346867,
+      "node_feature_dim": 25,
+      "edge_feature_dim": 27,
+      "binary_class_counts": {
+        "0": 376186,
+        "1": 119339
+      },
+      "multiclass_class_counts": {
+        "0": 376186,
+        "1": 28874,
+        "2": 39797,
+        "3": 22436,
+        "4": 28232
+      }
+    },
+    "knn_subsample": {
+      "subsampled": true,
+      "n_train": 100000,
+      "n_train_available": 346867,
+      "reason": "kernel SVM does not scale to the full split"
+    }
+  },
+  "metrics": {
+    "n_samples": 74329,
+    "n_classes": 2,
+    "accuracy": 0.9985873615950706,
+    "balanced_accuracy": 0.9975630372822283,
+    "precision_macro": 0.9985722768490923,
+    "recall_macro": 0.9975630372822283,
+    "f1_macro": 0.9980664512327285,
+    "precision_weighted": 0.998587320206023,
+    "recall_weighted": 0.9985873615950706,
+    "f1_weighted": 0.9985866459846713,
+    "mcc": 0.9961348028730858,
+    "fpr_macro": 0.0024369627177717166,
+    "fnr_macro": 0.0024369627177717166,
+    "classes_present_in_test": [
+      0,
+      1
+    ],
+    "macro_averaged_over": [
+      0,
+      1
+    ],
+    "macro_restricted_to_present": false,
+    "fpr": 0.0004607641596370596,
+    "fnr": 0.004413161275906374,
+    "precision": 0.9985432541461228,
+    "recall": 0.9955868387240936,
+    "f1": 0.9970628549050323,
+    "minority_class": 1,
+    "minority_class_support": 17901,
+    "minority_class_recall": 0.9955868387240936,
+    "roc_auc": 0.998891593940186,
+    "pr_auc": 0.9982750586670489
+  },
+  "per_class": {
+    "Normal": {
+      "precision": 0.9986012995520618,
+      "recall": 0.999539235840363,
+      "f1": 0.9990700475604247,
+      "support": 56428,
+      "false_positives": 79,
+      "fpr": 0.004413161275906374,
+      "average_precision": 0.9993001061248188
+    },
+    "Attack": {
+      "precision": 0.9985432541461228,
+      "recall": 0.9955868387240936,
+      "f1": 0.9970628549050323,
+      "support": 17901,
+      "false_positives": 26,
+      "fpr": 0.0004607641596370596,
+      "average_precision": 0.9982750586670489
+    }
+  },
+  "confusion_matrix": [
+    [
+      56402,
+      26
+    ],
+    [
+      79,
+      17822
+    ]
+  ],
+  "timings": {
+    "train_seconds": 0.004552099999273196,
+    "inference_seconds": 21.353805699998702,
+    "inference_seconds_mean": 14.95134809999945,
+    "inference_seconds_min": 14.148980699999811,
+    "inference_seconds_std": 0.6108884744583382,
+    "flows_per_second": 3533.8234647532363,
+    "latency_ms_per_flow": 0.2829796139999962,
+    "repeats": 3
+  },
+  "n_parameters": null,
+  "peak_memory_mb": NaN,
+  "data_hashes": {
+    "biflow_features\\biflow_mqtt_bruteforce.csv": "790087e79e9d22f741ef06f1db3aed346a7a4980633e5c0619ae2c8a15ca4256",
+    "biflow_features\\biflow_normal.csv": "901bd9f475d9dd817017091caaec4a865bf654250baf4f2f54877b32b647db44",
+    "biflow_features\\biflow_scan_A.csv": "62de3d0c8478dd0774d0ffd7bba2c441c13ccfb2a4f7b17a0daaf6bc6091e361",
+    "biflow_features\\biflow_scan_sU.csv": "91047fd6072ab980b418ee28fcedc03b3eb8fbcf17426c080760aba3503bcff7",
+    "biflow_features\\biflow_sparta.csv": "9e3037f79c87e922b9cdf62125b9ec4db81b670b6bff6706385bd312becac976",
+    "biflow_features.zip": "1212c4204d2e1892e659f6d62bd85c36761d611b9a393bf23bf881933934a7b4",
+    "uniflow_features\\uniflow_mqtt_bruteforce.csv": "f954dba67445aeeb6bdc6123b81f89be0799193fa857024083f05555d6166611",
+    "uniflow_features\\uniflow_normal.csv": "f36eb77050ed18e1b201e8c4c0a373cd41fb3be8442a0055c8e6484afd499145",
+    "uniflow_features\\uniflow_scan_A.csv": "489112ee7b83cdde60b237f711a82d858b90c89886b10394b2d06cdc57702119",
+    "uniflow_features\\uniflow_scan_sU.csv": "2b9288199f88e5d9e5173dbbc319a5febb3870ee8dcc404ed0214e5462b04dd9",
+    "uniflow_features\\uniflow_sparta.csv": "4f7d5d53dcf7fc648e1302874fd72aad4accfe5089a9b4a438e33b4aa4b07c36",
+    "uniflow_features.zip": "ef1a3f778e80c1067874f31202d647827db3d80545b048122333df10ecce100c"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 2, GenuineIntel",
+    "cpu_count": 8,
+    "numpy": "2.5.3",
+    "scikit_learn": "1.9.1",
+    "torch": "2.14.0+cpu",
+    "cuda_available": false,
+    "git_commit": null
+  },
+  "notes": "k-NN prediction cost is linear in the training set; see config['knn_subsample']."
+}

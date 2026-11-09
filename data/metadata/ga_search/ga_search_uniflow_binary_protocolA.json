@@ -1,0 +1,239 @@
+{
+  "algorithm": "GA-EBT (reproduced)",
+  "fidelity": {
+    "classification": "approximate reproduction",
+    "reproduced_exactly": [
+      "chromosome encoding (feature bit-mask + EBT hyperparameters)",
+      "population size 40, max generations 100, crossover 0.80, mutation 0.05",
+      "tournament selection with tournament size 3",
+      "uniform crossover on the feature mask, parameter-wise crossover on H",
+      "bit-flip mutation on F and bounded jitter mutation on H",
+      "elitism keeping the best 2 individuals",
+      "minimum of 10 selected features enforced after mutation",
+      "hyperparameter bounds n_estimators [50,300], max_depth [3,20], min_samples_split [2,10]",
+      "stopping on max generations or 10 generations without fitness gain",
+      "bagging ensemble of decision trees with majority-vote aggregation"
+    ],
+    "modified": [
+      "scikit-learn BaggingClassifier(DecisionTreeClassifier) is used; the original was run in WEKA, whose default tree induction (REPTree/J48) differs in pruning and split criteria",
+      "GA fitness is evaluated on a stratified subsample of the training split and with a reduced number of CV folds, because a 40x100x10 grid of bagged-ensemble fits over the full ~350k-row training split is computationally infeasible here; the exact budget used is recorded in the run's result file",
+      "the GA search is executed once per (representation, task) using the search seed, and the resulting feature subset and hyperparameters are then refitted per evaluation seed; the original paper does not state a multi-seed protocol",
+      "min-max scaling to [0,1] as described in the original is applied inside this baseline rather than the project's default quantile scaler, so that the baseline matches its own published preprocessing"
+    ],
+    "not_reproducible": [
+      "the exact training/test partition, which the original does not publish",
+      "the exact 33,079-instance subset of MQTT-IoT-IDS2020 used in the original (the released uni-flow feature set contains substantially more records); the sampling procedure is not described",
+      "the WEKA random seed and internal implementation details",
+      "the original SMOTE configuration beyond 'applied within each training fold'"
+    ],
+    "consequence": "Numbers produced by this module are a good-faith reimplementation under this project's protocol. They are reported as 'GA-EBT (reproduced)' and are never substituted for, or presented as, the 99.997% figure reported in the original paper. The original figure is quoted only as a literature value with its own protocol attached."
+  },
+  "published_hyperparameters": {
+    "population_size": 40,
+    "max_generations": 100,
+    "crossover_rate": 0.8,
+    "mutation_rate": 0.05,
+    "tournament_size": 3,
+    "no_improve_patience": 10,
+    "elitism_keep": 2,
+    "min_selected_features": 10,
+    "n_estimators_bounds": [
+      50,
+      300
+    ],
+    "max_depth_bounds": [
+      3,
+      20
+    ],
+    "min_samples_split_bounds": [
+      2,
+      10
+    ],
+    "n_estimators_jitter": 20,
+    "max_depth_jitter": 2,
+    "min_samples_split_jitter": 1,
+    "fitness_cv_folds": 10,
+    "fitness_metric": "f1"
+  },
+  "search_config": {
+    "population_size": 20,
+    "max_generations": 25,
+    "crossover_rate": 0.8,
+    "mutation_rate": 0.05,
+    "tournament_size": 3,
+    "no_improve_patience": 10,
+    "elitism_keep": 2,
+    "min_selected_features": 10,
+    "fitness_cv_folds": 3,
+    "fitness_subsample": 20000,
+    "fitness_metric": "f1_macro",
+    "use_smote": true,
+    "max_fitness_evaluations": null,
+    "budget_note": "Reduced from the published 10-fold CV over the full training split; see FIDELITY['modified']."
+  },
+  "search_seed": 42,
+  "n_fitness_evaluations": 180,
+  "search_seconds": 851.6210302999998,
+  "generations_run": 14,
+  "history": [
+    {
+      "generation": 0,
+      "best_fitness": 0.998427514878077,
+      "generation_best": 0.998427514878077,
+      "mean_fitness": 0.9982565336093533,
+      "n_selected_features": 10,
+      "stale": 0,
+      "evaluations": 36
+    },
+    {
+      "generation": 1,
+      "best_fitness": 0.9987007922963848,
+      "generation_best": 0.9987007922963848,
+      "mean_fitness": 0.9983897914682567,
+      "n_selected_features": 10,
+      "stale": 0,
+      "evaluations": 51
+    },
+    {
+      "generation": 2,
+      "best_fitness": 0.9987007922963848,
+      "generation_best": 0.9987007922963848,
+      "mean_fitness": 0.998396700580118,
+      "n_selected_features": 10,
+      "stale": 1,
+      "evaluations": 65
+    },
+    {
+      "generation": 3,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.998567543058819,
+      "n_selected_features": 11,
+      "stale": 0,
+      "evaluations": 80
+    },
+    {
+      "generation": 4,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9985572561243918,
+      "n_selected_features": 11,
+      "stale": 1,
+      "evaluations": 94
+    },
+    {
+      "generation": 5,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9986358467731048,
+      "n_selected_features": 11,
+      "stale": 2,
+      "evaluations": 104
+    },
+    {
+      "generation": 6,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9987041620790817,
+      "n_selected_features": 11,
+      "stale": 3,
+      "evaluations": 113
+    },
+    {
+      "generation": 7,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.998649604103026,
+      "n_selected_features": 11,
+      "stale": 4,
+      "evaluations": 121
+    },
+    {
+      "generation": 8,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9986290071388154,
+      "n_selected_features": 11,
+      "stale": 5,
+      "evaluations": 133
+    },
+    {
+      "generation": 9,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9986529261313917,
+      "n_selected_features": 11,
+      "stale": 6,
+      "evaluations": 145
+    },
+    {
+      "generation": 10,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9985778528280477,
+      "n_selected_features": 11,
+      "stale": 7,
+      "evaluations": 157
+    },
+    {
+      "generation": 11,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9986768530989858,
+      "n_selected_features": 11,
+      "stale": 8,
+      "evaluations": 167
+    },
+    {
+      "generation": 12,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9986939450222321,
+      "n_selected_features": 11,
+      "stale": 9,
+      "evaluations": 174
+    },
+    {
+      "generation": 13,
+      "best_fitness": 0.9987691320165757,
+      "generation_best": 0.9987691320165757,
+      "mean_fitness": 0.9987452051170145,
+      "n_selected_features": 11,
+      "stale": 10,
+      "evaluations": 180
+    }
+  ],
+  "best": {
+    "n_selected_features": 11,
+    "n_estimators": 206,
+    "max_depth": 16,
+    "min_samples_split": 7,
+    "fitness": 0.9987691320165757,
+    "selected_features": [
+      "prt_src",
+      "proto",
+      "num_pkts",
+      "mean_iat",
+      "min_iat",
+      "max_iat",
+      "num_bytes",
+      "num_rst_flags",
+      "num_urg_flags",
+      "std_pkt_len",
+      "max_pkt_len"
+    ]
+  },
+  "selected_indices": [
+    0,
+    2,
+    3,
+    4,
+    6,
+    7,
+    9,
+    11,
+    12,
+    13,
+    15
+  ]
+}

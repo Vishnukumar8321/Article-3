@@ -1,0 +1,361 @@
+{
+  "experiment": "main",
+  "model": "XGBoost",
+  "representation": "uniflow",
+  "task": "multiclass",
+  "protocol": "C",
+  "seed": 42,
+  "config": {
+    "representation": "uniflow",
+    "task": "multiclass",
+    "protocol": "C",
+    "seed": 42,
+    "n_rows": 495525,
+    "n_features": 27,
+    "feature_names": [
+      "prt_src",
+      "prt_dst",
+      "proto",
+      "num_pkts",
+      "mean_iat",
+      "std_iat",
+      "min_iat",
+      "max_iat",
+      "mean_pkt_len",
+      "num_bytes",
+      "num_psh_flags",
+      "num_rst_flags",
+      "num_urg_flags",
+      "std_pkt_len",
+      "min_pkt_len",
+      "max_pkt_len",
+      "prt_src_log",
+      "prt_src_is_wellknown",
+      "prt_src_is_system",
+      "prt_src_is_ephemeral",
+      "prt_dst_log",
+      "prt_dst_is_wellknown",
+      "prt_dst_is_system",
+      "prt_dst_is_ephemeral",
+      "bytes_per_pkt",
+      "iat_burstiness",
+      "pkt_len_range"
+    ],
+    "class_names": [
+      "Normal",
+      "MQTT Brute-force",
+      "Aggressive Scan",
+      "UDP Scan",
+      "Sparta SSH Brute-force"
+    ],
+    "split": {
+      "protocol": "C",
+      "name": "endpoint-grouped generalisation (ip_dst)",
+      "applicable": true,
+      "group_col": "ip_dst",
+      "n_groups_total": 24,
+      "n_candidate_groups": 21,
+      "test_groups": [
+        "10.0.0.20",
+        "10.0.0.23",
+        "10.0.0.7",
+        "10.0.0.8",
+        "8.8.8.8"
+      ],
+      "val_groups": [
+        "10.0.0.16",
+        "10.0.0.17",
+        "10.0.0.6"
+      ],
+      "classes_in_test": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "classes_train_only": [
+        4
+      ],
+      "evaluate_on_classes_present_in_test_only": true,
+      "test_row_fraction": 0.11469653397911306,
+      "draw_attempts": 1,
+      "seed": 42,
+      "sizes": {
+        "train": 387701,
+        "val": 50989,
+        "test": 56835
+      },
+      "class_balance": {
+        "train": {
+          "0": 285885,
+          "1": 28660,
+          "2": 31598,
+          "3": 13326,
+          "4": 28232
+        },
+        "val": {
+          "0": 43159,
+          "2": 3844,
+          "3": 3986
+        },
+        "test": {
+          "0": 47142,
+          "1": 214,
+          "2": 4355,
+          "3": 5124
+        }
+      }
+    },
+    "leakage_checks": {
+      "train_val_shared_feature_vectors": 2982,
+      "train_test_shared_feature_vectors": 2769,
+      "preprocessing_fitted_on": "train split only",
+      "node_features_from": "train",
+      "message_passing_edges": "train split only"
+    },
+    "preprocessing_report": {
+      "representation": "uniflow",
+      "n_rows_in": 387701,
+      "n_cols_in": 16,
+      "dropped_constant": [],
+      "dropped_near_zero_variance": [],
+      "dropped_all_nan": [],
+      "non_numeric_coerced": {},
+      "infinities_replaced": {},
+      "nan_imputed": {
+        "iat_burstiness": 52654
+      },
+      "engineered_columns": [
+        "prt_src_log",
+        "prt_src_is_wellknown",
+        "prt_src_is_system",
+        "prt_src_is_ephemeral",
+        "prt_dst_log",
+        "prt_dst_is_wellknown",
+        "prt_dst_is_system",
+        "prt_dst_is_ephemeral",
+        "bytes_per_pkt",
+        "iat_burstiness",
+        "pkt_len_range"
+      ],
+      "final_feature_columns": [
+        "prt_src",
+        "prt_dst",
+        "proto",
+        "num_pkts",
+        "mean_iat",
+        "std_iat",
+        "min_iat",
+        "max_iat",
+        "mean_pkt_len",
+        "num_bytes",
+        "num_psh_flags",
+        "num_rst_flags",
+        "num_urg_flags",
+        "std_pkt_len",
+        "min_pkt_len",
+        "max_pkt_len",
+        "prt_src_log",
+        "prt_src_is_wellknown",
+        "prt_src_is_system",
+        "prt_src_is_ephemeral",
+        "prt_dst_log",
+        "prt_dst_is_wellknown",
+        "prt_dst_is_system",
+        "prt_dst_is_ephemeral",
+        "bytes_per_pkt",
+        "iat_burstiness",
+        "pkt_len_range"
+      ],
+      "scaler": "quantile",
+      "fitted_on_n_rows": 387701,
+      "notes": []
+    },
+    "graph_statistics": {
+      "n_nodes": 24,
+      "n_edges_flow_instances": 495525,
+      "n_unique_ordered_pairs": 106,
+      "n_unique_unordered_pairs": 56,
+      "parallel_edge_multiplicity_mean": 4674.764150943396,
+      "parallel_edge_multiplicity_max": 16349,
+      "parallel_edge_multiplicity_median": 1367.0,
+      "graph_density_ordered": 0.19202898550724637,
+      "self_loops": 0,
+      "mean_out_degree": 20646.875,
+      "max_out_degree": 186725,
+      "mean_in_degree": 20646.875,
+      "max_in_degree": 186725,
+      "isolated_nodes": 0,
+      "n_message_edges": 387701,
+      "node_feature_dim": 25,
+      "edge_feature_dim": 27,
+      "binary_class_counts": {
+        "0": 376186,
+        "1": 119339
+      },
+      "multiclass_class_counts": {
+        "0": 376186,
+        "1": 28874,
+        "2": 39797,
+        "3": 22436,
+        "4": 28232
+      }
+    }
+  },
+  "metrics": {
+    "n_samples": 56835,
+    "n_classes": 5,
+    "accuracy": 0.9967273686988651,
+    "balanced_accuracy": 0.925749584571886,
+    "precision_macro": 0.8874391998801904,
+    "recall_macro": 0.925749584571886,
+    "f1_macro": 0.904219609914567,
+    "precision_weighted": 0.9971998596130893,
+    "recall_weighted": 0.9967273686988651,
+    "f1_weighted": 0.9969275130755477,
+    "mcc": 0.9890576699364871,
+    "fpr_macro": 0.0017343749264625299,
+    "fnr_macro": 0.07425041542811397,
+    "classes_present_in_test": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "macro_averaged_over": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "macro_restricted_to_present": true,
+    "fpr": 0.0017343749264625299,
+    "fnr": 0.07425041542811397,
+    "minority_class": 1,
+    "minority_class_support": 214,
+    "minority_class_recall": 0.705607476635514,
+    "roc_auc": 0.998310355459154,
+    "pr_auc": 0.8950097869725244
+  },
+  "per_class": {
+    "Normal": {
+      "precision": 0.9986619090098127,
+      "recall": 0.9973908616520301,
+      "f1": 0.9980259806418746,
+      "support": 47142,
+      "false_positives": 63,
+      "fpr": 0.0064995357474466105,
+      "average_precision": 0.9999541713295441
+    },
+    "MQTT Brute-force": {
+      "precision": 0.551094890510949,
+      "recall": 0.705607476635514,
+      "f1": 0.6188524590163934,
+      "support": 214,
+      "false_positives": 123,
+      "fpr": 0.002172338884866039,
+      "average_precision": 0.5800849765605537
+    },
+    "Aggressive Scan": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4355,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "average_precision": 1.0
+    },
+    "UDP Scan": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5124,
+      "false_positives": 0,
+      "fpr": 0.0,
+      "average_precision": 1.0
+    },
+    "Sparta SSH Brute-force": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 0,
+      "false_positives": 0,
+      "fpr": 0.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      47019,
+      123,
+      0,
+      0,
+      0
+    ],
+    [
+      63,
+      151,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      4355,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      5124,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "timings": {
+    "train_seconds": 37.733892362000006,
+    "inference_seconds": 0.8958591250002428,
+    "inference_seconds_mean": 0.7718288120001185,
+    "inference_seconds_min": 0.7570181050004976,
+    "inference_seconds_std": 0.013524506108792873,
+    "flows_per_second": 66048.61848048818,
+    "latency_ms_per_flow": 0.015140362100009953,
+    "repeats": 3
+  },
+  "n_parameters": null,
+  "peak_memory_mb": 1287.94921875,
+  "data_hashes": {
+    "biflow_features/biflow_mqtt_bruteforce.csv": "790087e79e9d22f741ef06f1db3aed346a7a4980633e5c0619ae2c8a15ca4256",
+    "biflow_features/biflow_normal.csv": "901bd9f475d9dd817017091caaec4a865bf654250baf4f2f54877b32b647db44",
+    "biflow_features/biflow_scan_A.csv": "62de3d0c8478dd0774d0ffd7bba2c441c13ccfb2a4f7b17a0daaf6bc6091e361",
+    "biflow_features/biflow_scan_sU.csv": "91047fd6072ab980b418ee28fcedc03b3eb8fbcf17426c080760aba3503bcff7",
+    "biflow_features/biflow_sparta.csv": "9e3037f79c87e922b9cdf62125b9ec4db81b670b6bff6706385bd312becac976",
+    "biflow_features.zip": "1212c4204d2e1892e659f6d62bd85c36761d611b9a393bf23bf881933934a7b4",
+    "uniflow_features/uniflow_mqtt_bruteforce.csv": "f954dba67445aeeb6bdc6123b81f89be0799193fa857024083f05555d6166611",
+    "uniflow_features/uniflow_normal.csv": "f36eb77050ed18e1b201e8c4c0a373cd41fb3be8442a0055c8e6484afd499145",
+    "uniflow_features/uniflow_scan_A.csv": "489112ee7b83cdde60b237f711a82d858b90c89886b10394b2d06cdc57702119",
+    "uniflow_features/uniflow_scan_sU.csv": "2b9288199f88e5d9e5173dbbc319a5febb3870ee8dcc404ed0214e5462b04dd9",
+    "uniflow_features/uniflow_sparta.csv": "4f7d5d53dcf7fc648e1302874fd72aad4accfe5089a9b4a438e33b4aa4b07c36",
+    "uniflow_features.zip": "ef1a3f778e80c1067874f31202d647827db3d80545b048122333df10ecce100c"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.44-fc-v33-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "cpu_count": 2,
+    "numpy": "2.4.4",
+    "scikit_learn": "1.8.0",
+    "torch": "2.14.0+cu130",
+    "cuda_available": false,
+    "git_commit": null
+  },
+  "notes": ""
+}

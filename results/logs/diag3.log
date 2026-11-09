@@ -1,0 +1,98 @@
+==============================================================================
+PROTOCOL C
+2026-09-18 04:07:50 | INFO    | src.data_loader | loaded uniflow_mqtt_bruteforce.csv  rows=33079    cols=19  scenario=mqtt_bruteforce
+2026-09-18 04:07:50 | INFO    | src.data_loader | loaded uniflow_normal.csv           rows=171836   cols=19  scenario=normal
+2026-09-18 04:07:50 | INFO    | src.data_loader | loaded uniflow_scan_A.csv           rows=51358    cols=19  scenario=scan_A
+2026-09-18 04:07:50 | INFO    | src.data_loader | loaded uniflow_scan_sU.csv          rows=56845    cols=19  scenario=scan_sU
+2026-09-18 04:07:51 | INFO    | src.data_loader | loaded uniflow_sparta.csv           rows=182407   cols=19  scenario=sparta
+2026-09-18 04:07:51 | INFO    | src.data_loader | 204350/495525 rows (41.24%) are benign background traffic captured during an attack scenario; they are labelled Normal for the multi-class task, with the capture retained in capture_scenario_label.
+2026-09-18 04:07:51 | INFO    | src.split | split verified: {'train': 387701, 'val': 50989, 'test': 56835}, 495525/495525 rows used
+2026-09-18 04:07:52 | INFO    | src.preprocessing | preprocessor fitted on 387701 train rows -> 27 features (scaler=quantile)
+2026-09-18 04:07:54 | INFO    | src.graph_builder | graph built: 24 nodes, 495525 flow-edges, 387701 message edges, node_dim=25 edge_dim=27 (node features from train)
+  group_col ip_dst | held-out: ['10.0.0.20', '10.0.0.23', '10.0.0.7', '10.0.0.8', '8.8.8.8']
+  splits {'train': 387701, 'val': 50989, 'test': 56835} | test row frac 0.115
+  classes in test [0, 1, 2, 3] | train-only classes [4]
+  test class counts [47142, 214, 4355, 5124, 0]
+2026-09-18 04:07:55 | INFO    | experiments | EndpointLookup uniflow  multiclass protocol C seed 42    | macroF1 0.2267 MCC 0.0000 FPR 0.20000 acc 0.82945 -> diagnostic__EndpointLookup__uniflow__multiclass__protocolC__seed42.json
+  EndpointLookup  acc=0.82945 macroF1=0.22669 MCC=0.00000 bal=0.25000 FPR=0.20000
+2026-09-18 04:08:37 | INFO    | experiments | XGBoost      uniflow  multiclass protocol C seed 42    | macroF1 0.9042 MCC 0.9891 FPR 0.00173 acc 0.99673 -> diagnostic__XGBoost__uniflow__multiclass__protocolC__seed42.json
+  XGBoost         acc=0.99673 macroF1=0.90422 MCC=0.98906 bal=0.92575 FPR=0.00173
+2026-09-18 04:09:23 | INFO    | experiments | RandomForest uniflow  multiclass protocol C seed 42    | macroF1 0.9518 MCC 0.9950 FPR 0.00093 acc 0.99852 -> diagnostic__RandomForest__uniflow__multiclass__protocolC__seed42.json
+  RandomForest    acc=0.99852 macroF1=0.95183 MCC=0.99504 bal=0.95653 FPR=0.00093
+2026-09-18 04:10:00 | INFO    | experiments | MLP          uniflow  multiclass protocol C seed 42    | macroF1 0.7210 MCC 0.7919 FPR 0.01787 acc 0.91634 -> diagnostic__MLP__uniflow__multiclass__protocolC__seed42.json
+  MLP             acc=0.91634 macroF1=0.72103 MCC=0.79193 bal=0.96862 FPR=0.01787
+2026-09-18 04:10:03 | INFO    | src.train | epoch   0 | loss 0.4043 | val macroF1 0.5992 | val MCC 0.9980 | best
+2026-09-18 04:10:29 | INFO    | src.train | epoch  10 | loss 0.0005 | val macroF1 0.5999 | val MCC 0.9998 | patience 5
+2026-09-18 04:10:34 | INFO    | src.train | epoch  12 | loss 0.0005 | val macroF1 0.5999 | val MCC 0.9997 | patience 7
+2026-09-18 04:10:34 | INFO    | src.train | early stop at epoch 12 (best epoch 5, val f1_macro=0.5999)
+2026-09-18 04:10:34 | INFO    | experiments | GCN          uniflow  multiclass protocol C seed 42    | macroF1 0.9946 MCC 0.9995 FPR 0.00003 acc 0.99984 -> diagnostic__GCN__uniflow__multiclass__protocolC__seed42.json
+  GCN             acc=0.99984 macroF1=0.99457 MCC=0.99947 bal=0.99837 FPR=0.00003
+2026-09-18 04:10:37 | INFO    | src.train | epoch   0 | loss 0.3852 | val macroF1 0.5998 | val MCC 0.9996 | best
+2026-09-18 04:11:00 | INFO    | src.train | epoch   8 | loss 0.0007 | val macroF1 0.6000 | val MCC 1.0000 | patience 7
+2026-09-18 04:11:00 | INFO    | src.train | early stop at epoch 8 (best epoch 1, val f1_macro=0.6000)
+2026-09-18 04:11:00 | INFO    | experiments | GraphSAGE    uniflow  multiclass protocol C seed 42    | macroF1 0.9224 MCC 0.9942 FPR 0.00038 acc 0.99826 -> diagnostic__GraphSAGE__uniflow__multiclass__protocolC__seed42.json
+  GraphSAGE       acc=0.99826 macroF1=0.92238 MCC=0.99416 bal=0.88435 FPR=0.00038
+2026-09-18 04:11:04 | INFO    | src.train | epoch   0 | loss 0.4314 | val macroF1 0.5994 | val MCC 0.9987 | best
+2026-09-18 04:11:39 | INFO    | src.train | epoch  10 | loss 0.0005 | val macroF1 0.6000 | val MCC 1.0000 | patience 5
+2026-09-18 04:11:46 | INFO    | src.train | epoch  12 | loss 0.0006 | val macroF1 0.6000 | val MCC 1.0000 | patience 7
+2026-09-18 04:11:46 | INFO    | src.train | early stop at epoch 12 (best epoch 5, val f1_macro=0.6000)
+2026-09-18 04:11:47 | INFO    | experiments | GAT          uniflow  multiclass protocol C seed 42    | macroF1 0.7476 MCC 0.9874 FPR 0.00079 acc 0.99623 -> diagnostic__GAT__uniflow__multiclass__protocolC__seed42.json
+  GAT             acc=0.99623 macroF1=0.74761 MCC=0.98739 bal=0.75000 FPR=0.00079
+2026-09-18 04:11:51 | INFO    | src.train | epoch   0 | loss 0.4125 | val macroF1 0.5998 | val MCC 0.9998 | best
+2026-09-18 04:12:22 | INFO    | src.train | epoch   8 | loss 0.0006 | val macroF1 0.6000 | val MCC 1.0000 | patience 7
+2026-09-18 04:12:22 | INFO    | src.train | early stop at epoch 8 (best epoch 1, val f1_macro=0.6000)
+2026-09-18 04:12:23 | INFO    | experiments | EdgeGAT      uniflow  multiclass protocol C seed 42    | macroF1 0.7426 MCC 0.9839 FPR 0.00105 acc 0.99518 -> diagnostic__EdgeGAT__uniflow__multiclass__protocolC__seed42.json
+  EdgeGAT         acc=0.99518 macroF1=0.74258 MCC=0.98390 bal=0.74968 FPR=0.00105
+2026-09-18 04:12:27 | INFO    | src.train | epoch   0 | loss 0.3926 | val macroF1 0.5996 | val MCC 0.9991 | best
+2026-09-18 04:13:11 | INFO    | src.train | epoch  10 | loss 0.0005 | val macroF1 0.6000 | val MCC 1.0000 | patience 7
+2026-09-18 04:13:11 | INFO    | src.train | early stop at epoch 10 (best epoch 3, val f1_macro=0.6000)
+2026-09-18 04:13:11 | INFO    | experiments | E-GAT-IDS    uniflow  multiclass protocol C seed 42    | macroF1 0.7384 MCC 0.9686 FPR 0.00205 acc 0.99045 -> diagnostic__E-GAT-IDS__uniflow__multiclass__protocolC__seed42.json
+  E-GAT-IDS       acc=0.99045 macroF1=0.73841 MCC=0.96861 bal=0.74826 FPR=0.00205
+==============================================================================
+PROTOCOL CS
+2026-09-18 04:13:11 | INFO    | src.data_loader | loaded uniflow_mqtt_bruteforce.csv  rows=33079    cols=19  scenario=mqtt_bruteforce
+2026-09-18 04:13:12 | INFO    | src.data_loader | loaded uniflow_normal.csv           rows=171836   cols=19  scenario=normal
+2026-09-18 04:13:12 | INFO    | src.data_loader | loaded uniflow_scan_A.csv           rows=51358    cols=19  scenario=scan_A
+2026-09-18 04:13:12 | INFO    | src.data_loader | loaded uniflow_scan_sU.csv          rows=56845    cols=19  scenario=scan_sU
+2026-09-18 04:13:12 | INFO    | src.data_loader | loaded uniflow_sparta.csv           rows=182407   cols=19  scenario=sparta
+2026-09-18 04:13:12 | INFO    | src.data_loader | 204350/495525 rows (41.24%) are benign background traffic captured during an attack scenario; they are labelled Normal for the multi-class task, with the capture retained in capture_scenario_label.
+2026-09-18 04:13:13 | INFO    | src.split | split verified: {'train': 425055, 'val': 35494, 'test': 34976}, 495525/495525 rows used
+2026-09-18 04:13:13 | INFO    | src.preprocessing | preprocessor fitted on 425055 train rows -> 27 features (scaler=quantile)
+2026-09-18 04:13:15 | INFO    | src.graph_builder | graph built: 24 nodes, 495525 flow-edges, 425055 message edges, node_dim=25 edge_dim=27 (node features from train)
+  group_col ip_src | held-out: ['10.0.0.14', '10.0.0.17', '10.0.0.18', '10.0.0.19', '192.168.2.1']
+  splits {'train': 425055, 'val': 35494, 'test': 34976} | test row frac 0.071
+  classes in test [0, 1, 2] | train-only classes [3, 4]
+  test class counts [30130, 215, 4631, 0, 0]
+2026-09-18 04:13:16 | INFO    | experiments | EndpointLookup uniflow  multiclass protocol CS seed 42    | macroF1 0.3085 MCC 0.0000 FPR 0.20000 acc 0.86145 -> diagnostic__EndpointLookup__uniflow__multiclass__protocolCS__seed42.json
+  EndpointLookup  acc=0.86145 macroF1=0.30852 MCC=0.00000 bal=0.33333 FPR=0.20000
+2026-09-18 04:14:03 | INFO    | experiments | XGBoost      uniflow  multiclass protocol CS seed 42    | macroF1 0.6655 MCC 0.9743 FPR 0.00887 acc 0.99385 -> diagnostic__XGBoost__uniflow__multiclass__protocolCS__seed42.json
+  XGBoost         acc=0.99385 macroF1=0.66548 MCC=0.97426 bal=0.66667 FPR=0.00887
+2026-09-18 04:14:56 | INFO    | experiments | RandomForest uniflow  multiclass protocol CS seed 42    | macroF1 0.6655 MCC 0.9743 FPR 0.00887 acc 0.99385 -> diagnostic__RandomForest__uniflow__multiclass__protocolCS__seed42.json
+  RandomForest    acc=0.99385 macroF1=0.66548 MCC=0.97426 bal=0.66667 FPR=0.00887
+2026-09-18 04:15:18 | INFO    | experiments | MLP          uniflow  multiclass protocol CS seed 42    | macroF1 0.6685 MCC 0.9741 FPR 0.00884 acc 0.99382 -> diagnostic__MLP__uniflow__multiclass__protocolCS__seed42.json
+  MLP             acc=0.99382 macroF1=0.66853 MCC=0.97413 bal=0.66819 FPR=0.00884
+2026-09-18 04:15:21 | INFO    | src.train | epoch   0 | loss 0.3834 | val macroF1 0.4000 | val MCC 0.9999 | best
+2026-09-18 04:15:45 | INFO    | src.train | epoch   7 | loss 0.0004 | val macroF1 0.4000 | val MCC 0.9999 | patience 7
+2026-09-18 04:15:45 | INFO    | src.train | early stop at epoch 7 (best epoch 0, val f1_macro=0.4000)
+2026-09-18 04:15:45 | INFO    | experiments | GCN          uniflow  multiclass protocol CS seed 42    | macroF1 0.9999 MCC 0.9998 FPR 0.00001 acc 0.99994 -> diagnostic__GCN__uniflow__multiclass__protocolCS__seed42.json
+  GCN             acc=0.99994 macroF1=0.99992 MCC=0.99976 bal=0.99998 FPR=0.00001
+2026-09-18 04:15:49 | INFO    | src.train | epoch   0 | loss 0.3588 | val macroF1 0.4000 | val MCC 0.9999 | best
+2026-09-18 04:16:16 | INFO    | src.train | epoch   7 | loss 0.0004 | val macroF1 0.4000 | val MCC 0.9999 | patience 7
+2026-09-18 04:16:16 | INFO    | src.train | early stop at epoch 7 (best epoch 0, val f1_macro=0.4000)
+2026-09-18 04:16:16 | INFO    | experiments | GraphSAGE    uniflow  multiclass protocol CS seed 42    | macroF1 1.0000 MCC 1.0000 FPR 0.00000 acc 1.00000 -> diagnostic__GraphSAGE__uniflow__multiclass__protocolCS__seed42.json
+  GraphSAGE       acc=1.00000 macroF1=1.00000 MCC=1.00000 bal=1.00000 FPR=0.00000
+2026-09-18 04:16:22 | INFO    | src.train | epoch   0 | loss 0.4281 | val macroF1 0.4000 | val MCC 0.9999 | best
+2026-09-18 04:17:02 | INFO    | src.train | epoch   7 | loss 0.0004 | val macroF1 0.4000 | val MCC 0.9999 | patience 7
+2026-09-18 04:17:02 | INFO    | src.train | early stop at epoch 7 (best epoch 0, val f1_macro=0.4000)
+2026-09-18 04:17:03 | INFO    | experiments | GAT          uniflow  multiclass protocol CS seed 42    | macroF1 0.6686 MCC 0.9744 FPR 0.00883 acc 0.99388 -> diagnostic__GAT__uniflow__multiclass__protocolCS__seed42.json
+  GAT             acc=0.99388 macroF1=0.66857 MCC=0.97438 bal=0.66822 FPR=0.00883
+2026-09-18 04:17:09 | INFO    | src.train | epoch   0 | loss 0.4034 | val macroF1 0.4000 | val MCC 0.9999 | best
+2026-09-18 04:17:54 | INFO    | src.train | epoch   7 | loss 0.0003 | val macroF1 0.4000 | val MCC 0.9999 | patience 7
+2026-09-18 04:17:54 | INFO    | src.train | early stop at epoch 7 (best epoch 0, val f1_macro=0.4000)
+2026-09-18 04:17:55 | INFO    | experiments | EdgeGAT      uniflow  multiclass protocol CS seed 42    | macroF1 0.9992 MCC 0.9999 FPR 0.00001 acc 0.99997 -> diagnostic__EdgeGAT__uniflow__multiclass__protocolCS__seed42.json
+  EdgeGAT         acc=0.99997 macroF1=0.99919 MCC=0.99988 bal=0.99845 FPR=0.00001
+2026-09-18 04:18:02 | INFO    | src.train | epoch   0 | loss 0.3704 | val macroF1 0.4000 | val MCC 0.9999 | best
+2026-09-18 04:18:49 | INFO    | src.train | epoch   7 | loss 0.0004 | val macroF1 0.4000 | val MCC 0.9999 | patience 7
+2026-09-18 04:18:49 | INFO    | src.train | early stop at epoch 7 (best epoch 0, val f1_macro=0.4000)
+2026-09-18 04:18:50 | INFO    | experiments | E-GAT-IDS    uniflow  multiclass protocol CS seed 42    | macroF1 0.9992 MCC 0.9999 FPR 0.00004 acc 0.99997 -> diagnostic__E-GAT-IDS__uniflow__multiclass__protocolCS__seed42.json
+  E-GAT-IDS       acc=0.99997 macroF1=0.99922 MCC=0.99988 bal=0.99845 FPR=0.00004
